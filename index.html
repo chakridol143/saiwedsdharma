@@ -5,10 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sailakshmi & Dharmaveer — Save the date, 28 Oct 2026</title>
 <meta name="description" content="Sailakshmi & Dharmaveer are getting married. Wednesday, 28 October 2026 at 10:34 PM, Amalapuram. The Moka family invites you.">
-<meta name="theme-color" content="#0e0507">
+<meta name="theme-color" content="#0a1030">
 
-<!-- Link preview (WhatsApp / Facebook). After deploying, change og:image to the
-     full address, e.g. https://your-site.netlify.app/img/og.jpg -->
+<!-- Link preview (WhatsApp / Facebook) -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_IN">
 <meta property="og:locale:alternate" content="te_IN">
@@ -29,14 +28,13 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Telugu:wght@300..700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&family=Ramaraja&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Telugu:wght@400..700&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Instrument+Serif:ital@0;1&family=Ramaraja&display=swap">
 <link rel="preload" as="image" type="image/webp" fetchpriority="high"
-      imagesrcset="img/couple/hero-1050.webp 752w, img/couple/hero-1500.webp 1075w, img/couple/hero-2400.webp 1720w"
-      imagesizes="(min-width: 900px) and (min-aspect-ratio: 1/1) 60vw, 100vw">
+      imagesrcset="img/shoot/bike-dusk-sm.webp 506w, img/shoot/bike-dusk.webp 853w"
+      imagesizes="(min-width: 960px) 460px, 100vw">
 <link rel="stylesheet" href="css/style.css">
 <script>
-  // Before first paint: enable JS styles, apply the saved language, and skip
-  // the intro on repeat visits.
+  // Before first paint: enable JS styles and apply the saved language.
   (function () {
     var root = document.documentElement;
     root.className = root.className.replace('no-js', 'js');
@@ -47,461 +45,436 @@
         root.lang = saved;
       }
     } catch (e) {}
-    try { if (sessionStorage.getItem('pelli-intro-seen')) root.classList.add('intro-seen'); } catch (e) {}
   })();
 </script>
 <script src="js/main.js" defer></script>
 </head>
 <body>
 
-<!-- ============ PRELOADER + TEMPLE DOORS ============ -->
-<div class="intro" id="intro" aria-hidden="true">
-  <div class="intro__door intro__door--l"><span class="intro__panel"></span><span class="intro__handle"></span></div>
-  <div class="intro__door intro__door--r"><span class="intro__panel"></span><span class="intro__handle"></span></div>
-  <div class="intro__light"></div>
+<a class="skip" href="#invite"><span class="t-en">Skip to the invitation</span><span class="t-te">ఆహ్వానానికి వెళ్ళండి</span></a>
 
-  <div class="intro__center">
-    <div class="intro__emblem">
-      <span class="intro__halo"></span>
-      <span class="intro__orbit"></span>
-      <svg class="intro__progress" viewBox="0 0 280 280">
-        <defs>
-          <linearGradient id="progressGold" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#f7ecd4"/><stop offset=".5" stop-color="#d8b874"/><stop offset="1" stop-color="#a8803c"/>
-          </linearGradient>
-        </defs>
-        <circle class="intro__track" cx="140" cy="140" r="132"/>
-        <circle class="intro__dashes" cx="140" cy="140" r="118"/>
-        <circle class="intro__bar" id="introBar" cx="140" cy="140" r="132" pathLength="100"/>
-      </svg>
-      <img class="intro__ganesha" src="assets/ganesha-emblem.webp" alt="" width="355" height="410">
-    </div>
-    <p class="intro__percent" aria-hidden="true"><span id="introPct">0</span><small>%</small></p>
-    <p class="intro__family"><span class="t-en">Sailakshmi &amp; Dharmaveer</span><span class="t-te">సాయిలక్ష్మి &amp; ధర్మవీర్</span></p>
+<!-- ============ TOP BAR ============ -->
+<div class="topbar" id="topbar">
+  <a class="topbar__brand" href="#top" tabindex="-1" aria-hidden="true">
+    <span class="topbar__mono">S<i>&amp;</i>D</span>
+    <span class="topbar__date num">28 · 10 · 26</span>
+  </a>
+  <div class="lang-pill" role="group" aria-label="Language / భాష">
+    <button type="button" data-lang-set="en" aria-pressed="true">EN</button>
+    <button type="button" data-lang-set="te" aria-pressed="false" lang="te">తెలుగు</button>
   </div>
 </div>
-<button class="intro-skip" id="introSkip" type="button" data-aria-en="Skip" data-aria-te="దాటవేయండి"><span class="t-en">Skip</span><span class="t-te">దాటవేయండి</span> <span aria-hidden="true">→</span></button>
 
-<div class="progress" id="progress" aria-hidden="true"></div>
-<div class="petals" id="petals" aria-hidden="true"></div>
-
-<!-- floating top bar (appears after the hero) -->
-<div class="topbar" id="topbar" aria-hidden="true">
-  <img src="assets/ganesha-emblem.webp" alt="" width="355" height="410">
-  <span class="topbar__names"><span class="t-en">Sai <i>&amp;</i> Dharma</span><span class="t-te">సాయిలక్ష్మి <i>❖</i> ధర్మవీర్</span></span>
-  <span class="topbar__date num">28 · 10 · 2026</span>
-</div>
-
-<!-- ============ HERO ============ -->
+<!-- ============ HERO: a story you tap through ============ -->
 <header class="hero" id="top">
-  <div class="hero__media">
-    <picture>
-      <source type="image/webp"
-              srcset="img/couple/hero-1050.webp 752w, img/couple/hero-1500.webp 1075w, img/couple/hero-2400.webp 1720w"
-              sizes="(min-width: 900px) and (min-aspect-ratio: 1/1) 60vw, 100vw">
-      <img class="hero__img" id="heroPhoto"
-           src="img/couple/hero-1500.jpg"
-           srcset="img/couple/hero-1050.jpg 752w, img/couple/hero-1500.jpg 1075w, img/couple/hero-2400.jpg 1720w"
-           sizes="(min-width: 900px) and (min-aspect-ratio: 1/1) 60vw, 100vw"
-           width="1075" height="1500" fetchpriority="high" decoding="async"
-           alt="Sailakshmi and Dharmaveer">
-    </picture>
-    <div class="hero__shade"></div>
-  </div>
+  <div class="story" id="story" data-interval="5200">
+    <div class="story__bars" aria-hidden="true">
+      <span class="story__bar"><i></i></span>
+      <span class="story__bar"><i></i></span>
+      <span class="story__bar"><i></i></span>
+      <span class="story__bar"><i></i></span>
+    </div>
+    <div class="story__head" aria-hidden="true">
+      <span class="story__avatar"><picture><source type="image/webp" srcset="img/shoot/avatar.webp"><img src="img/shoot/avatar.jpg" width="192" height="192" alt=""></picture></span>
+      <span class="story__who"><b><span class="t-en">Sai &amp; Dharma</span><span class="t-te">సాయి &amp; ధర్మ</span></b><small class="num">28.10.2026</small></span>
+    </div>
 
-  <div class="hero__badge">
-    <span class="hero__badge-dot"></span>
-    <span class="t-en">Save&nbsp;the&nbsp;date</span><span class="t-te">తేదీ గుర్తుంచుకోండి</span>
-  </div>
+    <figure class="story__frame is-active" data-sticker-rot="-7">
+      <picture>
+        <source type="image/webp" srcset="img/shoot/bike-dusk-sm.webp 506w, img/shoot/bike-dusk.webp 853w" sizes="(min-width: 960px) 460px, 100vw">
+        <img src="img/shoot/bike-dusk.jpg" width="853" height="1280" fetchpriority="high" decoding="async" alt="Sailakshmi and Dharmaveer riding a motorbike at dusk" style="object-position: 50% 42%">
+      </picture>
+      <figcaption class="sticker" style="--rot:-7deg"><span class="t-en">Dusk ride</span><span class="t-te">సాయంత్రం షికారు</span></figcaption>
+    </figure>
+    <figure class="story__frame">
+      <picture>
+        <source type="image/webp" data-srcset="img/shoot/silhouette-sm.webp 760w, img/shoot/silhouette.webp 1280w" sizes="(min-width: 960px) 460px, 100vw">
+        <img data-src="img/shoot/silhouette.jpg" width="1280" height="853" decoding="async" alt="Their silhouettes, foreheads touching against the setting sun" style="object-position: 54% 50%">
+      </picture>
+      <figcaption class="sticker" style="--rot:5deg"><span class="t-en">Golden hour</span><span class="t-te">సంధ్య వేళ</span></figcaption>
+    </figure>
+    <figure class="story__frame">
+      <picture>
+        <source type="image/webp" data-srcset="img/shoot/garden-hug-sm.webp 506w, img/shoot/garden-hug.webp 853w" sizes="(min-width: 960px) 460px, 100vw">
+        <img data-src="img/shoot/garden-hug.jpg" width="853" height="1280" decoding="async" alt="Dharmaveer and Sailakshmi in a warm hug in the garden" style="object-position: 50% 30%">
+      </picture>
+      <figcaption class="sticker" style="--rot:-4deg"><span class="t-en">In the garden</span><span class="t-te">తోటలో</span></figcaption>
+    </figure>
+    <figure class="story__frame">
+      <picture>
+        <source type="image/webp" data-srcset="img/shoot/peekaboo-sm.webp 506w, img/shoot/peekaboo.webp 853w" sizes="(min-width: 960px) 460px, 100vw">
+        <img data-src="img/shoot/peekaboo.jpg" width="853" height="1280" decoding="async" alt="Sailakshmi smiling in a white dress while Dharmaveer watches from behind" style="object-position: 50% 30%">
+      </picture>
+      <figcaption class="sticker" style="--rot:6deg"><span class="t-en">Peekaboo</span><span class="t-te">దాగుడుమూతలు</span></figcaption>
+    </figure>
 
-  <div class="hero__meta hero__meta--date">
-    <span class="hero__meta-k num">28<small>.10.26</small></span>
-  </div>
-  <div class="hero__meta hero__meta--where">
-    <span class="t-en">Amalapuram<br>India</span><span class="t-te">అమలాపురం<br>భారతదేశం</span>
+    <button class="story__tap story__tap--prev" type="button" data-aria-en="Previous photo" data-aria-te="ముందు ఫోటో" aria-label="Previous photo"></button>
+    <button class="story__tap story__tap--next" type="button" data-aria-en="Next photo" data-aria-te="తరువాతి ఫోటో" aria-label="Next photo"></button>
   </div>
 
   <div class="hero__content">
+    <svg class="badge" viewBox="0 0 120 120" aria-hidden="true">
+      <defs><path id="badgeCircle" d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0"/></defs>
+      <g class="badge__spin">
+        <circle cx="60" cy="60" r="58" class="badge__disc"/>
+        <text class="badge__text t-en"><textPath href="#badgeCircle" textLength="286">SAVE THE DATE • 28.10.2026 •</textPath></text>
+        <text class="badge__text badge__text--te t-te"><textPath href="#badgeCircle">తేదీ గుర్తుంచుకోండి • 28.10.2026 •</textPath></text>
+      </g>
+      <g class="badge__rings" fill="none" stroke-width="3"><circle cx="53" cy="62" r="11"/><circle cx="67" cy="62" r="11"/></g>
+      <path class="badge__gem" d="M67 43 l4 5 -4 5 -4 -5z"/>
+    </svg>
+
     <p class="hero__kicker"><span class="t-en">We're getting married</span><span class="t-te">మేము పెళ్ళి చేసుకుంటున్నాము</span></p>
     <h1 class="hero__names">
       <span class="hero__name"><span class="t-en">Sailakshmi</span><span class="t-te">సాయిలక్ష్మి</span></span>
-      <span class="hero__join"><span aria-hidden="true">&amp;</span><span class="sr-only"><span class="t-en"> and </span><span class="t-te"> మరియు </span></span></span>
-      <span class="hero__name"><span class="t-en">Dharmaveer</span><span class="t-te">ధర్మవీర్</span></span>
+      <span class="hero__amp"><span aria-hidden="true">&amp;</span><span class="sr-only"><span class="t-en"> and </span><span class="t-te"> మరియు </span></span></span>
+      <span class="hero__name hero__name--2"><span class="t-en">Dharmaveer</span><span class="t-te">ధర్మవీర్</span></span>
     </h1>
-    <p class="hero__sub"><span class="t-en">Wednesday · <span class="num">10:34 PM</span> · Dr. Metla Satyanarayana Kapu Kalyana Mandapam, Amalapuram</span><span class="t-te">బుధవారము · <span class="num">రాత్రి 10:34</span> · డా॥ మెట్ల సత్యనారాయణ కాపు కళ్యాణ మండపము, అమలాపురం</span></p>
+    <p class="hero__when">
+      <span class="t-en">Wednesday · <span class="num">28.10.2026</span> · <span class="num">10:34 PM</span></span><span class="t-te">బుధవారము · <span class="num">28.10.2026</span> · రాత్రి <span class="num">10:34</span></span>
+      <span class="hero__where"><span class="t-en">Amalapuram</span><span class="t-te">అమలాపురం</span></span>
+    </p>
     <div class="hero__ctas">
-      <a class="btn btn--gold" href="#events" data-magnetic>
-        <span class="t-en">RSVP &amp; details</span><span class="t-te">వివరాలు చూడండి</span>
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <a class="btn btn--marigold" href="#invite">
+        <span class="t-en">Open the invite</span><span class="t-te">ఆహ్వానం చూడండి</span>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
       </a>
       <a class="btn btn--glass" href="assets/sumuhurtham.ics" download="sailakshmi-dharmaveer.ics">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
         <span class="t-en">Save the date</span><span class="t-te">క్యాలెండర్‌లో చేర్చండి</span>
       </a>
     </div>
+    <div class="hero__foot">
+      <span class="hero__hint"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V6a2 2 0 0 1 4 0v5"/><path d="M13 10.5V9a2 2 0 0 1 4 0v4a7 7 0 0 1-7 7h-.5a6 6 0 0 1-5.2-3L3 14.5a1.8 1.8 0 0 1 3-2l3 2.5"/></svg><span class="t-en">Tap the photo for more</span><span class="t-te">మరిన్ని ఫోటోల కోసం ఫోటోను తాకండి</span></span>
+      <button class="story__pause" id="storyPause" type="button" aria-pressed="false" data-aria-en="Pause the slideshow" data-aria-te="స్లైడ్‌షో ఆపండి" aria-label="Pause the slideshow">
+        <svg class="i-pause" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+        <svg class="i-play" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M7 5v14l12-7z"/></svg>
+      </button>
+    </div>
   </div>
-
-  <a class="hero__scroll" href="#couple" aria-label="Scroll"><span><span class="t-en">Scroll</span><span class="t-te">క్రిందికి</span></span><i aria-hidden="true"></i></a>
 </header>
-
-<!-- names / date marquee -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee__track" id="marquee">
-    <span class="t-en">Sailakshmi</span><span class="t-te">సాయిలక్ష్మి</span><i>✦</i>
-    <span class="t-en">Dharmaveer</span><span class="t-te">ధర్మవీర్</span><i>✦</i>
-    <span class="num">28 · 10 · 2026</span><i>✦</i>
-    <span class="t-en">Amalapuram</span><span class="t-te">అమలాపురం</span><i>✦</i>
-    <span class="t-en">Sailakshmi</span><span class="t-te">సాయిలక్ష్మి</span><i>✦</i>
-    <span class="t-en">Dharmaveer</span><span class="t-te">ధర్మవీర్</span><i>✦</i>
-    <span class="num">28 · 10 · 2026</span><i>✦</i>
-    <span class="t-en">Amalapuram</span><span class="t-te">అమలాపురం</span><i>✦</i>
-    <span class="t-en">Sailakshmi</span><span class="t-te">సాయిలక్ష్మి</span><i>✦</i>
-    <span class="t-en">Dharmaveer</span><span class="t-te">ధర్మవీర్</span><i>✦</i>
-    <span class="num">28 · 10 · 2026</span><i>✦</i>
-    <span class="t-en">Amalapuram</span><span class="t-te">అమలాపురం</span><i>✦</i>
-  </div>
-</div>
 
 <main>
 
-  <!-- ============ BRIDE & GROOM ============ -->
-  <section class="section section--sand couple" id="couple">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span>01</span> <span class="t-en">The Couple</span><span class="t-te">వధూవరులు</span></span>
-        <h2 class="title" data-split><span class="t-en">Meet Sai &amp; Dharma</span><span class="t-te">వధూవరులు</span></h2>
-        <p class="lead" data-reveal><span class="t-en">With the blessings of Sri Moka Venkateswara Rao &amp; Late Smt. Ramalakshmi, our elders have joyfully chosen this day for the wedding.</span><span class="t-te">శ్రీ మోకా వేంకటేశ్వర రావు - శ్రీమతి రామలక్ష్మీ (లేటు) వ్రాయు శుభలేఖార్థములు. ఇట్టి వివాహము జరిపించుటకు దైవజ్ఞులుగా పెద్దలు నిశ్చయించినారు.</span></p>
-        <p class="hint" data-reveal><span class="t-en">Tap a card for family details</span><span class="t-te">కార్డును తాకితే కుటుంబ వివరాలు కనిపిస్తాయి</span></p>
+  <!-- ============ 01 · SAVE THE DATE ============ -->
+  <section class="invite zone zone--1" id="invite">
+    <div class="wrap">
+      <img class="invite__emblem" src="assets/ganesha-emblem.webp" width="355" height="410" alt="" loading="lazy" decoding="async">
+      <p class="eyebrow" data-reveal><span class="eyebrow__n">01</span><span class="t-en">Save the date</span><span class="t-te">తేదీ గుర్తుంచుకోండి</span></p>
+      <p class="invite__lead" data-reveal><span class="t-en">With the blessings of Sri Moka Venkateswara Rao &amp; Late Smt. Ramalakshmi, our elders have joyfully chosen this day for the wedding.</span><span class="t-te">శ్రీ మోకా వేంకటేశ్వర రావు - శ్రీమతి రామలక్ష్మీ (లేటు) వ్రాయు శుభలేఖార్థములు. ఇట్టి వివాహము జరిపించుటకు దైవజ్ఞులుగా పెద్దలు నిశ్చయించినారు.</span></p>
+
+      <div class="bigdate" data-reveal>
+        <span class="bigdate__top"><span class="t-en">Wednesday</span><span class="t-te">బుధవారము</span></span>
+        <span class="bigdate__top bigdate__top--r num"><span class="t-en">10:34 PM</span><span class="t-te">రాత్రి 10:34</span></span>
+        <span class="bigdate__num num" aria-hidden="true">28<i>.</i>10</span>
+        <span class="bigdate__bot num">2026</span>
+        <span class="bigdate__bot bigdate__bot--r"><span class="t-en">Amalapuram</span><span class="t-te">అమలాపురం</span></span>
+        <span class="sr-only"><span class="t-en">28 October 2026</span><span class="t-te">28 అక్టోబర్ 2026</span></span>
       </div>
 
-      <div class="couple__cards">
-        <div class="flip" data-reveal>
-          <div class="flip__inner">
-            <div class="flip__face flip__front">
-              <picture>
-                <source type="image/webp" srcset="img/couple/bride.webp">
-                <img class="flip__photo" src="img/couple/bride.jpg" width="1000" height="1250" loading="lazy" decoding="async" alt="Bride Sailakshmi">
-              </picture>
-              <span class="flip__role"><span class="t-en">Bride</span><span class="t-te">వధువు</span></span>
-              <div class="flip__info">
-                <p class="flip__name"><span class="t-en">Sailakshmi</span><span class="t-te">సాయిలక్ష్మి</span></p>
-                <p class="flip__meta"><span class="t-en">Chartered Accountant</span><span class="t-te">చి॥ల॥సౌ॥ సాయిలక్ష్మి, <span class="num">C.A.</span></span></p>
-                <button class="btn btn--glass btn--sm" type="button" data-flip
-                        data-aria-en="Show family details" data-aria-te="కుటుంబ వివరాలు చూపించు"><span class="t-en">Family</span><span class="t-te">కుటుంబ వివరాలు</span>
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="flip__face flip__back">
-              <img class="flip__emblem" src="assets/ganesha-emblem.webp" alt="" width="355" height="410" loading="lazy">
-              <p class="flip__back-name gold-text"><span class="t-en">Sailakshmi</span><span class="t-te">సాయిలక్ష్మి</span></p>
-              <p class="t-te">శ్రీ మోకా వేంకటేశ్వర రావు - శ్రీమతి రామలక్ష్మీ (లేటు) గార్ల ద్వితీయ కుమారుడు</p>
-              <p class="flip__parents"><span class="t-en">Daughter of<br>Sri Moka Satyanarayana &amp; Smt. Rukmini</span><span class="t-te">శ్రీ మోకా సత్యనారాయణ - శ్రీమతి రుక్మిణి<br>దంపతుల కుమార్తె</span></p>
-              <p class="flip__place"><span class="t-en">Amalapuram</span><span class="t-te">అమలాపురం</span></p>
-              <button class="btn btn--glass btn--sm" type="button" data-flip><span class="t-en">Back</span><span class="t-te">వెనక్కి</span></button>
-            </div>
-          </div>
+      <div class="timer" id="countdownTiles" data-reveal>
+        <p class="timer__title"><span class="t-en">The countdown</span><span class="t-te">శుభ ముహూర్తానికి ఇంకా</span></p>
+        <div class="timer__row">
+          <div class="timer__cell timer__cell--days"><span class="timer__num num" data-unit="days">--</span><span class="timer__label"><span class="t-en">Days</span><span class="t-te">రోజులు</span></span></div>
+          <div class="timer__cell"><span class="timer__num num" data-unit="hours">--</span><span class="timer__label"><span class="t-en">Hours</span><span class="t-te">గంటలు</span></span></div>
+          <div class="timer__cell"><span class="timer__num num" data-unit="minutes">--</span><span class="timer__label"><span class="t-en">Minutes</span><span class="t-te">నిమిషాలు</span></span></div>
+          <div class="timer__cell"><span class="timer__num num" data-unit="seconds">--</span><span class="timer__label"><span class="t-en">Seconds</span><span class="t-te">సెకన్లు</span></span></div>
         </div>
+      </div>
+      <p class="timer__done" id="countdownDone" hidden><span class="t-en">The muhurtham has arrived — bless the newlyweds</span><span class="t-te">శుభ ముహూర్తం సంపన్నమైంది — నూతన వధూవరులను ఆశీర్వదించండి</span></p>
+      <p class="invite__when" data-reveal><span class="t-en">Wednesday, <span class="num">28-10-2026</span> · <span class="num">10:34 PM</span></span><span class="t-te">బుధవారము, <span class="num">28-10-2026</span> · రాత్రి గం॥ <span class="num">10-34</span> ని॥లకు</span></p>
+      <a class="btn btn--ink" href="assets/sumuhurtham.ics" download="sailakshmi-dharmaveer-sumuhurtham.ics" data-reveal>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg>
+        <span class="t-en">Add to calendar</span><span class="t-te">క్యాలెండర్‌లో చేర్చండి</span>
+      </a>
+    </div>
+  </section>
 
-        <div class="bond" aria-hidden="true" data-reveal>
-          <span class="bond__line"></span>
-          <svg viewBox="0 0 80 80" width="60" height="60">
-            <g fill="none" stroke="#b08a43" stroke-width="2.6"><circle cx="31" cy="44" r="17"/><circle cx="49" cy="44" r="17"/></g>
-            <path d="M49 19 l5 6 -5 6 -5 -6z" fill="#c9a45c"/>
-          </svg>
-          <p><span class="t-en">Together forever</span><span class="t-te">కళ్యాణ బంధం</span></p>
-          <span class="bond__line"></span>
-        </div>
+  <!-- ============ 02 · THE COUPLE ============ -->
+  <section class="couple zone zone--2" id="couple">
+    <div class="wrap couple__wrap">
+      <div class="couple__intro">
+        <p class="eyebrow eyebrow--dup" data-reveal><span class="eyebrow__n">02</span><span class="t-en">The Couple</span><span class="t-te">వధూవరులు</span></p>
+        <h2 class="title" data-reveal><span class="t-en">Meet Sai <i>&amp;</i> Dharma</span><span class="t-te">వధూవరులు</span></h2>
+        <p class="hint" data-reveal><span class="t-en">Tap on either of us</span><span class="t-te">మాలో ఒకరిని తాకండి</span></p>
+      </div>
 
-        <div class="flip flip--groom" data-reveal>
-          <div class="flip__inner">
-            <div class="flip__face flip__front">
-              <picture>
-                <source type="image/webp" srcset="img/couple/groom.webp">
-                <img class="flip__photo" src="img/couple/groom.jpg" width="1000" height="1250" loading="lazy" decoding="async" alt="Groom Dharmaveer">
-              </picture>
-              <span class="flip__role"><span class="t-en">Groom</span><span class="t-te">వరుడు</span></span>
-              <div class="flip__info">
-                <p class="flip__name"><span class="t-en">Dharmaveer</span><span class="t-te">ధర్మవీర్</span></p>
-                <p class="flip__meta num">JAO, HMDA, Govt. of Telangana</p>
-                <button class="btn btn--glass btn--sm" type="button" data-flip
-                        data-aria-en="Show family details" data-aria-te="కుటుంబ వివరాలు చూపించు"><span class="t-en">Family</span><span class="t-te">కుటుంబ వివరాలు</span>
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="flip__face flip__back">
-              <img class="flip__emblem" src="assets/ganesha-emblem.webp" alt="" width="355" height="410" loading="lazy">
-              <p class="flip__back-name gold-text"><span class="t-en">Dharmaveer</span><span class="t-te">చి॥ ధర్మవీర్</span></p>
-              <p class="flip__place"><span class="t-en">From Thiruvuru, N.T.R. District</span><span class="t-te">ఎన్.టి.ఆర్. జిల్లా, తిరువూరు వాస్తవ్యులు</span></p>
-              <p class="flip__parents"><span class="t-en">Eldest son of<br>Late Sri Nerellakunta Srinivasa Rao &amp; Smt. Nagamani (Shirisha)</span><span class="t-te">శ్రీ నేరెళ్లకుంట శ్రీనివాసరావు (లేటు) - శ్రీమతి నాగమణి (శిరీష)<br>దంపతుల జ్యేష్ఠ కుమారుడు</span></p>
-              <p class="flip__job num">JAO, HMDA, Govt. of Telangana</p>
-              <button class="btn btn--glass btn--sm" type="button" data-flip><span class="t-en">Back</span><span class="t-te">వెనక్కి</span></button>
-            </div>
+      <div class="couple__stage" id="coupleStage" data-pick="bride">
+        <figure class="couple__photo" data-reveal>
+          <picture>
+            <source type="image/webp" srcset="img/shoot/palace-walk-sm.webp 506w, img/shoot/palace-walk.webp 853w" sizes="(min-width: 960px) 460px, 92vw">
+            <img src="img/shoot/palace-walk.jpg" width="853" height="1280" loading="lazy" decoding="async" alt="Dharmaveer and Sailakshmi walking hand in hand through a blue and gold palace hall">
+          </picture>
+          <span class="couple__shade couple__shade--l" aria-hidden="true"></span>
+          <span class="couple__shade couple__shade--r" aria-hidden="true"></span>
+          <button class="spot spot--groom" type="button" data-pick="groom" aria-pressed="false">
+            <span class="spot__dot" aria-hidden="true"></span>
+            <span class="spot__label"><span class="t-en">Dharmaveer</span><span class="t-te">ధర్మవీర్</span></span>
+          </button>
+          <button class="spot spot--bride" type="button" data-pick="bride" aria-pressed="true">
+            <span class="spot__dot" aria-hidden="true"></span>
+            <span class="spot__label"><span class="t-en">Sailakshmi</span><span class="t-te">సాయిలక్ష్మి</span></span>
+          </button>
+        </figure>
+
+        <div class="couple__panel">
+          <div class="switch" role="group" data-aria-en="Choose bride or groom" data-aria-te="వధువు లేదా వరుడు" aria-label="Choose bride or groom">
+            <button type="button" data-pick="bride" aria-pressed="true"><span class="t-en">Bride</span><span class="t-te">వధువు</span></button>
+            <button type="button" data-pick="groom" aria-pressed="false"><span class="t-en">Groom</span><span class="t-te">వరుడు</span></button>
+            <span class="switch__thumb" aria-hidden="true"></span>
           </div>
+
+          <article class="person" id="personBride" data-person="bride" aria-live="polite">
+            <p class="person__role"><span class="t-en">Bride</span><span class="t-te">వధువు</span></p>
+            <h3 class="person__name"><span class="t-en">Sailakshmi</span><span class="t-te">సాయిలక్ష్మి</span></h3>
+            <p class="person__meta"><span class="t-en">Chartered Accountant</span><span class="t-te">చి॥ల॥సౌ॥ సాయిలక్ష్మి, <span class="num">C.A.</span></span></p>
+            <p class="person__line t-te">శ్రీ మోకా వేంకటేశ్వర రావు - శ్రీమతి రామలక్ష్మీ (లేటు) గార్ల ద్వితీయ కుమారుడు</p>
+            <p class="person__parents"><span class="t-en">Daughter of<br><b>Sri Moka Satyanarayana &amp; Smt. Rukmini</b></span><span class="t-te"><b>శ్రీ మోకా సత్యనారాయణ - శ్రీమతి రుక్మిణి</b><br>దంపతుల కుమార్తె</span></p>
+            <p class="person__place"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span class="t-en">Amalapuram</span><span class="t-te">అమలాపురం</span></p>
+          </article>
+
+          <article class="person" id="personGroom" data-person="groom" hidden>
+            <p class="person__role"><span class="t-en">Groom</span><span class="t-te">వరుడు</span></p>
+            <h3 class="person__name"><span class="t-en">Dharmaveer</span><span class="t-te">చి॥ ధర్మవీర్</span></h3>
+            <p class="person__meta num">JAO, HMDA, Govt. of Telangana</p>
+            <p class="person__parents"><span class="t-en">Eldest son of<br><b>Late Sri Nerellakunta Srinivasa Rao &amp; Smt. Nagamani (Shirisha)</b></span><span class="t-te"><b>శ్రీ నేరెళ్లకుంట శ్రీనివాసరావు (లేటు) - శ్రీమతి నాగమణి (శిరీష)</b><br>దంపతుల జ్యేష్ఠ కుమారుడు</span></p>
+            <p class="person__place"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span class="t-en">From Thiruvuru, N.T.R. District</span><span class="t-te">ఎన్.టి.ఆర్. జిల్లా, తిరువూరు వాస్తవ్యులు</span></p>
+          </article>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ COUNTDOWN ============ -->
-  <section class="section section--dark countdown" id="countdown">
-    <div class="container countdown__inner">
-      <div class="diyas" aria-hidden="true" data-reveal>
-        <span class="diya" style="--d:0s"><span class="diya__glow"></span><svg viewBox="0 0 60 60" width="48" height="48"><g class="diya__flame"><ellipse cx="30" cy="22" rx="8" ry="15" fill="#ff9d1c"/><ellipse cx="30" cy="26" rx="4" ry="9" fill="#fff3b0"/></g><path d="M4 36 Q30 66 56 36 Z" fill="#c9a45c"/><ellipse cx="30" cy="36" rx="26" ry="4.5" fill="#f2d48a"/></svg></span>
-        <span class="diya" style="--d:-1.3s"><span class="diya__glow"></span><svg viewBox="0 0 60 60" width="48" height="48"><g class="diya__flame"><ellipse cx="30" cy="22" rx="8" ry="15" fill="#ff9d1c"/><ellipse cx="30" cy="26" rx="4" ry="9" fill="#fff3b0"/></g><path d="M4 36 Q30 66 56 36 Z" fill="#c9a45c"/><ellipse cx="30" cy="36" rx="26" ry="4.5" fill="#f2d48a"/></svg></span>
-        <span class="diya" style="--d:-2.6s"><span class="diya__glow"></span><svg viewBox="0 0 60 60" width="48" height="48"><g class="diya__flame"><ellipse cx="30" cy="22" rx="8" ry="15" fill="#ff9d1c"/><ellipse cx="30" cy="26" rx="4" ry="9" fill="#fff3b0"/></g><path d="M4 36 Q30 66 56 36 Z" fill="#c9a45c"/><ellipse cx="30" cy="36" rx="26" ry="4.5" fill="#f2d48a"/></svg></span>
-      </div>
-      <h2 class="title gold-text" data-split><span class="t-en">The countdown</span><span class="t-te">శుభ ముహూర్తానికి ఇంకా</span></h2>
-      <div class="timer" id="countdownTiles">
-        <div class="timer__cell" data-reveal><span class="timer__num num" data-unit="days">--</span><span class="timer__label"><span class="t-en">Days</span><span class="t-te">రోజులు</span></span></div>
-        <div class="timer__cell" data-reveal><span class="timer__num num" data-unit="hours">--</span><span class="timer__label"><span class="t-en">Hours</span><span class="t-te">గంటలు</span></span></div>
-        <div class="timer__cell" data-reveal><span class="timer__num num" data-unit="minutes">--</span><span class="timer__label"><span class="t-en">Minutes</span><span class="t-te">నిమిషాలు</span></span></div>
-        <div class="timer__cell" data-reveal><span class="timer__num num" data-unit="seconds">--</span><span class="timer__label"><span class="t-en">Seconds</span><span class="t-te">సెకన్లు</span></span></div>
-      </div>
-      <p class="countdown__done" id="countdownDone" hidden><span class="t-en">The muhurtham has arrived — bless the newlyweds</span><span class="t-te">శుభ ముహూర్తం సంపన్నమైంది — నూతన వధూవరులను ఆశీర్వదించండి</span></p>
-      <p class="countdown__when" data-reveal><span class="t-en">Wednesday, <span class="num">28-10-2026</span> · <span class="num">10:34 PM</span></span><span class="t-te">బుధవారము, <span class="num">28-10-2026</span> · రాత్రి గం॥ <span class="num">10-34</span> ని॥లకు</span></p>
+  <!-- ============ PHOTO BREAK: golden hour into the night ============ -->
+  <section class="break" aria-label="28 · 10 · 2026, 10:34 PM">
+    <picture>
+      <source type="image/webp" srcset="img/shoot/silhouette-bridge-sm.webp 760w, img/shoot/silhouette-bridge.webp 1280w" sizes="100vw">
+      <img class="break__img" src="img/shoot/silhouette-bridge.jpg" width="1280" height="853" loading="lazy" decoding="async" alt="Their silhouettes on a bridge at sunset">
+    </picture>
+    <div class="break__text" aria-hidden="true">
+      <span class="break__date num">28 · 10 · 2026</span>
+      <span class="break__time num">10:34<small>PM</small></span>
     </div>
   </section>
 
-  <!-- ============ EVENTS ============ -->
-  <section class="section section--light events" id="events">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span>02</span> <span class="t-en">The Day</span><span class="t-te">శుభ కార్యక్రమాలు</span></span>
-        <h2 class="title" data-split><span class="t-en">Join us for the celebrations</span><span class="t-te">శుభ కార్యక్రమాలు</span></h2>
-        <p class="lead" data-reveal><span class="t-en">On a Wednesday chosen by the stars — the auspicious Rohini nakshatra, Mithuna lagna.</span><span class="t-te">స్వస్తిశ్రీ చాంద్రమానేన శ్రీ పరాభవ నామ సంవత్సర ఆశ్వీయుజ మాస బహుళ విదియ (తత్కాల విదియ) బుధవారము</span></p>
-      </div>
-      <div class="bento">
-        <article class="card card--wine bento__main" data-reveal>
-          <span class="icon-badge icon-badge--gold" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg></span>
-          <h3 class="bento__title gold-text"><span class="t-en">The ceremony</span><span class="t-te">సుముహూర్తము</span></h3>
-          <p class="bento__date num">28 · 10 · 2026 · 10:34 PM</p>
-          <p class="bento__text"><span class="t-en">Wednesday at <span class="num">10:34 PM</span>.<br>During the auspicious Rohini nakshatra,<br>Mithuna lagna, Pushkaramsha muhurtham.</span><span class="t-te">బుధవారము రాత్రి గం॥ 10-34 ని॥లకు<br>రోహిణి నక్షత్రయుక్త మిధున లగ్న<br>పుష్కరాంశ శుభముహూర్తమున</span></p>
-          <a class="btn btn--gold" href="assets/sumuhurtham.ics" download="sailakshmi-dharmaveer-sumuhurtham.ics" data-magnetic>
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg>
-            <span class="t-en">Add to calendar</span><span class="t-te">క్యాలెండర్‌లో చేర్చండి</span>
-          </a>
-        </article>
-        <article class="card card--light bento__a" data-reveal>
-          <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 14h18"/><path d="M5 14a7 7 0 0 1 14 0"/><path d="M12 7V5"/><path d="M4 18h16"/></svg></span>
-          <h3 class="bento__title"><span class="t-en">Reception</span><span class="t-te">విందు</span></h3>
-          <p class="bento__date num">28 · 10 · 2026</p>
-          <p class="bento__text"><span class="t-en">From <span class="num">7 PM</span> onwards<br>at the venue</span><span class="t-te">రాత్రి 7 గంటల నుండి<br>కళ్యాణ వేదిక వద్ద</span></p>
-        </article>
-        <article class="card card--light bento__b" data-reveal>
-          <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
-          <h3 class="bento__title"><span class="t-en">The venue</span><span class="t-te">కళ్యాణవేదిక</span></h3>
-          <p class="bento__text"><span class="t-en">Dr. Metla Satyanarayana Kapu Kalyana Mandapam<br>Gandu Veedhi, Amalapuram</span><span class="t-te">డా॥ మెట్ల సత్యనారాయణ కాపు కళ్యాణ మండపము<br>గండు వీధి, అమలాపురం</span></p>
-          <a class="btn btn--wine" href="https://www.google.com/maps/search/?api=1&amp;query=Metla+Satyanarayana+Kapu+Kalyana+Mandapam+Gandu+Veedhi+Amalapuram" target="_blank" rel="noopener" data-magnetic>
+  <!-- ============ 03 · THE NIGHT ============ -->
+  <section class="night zone zone--3" id="events">
+    <div class="stars" aria-hidden="true"></div>
+    <svg class="moon" viewBox="0 0 100 100" aria-hidden="true"><path d="M64 10a40 40 0 1 0 26 66A34 34 0 1 1 64 10z"/></svg>
+    <div class="wrap">
+      <p class="eyebrow eyebrow--dup" data-reveal><span class="eyebrow__n">03</span><span class="t-en">The Day</span><span class="t-te">శుభ కార్యక్రమాలు</span></p>
+      <h2 class="title" data-reveal><span class="t-en">Join us for the <i>celebrations</i></span><span class="t-te">శుభ కార్యక్రమాలు</span></h2>
+      <p class="lead" data-reveal><span class="t-en">On a Wednesday chosen by the stars — the auspicious Rohini nakshatra, Mithuna lagna.</span><span class="t-te">స్వస్తిశ్రీ చాంద్రమానేన శ్రీ పరాభవ నామ సంవత్సర ఆశ్వీయుజ మాస బహుళ విదియ (తత్కాల విదియ) బుధవారము</span></p>
+
+      <ol class="timeline">
+        <li class="moment" data-reveal>
+          <span class="moment__time num"><span class="t-en">7 PM</span><span class="t-te">రాత్రి 7</span></span>
+          <div class="moment__card">
+            <span class="moment__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 14h18"/><path d="M5 14a7 7 0 0 1 14 0"/><path d="M12 7V5"/><path d="M4 18h16"/></svg></span>
+            <h3 class="moment__title"><span class="t-en">Reception</span><span class="t-te">విందు</span></h3>
+            <p class="moment__date num">28 · 10 · 2026</p>
+            <p class="moment__text"><span class="t-en">From <span class="num">7 PM</span> onwards<br>at the venue</span><span class="t-te">రాత్రి 7 గంటల నుండి<br>కళ్యాణ వేదిక వద్ద</span></p>
+          </div>
+        </li>
+        <li class="moment moment--main" data-reveal>
+          <span class="moment__time num"><span class="t-en">10:34 PM</span><span class="t-te">రాత్రి 10:34</span></span>
+          <div class="moment__card">
+            <span class="moment__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="9" cy="13" r="5"/><circle cx="15" cy="13" r="5"/><path d="M15 4.5l1.6 2-1.6 2-1.6-2z"/></svg></span>
+            <h3 class="moment__title"><span class="t-en">The ceremony</span><span class="t-te">సుముహూర్తము</span></h3>
+            <p class="moment__date num"><span class="t-en">28 · 10 · 2026 · 10:34 PM</span><span class="t-te">28 · 10 · 2026 · రాత్రి 10:34</span></p>
+            <p class="moment__text"><span class="t-en">Wednesday at <span class="num">10:34 PM</span>.<br>During the auspicious Rohini nakshatra,<br>Mithuna lagna, Pushkaramsha muhurtham.</span><span class="t-te">బుధవారము రాత్రి గం॥ 10-34 ని॥లకు<br>రోహిణి నక్షత్రయుక్త మిధున లగ్న<br>పుష్కరాంశ శుభముహూర్తమున</span></p>
+            <a class="btn btn--marigold" href="assets/sumuhurtham.ics" download="sailakshmi-dharmaveer-sumuhurtham.ics">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg>
+              <span class="t-en">Add to calendar</span><span class="t-te">క్యాలెండర్‌లో చేర్చండి</span>
+            </a>
+          </div>
+        </li>
+      </ol>
+
+      <div class="venue" data-reveal>
+        <div class="venue__arch" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        </div>
+        <div class="venue__body">
+          <h3 class="venue__title"><span class="t-en">The venue</span><span class="t-te">కళ్యాణవేదిక</span></h3>
+          <p class="venue__name"><span class="t-en">Dr. Metla Satyanarayana Kapu Kalyana Mandapam</span><span class="t-te">డా॥ మెట్ల సత్యనారాయణ కాపు కళ్యాణ మండపము</span></p>
+          <p class="venue__addr"><span class="t-en">Gandu Veedhi, Amalapuram</span><span class="t-te">గండు వీధి, అమలాపురం</span></p>
+          <a class="btn btn--light" href="https://www.google.com/maps/search/?api=1&amp;query=Metla+Satyanarayana+Kapu+Kalyana+Mandapam+Gandu+Veedhi+Amalapuram" target="_blank" rel="noopener">
             <span class="t-en">Open in Maps</span><span class="t-te">దారి చూపించు</span>
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
           </a>
-        </article>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ DIVINE CAROUSEL ============ -->
-  <section class="section section--dark divine" id="divine">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span>03</span> <span class="t-en">Blessings</span><span class="t-te">దైవ దంపతుల ఆశీర్వాదం</span></span>
-        <h2 class="title gold-text" data-split><span class="t-en">Divine blessings</span><span class="t-te">దైవ దంపతుల ఆశీర్వాదం</span></h2>
-        <p class="lead" data-reveal><span class="t-en">May the eternal couples bless this union</span><span class="t-te">ఆదిదంపతుల కృపతో ఈ కళ్యాణం శుభప్రదమగుగాక</span></p>
+  <!-- ============ 04 · GALLERY ============ -->
+  <section class="gallery zone zone--4" id="gallery">
+    <div class="wrap">
+      <div class="gallery__head">
+        <p class="eyebrow eyebrow--dup" data-reveal><span class="eyebrow__n">04</span><span class="t-en">Gallery</span><span class="t-te">ఫోటో గ్యాలరీ</span></p>
+        <h2 class="title" data-reveal><span class="t-en">Our story <i>in pictures</i></span><span class="t-te">ఫోటో గ్యాలరీ</span></h2>
+        <p class="lead" data-reveal><span class="t-en">Our joyful moments · tap any photo to see it large</span><span class="t-te">మా ఆనంద క్షణాలు · పెద్దగా చూడటానికి ఫోటోను తాకండి</span></p>
       </div>
 
-      <div class="carousel" id="godCarousel" data-reveal="scale">
-        <div class="carousel__viewport">
-          <div class="carousel__scale">
-            <div class="carousel__ring" id="godRing">
-              <button class="god-panel" type="button" style="--i:0" data-index="0"
-                      data-aria-en="Sri Lakshmi Narayana — view large" data-aria-te="శ్రీ లక్ష్మీ నారాయణులు — పెద్దగా చూడండి">
-                <span class="god-panel__img"><picture><source type="image/webp" srcset="img/gods/lakshmi-narayana-sm.webp"><img src="img/gods/lakshmi-narayana-sm.jpg" width="640" height="960" loading="lazy" decoding="async" alt="" style="object-position: 50% 0%"></picture></span>
-                <span class="god-panel__label"><span class="t-en">Sri Lakshmi Narayana</span><span class="t-te">శ్రీ లక్ష్మీ నారాయణులు</span></span>
-              </button>
-              <button class="god-panel" type="button" style="--i:1" data-index="1"
-                      data-aria-en="Sri Shiva Parvati — view large" data-aria-te="శ్రీ శివ పార్వతులు — పెద్దగా చూడండి">
-                <span class="god-panel__img"><picture><source type="image/webp" srcset="img/gods/shiva-parvati-card-sm.webp"><img src="img/gods/shiva-parvati-card-sm.jpg" width="628" height="640" loading="lazy" decoding="async" alt="" style="object-position: 32% 0%"></picture></span>
-                <span class="god-panel__label"><span class="t-en">Sri Shiva Parvati</span><span class="t-te">శ్రీ శివ పార్వతులు</span></span>
-              </button>
-              <button class="god-panel" type="button" style="--i:2" data-index="2"
-                      data-aria-en="Sri Mahaganapati — view large" data-aria-te="శ్రీ మహాగణపతి — పెద్దగా చూడండి">
-                <span class="god-panel__img"><picture><source type="image/webp" srcset="img/gods/ganesha-sm.webp"><img src="img/gods/ganesha-sm.jpg" width="640" height="960" loading="lazy" decoding="async" alt="" style="object-position: 50% 20%"></picture></span>
-                <span class="god-panel__label"><span class="t-en">Sri Mahaganapati</span><span class="t-te">శ్రీ మహాగణపతి</span></span>
-              </button>
-              <button class="god-panel" type="button" style="--i:3" data-index="3"
-                      data-aria-en="Sri Radha Krishna — view large" data-aria-te="శ్రీ రాధా కృష్ణులు — పెద్దగా చూడండి">
-                <span class="god-panel__img"><picture><source type="image/webp" srcset="img/gods/radha-krishna-sm.webp"><img src="img/gods/radha-krishna-sm.jpg" width="640" height="960" loading="lazy" decoding="async" alt="" style="object-position: 50% 10%"></picture></span>
-                <span class="god-panel__label"><span class="t-en">Sri Radha Krishna</span><span class="t-te">శ్రీ రాధా కృష్ణులు</span></span>
-              </button>
-              <button class="god-panel" type="button" style="--i:4" data-index="4"
-                      data-aria-en="Sri Venkateswara Swamy — view large" data-aria-te="శ్రీ వేంకటేశ్వర స్వామి — పెద్దగా చూడండి">
-                <span class="god-panel__img"><picture><source type="image/webp" srcset="img/gods/venkateswara-sm.webp"><img src="img/gods/venkateswara-sm.jpg" width="640" height="960" loading="lazy" decoding="async" alt="" style="object-position: 50% 0%"></picture></span>
-                <span class="god-panel__label"><span class="t-en">Sri Venkateswara Swamy</span><span class="t-te">శ్రీ వేంకటేశ్వర స్వామి</span></span>
-              </button>
-              <button class="god-panel" type="button" style="--i:5" data-index="5"
-                      data-aria-en="Sri Sita Rama — view large" data-aria-te="శ్రీ సీతారాములు — పెద్దగా చూడండి">
-                <span class="god-panel__img"><picture><source type="image/webp" srcset="img/gods/sita-rama-sm.webp"><img src="img/gods/sita-rama-sm.jpg" width="640" height="960" loading="lazy" decoding="async" alt="" style="object-position: 50% 25%"></picture></span>
-                <span class="god-panel__label"><span class="t-en">Sri Sita Rama</span><span class="t-te">శ్రీ సీతారాములు</span></span>
-              </button>
-            </div>
+      <div class="chapters" id="galleryGrid">
+
+        <div class="chapter">
+          <header class="chapter__head"><span class="chapter__n num">01</span><h3 class="chapter__title"><span class="t-en">The ride</span><span class="t-te">బైక్ షికారు</span></h3></header>
+          <div class="shots">
+            <a class="shot shot--hero" href="img/shoot/bike-dusk.jpg" data-src="img/shoot/bike-dusk.webp" data-w="853" data-h="1280"><picture><source type="image/webp" srcset="img/shoot/bike-dusk-sm.webp 506w, img/shoot/bike-dusk.webp 853w" sizes="(min-width: 960px) 620px, 92vw"><img src="img/shoot/bike-dusk-sm.jpg" width="506" height="760" loading="lazy" decoding="async" alt="Riding into the dusk on the motorbike" style="object-position: 50% 45%"></picture></a>
+            <a class="shot shot--wide" href="img/shoot/bike-blue.jpg" data-src="img/shoot/bike-blue.webp" data-w="1280" data-h="853"><picture><source type="image/webp" srcset="img/shoot/bike-blue-sm.webp 760w, img/shoot/bike-blue.webp 1280w" sizes="(min-width: 960px) 620px, 92vw"><img src="img/shoot/bike-blue-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Sitting together on the motorbike under a blue sky"></picture></a>
           </div>
         </div>
-        <div class="controls">
-          <button class="round-btn" type="button" id="godPrev" data-aria-en="Previous" data-aria-te="ముందు దేవతా చిత్రం" aria-label="Previous"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-          <span class="controls__hint"><span class="t-en">Rotate</span><span class="t-te">తిప్పండి</span></span>
-          <button class="round-btn" type="button" id="godNext" data-aria-en="Next" data-aria-te="తరువాతి దేవతా చిత్రం" aria-label="Next"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
-        </div>
-      </div>
 
-      <!-- full-size paintings for the lightbox (in panel order) -->
-      <ul class="lightbox-data" id="godData" hidden>
-        <li data-src="img/gods/lakshmi-narayana.webp" data-fallback="img/gods/lakshmi-narayana.jpg" data-w="1024" data-h="1536" data-en="Sri Lakshmi Narayana" data-te="శ్రీ లక్ష్మీ నారాయణులు">Sri Lakshmi Narayana</li>
-        <li data-src="img/gods/shiva-parvati.webp" data-fallback="img/gods/shiva-parvati.jpg" data-w="1024" data-h="1536" data-en="Sri Shiva Parvati" data-te="శ్రీ శివ పార్వతులు">Sri Shiva Parvati</li>
-        <li data-src="img/gods/ganesha.webp" data-fallback="img/gods/ganesha.jpg" data-w="1024" data-h="1536" data-en="Sri Mahaganapati" data-te="శ్రీ మహాగణపతి">Sri Mahaganapati</li>
-        <li data-src="img/gods/radha-krishna.webp" data-fallback="img/gods/radha-krishna.jpg" data-w="1024" data-h="1536" data-en="Sri Radha Krishna" data-te="శ్రీ రాధా కృష్ణులు">Sri Radha Krishna</li>
-        <li data-src="img/gods/venkateswara.webp" data-fallback="img/gods/venkateswara.jpg" data-w="1024" data-h="1536" data-en="Sri Venkateswara Swamy" data-te="శ్రీ వేంకటేశ్వర స్వామి">Sri Venkateswara Swamy</li>
-        <li data-src="img/gods/sita-rama.webp" data-fallback="img/gods/sita-rama.jpg" data-w="1024" data-h="1536" data-en="Sri Sita Rama" data-te="శ్రీ సీతారాములు">Sri Sita Rama</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ============ PRE-WEDDING COVERFLOW ============ -->
-  <section class="section section--light memories" id="memories">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span>04</span> <span class="t-en">Memories</span><span class="t-te">మధుర జ్ఞాపకాలు</span></span>
-        <h2 class="title" data-split><span class="t-en">Our favourite shots</span><span class="t-te">మధుర జ్ఞాపకాలు</span></h2>
-        <p class="lead" data-reveal><span class="t-en">Pre-wedding photos · tap any to bring it forward</span><span class="t-te">ప్రీ-వెడ్డింగ్ ఫోటోలు · ఏ ఫోటోనైనా తాకి ముందుకు తీసుకురండి</span></p>
-      </div>
-
-      <div class="coverflow" id="coverflow" data-reveal="scale">
-        <div class="coverflow__stage" tabindex="-1">
-          <button class="cf-item" type="button" style="--off:-2;--abs:2;--dir:-1" data-src="img/prewedding/pw-1.webp" data-fallback="img/prewedding/pw-1.jpg" data-w="1067" data-h="1600">
-            <picture><source type="image/webp" srcset="img/prewedding/pw-1.webp"><img src="img/prewedding/pw-1.jpg" width="1067" height="1600" loading="lazy" decoding="async" alt="Sailakshmi and Dharmaveer" style="object-position: 50% 30%"></picture>
-          </button>
-          <button class="cf-item" type="button" style="--off:-1;--abs:1;--dir:-1" data-src="img/prewedding/pw-2.webp" data-fallback="img/prewedding/pw-2.jpg" data-w="1600" data-h="1067">
-            <picture><source type="image/webp" srcset="img/prewedding/pw-2.webp"><img src="img/prewedding/pw-2.jpg" width="1600" height="1067" loading="lazy" decoding="async" alt="Sailakshmi and Dharmaveer with garlands" style="object-position: 47% 50%"></picture>
-          </button>
-          <button class="cf-item" type="button" style="--off:0;--abs:0;--dir:0" data-src="img/prewedding/pw-3.webp" data-fallback="img/prewedding/pw-3.jpg" data-w="1067" data-h="1600">
-            <picture><source type="image/webp" srcset="img/prewedding/pw-3.webp"><img src="img/prewedding/pw-3.jpg" width="1067" height="1600" loading="lazy" decoding="async" alt="Sailakshmi and Dharmaveer, hand in hand" style="object-position: 50% 40%"></picture>
-          </button>
-          <button class="cf-item" type="button" style="--off:1;--abs:1;--dir:1" data-src="img/prewedding/pw-4.webp" data-fallback="img/prewedding/pw-4.jpg" data-w="1067" data-h="1600">
-            <picture><source type="image/webp" srcset="img/prewedding/pw-4.webp"><img src="img/prewedding/pw-4.jpg" width="1067" height="1600" loading="lazy" decoding="async" alt="Dharmaveer sitting with Sailakshmi beside him" style="object-position: 50% 40%"></picture>
-          </button>
-          <button class="cf-item" type="button" style="--off:2;--abs:2;--dir:1" data-src="img/prewedding/pw-5.webp" data-fallback="img/prewedding/pw-5.jpg" data-w="1067" data-h="1600">
-            <picture><source type="image/webp" srcset="img/prewedding/pw-5.webp"><img src="img/prewedding/pw-5.jpg" width="1067" height="1600" loading="lazy" decoding="async" alt="A joyful moment" style="object-position: 50% 35%"></picture>
-          </button>
-          <button class="cf-item" type="button" style="--off:3;--abs:3;--dir:1;--o:0" data-src="img/prewedding/pw-6.webp" data-fallback="img/prewedding/pw-6.jpg" data-w="1067" data-h="1600">
-            <picture><source type="image/webp" srcset="img/prewedding/pw-6.webp"><img src="img/prewedding/pw-6.jpg" width="1067" height="1600" loading="lazy" decoding="async" alt="Sailakshmi and Dharmaveer posing" style="object-position: 50% 40%"></picture>
-          </button>
-          <button class="cf-item" type="button" style="--off:4;--abs:4;--dir:1;--o:0" data-src="img/prewedding/pw-7.webp" data-fallback="img/prewedding/pw-7.jpg" data-w="1600" data-h="1067">
-            <picture><source type="image/webp" srcset="img/prewedding/pw-7.webp"><img src="img/prewedding/pw-7.jpg" width="1600" height="1067" loading="lazy" decoding="async" alt="Dharmaveer putting the garland on Sailakshmi" style="object-position: 50% 45%"></picture>
-          </button>
-          <button class="cf-item" type="button" style="--off:5;--abs:5;--dir:1;--o:0" data-src="img/prewedding/pw-8.webp" data-fallback="img/prewedding/pw-8.jpg" data-w="1067" data-h="1600">
-            <picture><source type="image/webp" srcset="img/prewedding/pw-8.webp"><img src="img/prewedding/pw-8.jpg" width="1067" height="1600" loading="lazy" decoding="async" alt="Dharmaveer standing, Sailakshmi seated beside" style="object-position: 50% 50%"></picture>
-          </button>
-          <button class="cf-item" type="button" style="--off:-4;--abs:4;--dir:-1;--o:0" data-src="img/prewedding/pw-9.webp" data-fallback="img/prewedding/pw-9.jpg" data-w="1600" data-h="1067">
-            <picture><source type="image/webp" srcset="img/prewedding/pw-9.webp"><img src="img/prewedding/pw-9.jpg" width="1600" height="1067" loading="lazy" decoding="async" alt="Hand in hand" style="object-position: 50% 45%"></picture>
-          </button>
-          <button class="cf-item" type="button" style="--off:-3;--abs:3;--dir:-1;--o:0" data-src="img/prewedding/pw-10.webp" data-fallback="img/prewedding/pw-10.jpg" data-w="1067" data-h="1600">
-            <picture><source type="image/webp" srcset="img/prewedding/pw-10.webp"><img src="img/prewedding/pw-10.jpg" width="1067" height="1600" loading="lazy" decoding="async" alt="Sailakshmi and Dharmaveer smiling together" style="object-position: 50% 40%"></picture>
-          </button>
+        <div class="chapter">
+          <header class="chapter__head"><span class="chapter__n num">02</span><h3 class="chapter__title"><span class="t-en">Golden hour</span><span class="t-te">సంధ్య వెలుగులో</span></h3></header>
+          <div class="shots">
+            <a class="shot shot--wide" href="img/shoot/silhouette.jpg" data-src="img/shoot/silhouette.webp" data-w="1280" data-h="853"><picture><source type="image/webp" srcset="img/shoot/silhouette-sm.webp 760w, img/shoot/silhouette.webp 1280w" sizes="(min-width: 960px) 620px, 92vw"><img src="img/shoot/silhouette-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Silhouettes, foreheads touching at sunset"></picture></a>
+            <a class="shot shot--wide" href="img/shoot/silhouette-bridge.jpg" data-src="img/shoot/silhouette-bridge.webp" data-w="1280" data-h="853"><picture><source type="image/webp" srcset="img/shoot/silhouette-bridge-sm.webp 760w, img/shoot/silhouette-bridge.webp 1280w" sizes="(min-width: 960px) 620px, 92vw"><img src="img/shoot/silhouette-bridge-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Silhouettes on the bridge at sunset"></picture></a>
+          </div>
         </div>
-        <div class="controls">
-          <button class="round-btn round-btn--light" type="button" id="cfPrev" data-aria-en="Previous" data-aria-te="ముందు ఫోటో" aria-label="Previous"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-          <button class="round-btn round-btn--light" type="button" id="cfNext" data-aria-en="Next" data-aria-te="తరువాతి ఫోటో" aria-label="Next"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+
+        <div class="chapter">
+          <header class="chapter__head"><span class="chapter__n num">03</span><h3 class="chapter__title"><span class="t-en">Garden days</span><span class="t-te">తోటలో</span></h3></header>
+          <div class="shots">
+            <a class="shot shot--tall" href="img/shoot/garden-hug.jpg" data-src="img/shoot/garden-hug.webp" data-w="853" data-h="1280"><picture><source type="image/webp" srcset="img/shoot/garden-hug-sm.webp 506w, img/shoot/garden-hug.webp 853w" sizes="(min-width: 960px) 310px, 46vw"><img src="img/shoot/garden-hug-sm.jpg" width="506" height="760" loading="lazy" decoding="async" alt="A warm hug in the garden" style="object-position: 50% 30%"></picture></a>
+            <a class="shot shot--tall" href="img/shoot/rope-bridge.jpg" data-src="img/shoot/rope-bridge.webp" data-w="1280" data-h="853"><picture><source type="image/webp" srcset="img/shoot/rope-bridge-sm.webp 760w, img/shoot/rope-bridge.webp 1280w" sizes="(min-width: 960px) 460px, 70vw"><img src="img/shoot/rope-bridge-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Posing on the rope bridge" style="object-position: 54% 50%"></picture></a>
+            <a class="shot shot--wide" href="img/shoot/garden-embrace.jpg" data-src="img/shoot/garden-embrace.webp" data-w="1280" data-h="853"><picture><source type="image/webp" srcset="img/shoot/garden-embrace-sm.webp 760w, img/shoot/garden-embrace.webp 1280w" sizes="(min-width: 960px) 620px, 92vw"><img src="img/shoot/garden-embrace-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Smiling together under the trees"></picture></a>
+            <a class="shot shot--wide" href="img/shoot/boardwalk.jpg" data-src="img/shoot/boardwalk.webp" data-w="1280" data-h="853"><picture><source type="image/webp" srcset="img/shoot/boardwalk-sm.webp 760w, img/shoot/boardwalk.webp 1280w" sizes="(min-width: 960px) 620px, 92vw"><img src="img/shoot/boardwalk-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Walking hand in hand on the boardwalk"></picture></a>
+            <a class="shot shot--wide" href="img/shoot/heart-hands.jpg" data-src="img/shoot/heart-hands.webp" data-w="1280" data-h="853"><picture><source type="image/webp" srcset="img/shoot/heart-hands-sm.webp 760w, img/shoot/heart-hands.webp 1280w" sizes="(min-width: 960px) 620px, 92vw"><img src="img/shoot/heart-hands-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Making a heart with their hands"></picture></a>
+          </div>
         </div>
+
+        <div class="chapter">
+          <header class="chapter__head"><span class="chapter__n num">04</span><h3 class="chapter__title"><span class="t-en">Parrots &amp; paths</span><span class="t-te">చిలుకలతో</span></h3></header>
+          <div class="shots">
+            <a class="shot shot--wide" href="img/shoot/parrots.jpg" data-src="img/shoot/parrots.webp" data-w="1280" data-h="853"><picture><source type="image/webp" srcset="img/shoot/parrots-sm.webp 760w, img/shoot/parrots.webp 1280w" sizes="(min-width: 960px) 620px, 92vw"><img src="img/shoot/parrots-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="With blue and gold macaws in the garden pavilion"></picture></a>
+            <a class="shot shot--tall" href="img/shoot/peekaboo.jpg" data-src="img/shoot/peekaboo.webp" data-w="853" data-h="1280"><picture><source type="image/webp" srcset="img/shoot/peekaboo-sm.webp 506w, img/shoot/peekaboo.webp 853w" sizes="(min-width: 960px) 310px, 46vw"><img src="img/shoot/peekaboo-sm.jpg" width="506" height="760" loading="lazy" decoding="async" alt="Sailakshmi in white, Dharmaveer behind her" style="object-position: 60% 40%"></picture></a>
+            <a class="shot shot--tall" href="img/shoot/camera.jpg" data-src="img/shoot/camera.webp" data-w="853" data-h="1280"><picture><source type="image/webp" srcset="img/shoot/camera-sm.webp 506w, img/shoot/camera.webp 853w" sizes="(min-width: 960px) 310px, 46vw"><img src="img/shoot/camera-sm.jpg" width="506" height="760" loading="lazy" decoding="async" alt="Sailakshmi taking a photo on the garden path" style="object-position: 55% 40%"></picture></a>
+            <a class="shot shot--wide" href="img/shoot/parrots-close.jpg" data-src="img/shoot/parrots-close.webp" data-w="1280" data-h="853"><picture><source type="image/webp" srcset="img/shoot/parrots-close-sm.webp 760w, img/shoot/parrots-close.webp 1280w" sizes="(min-width: 960px) 620px, 92vw"><img src="img/shoot/parrots-close-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Foreheads together, a macaw on his arm"></picture></a>
+            <a class="shot shot--wide" href="img/shoot/garden-path.jpg" data-src="img/shoot/garden-path.webp" data-w="1280" data-h="853"><picture><source type="image/webp" srcset="img/shoot/garden-path-sm.webp 760w, img/shoot/garden-path.webp 1280w" sizes="(min-width: 960px) 620px, 92vw"><img src="img/shoot/garden-path-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Arm in arm along the green bridge"></picture></a>
+            <a class="shot shot--wide" href="img/shoot/aviary-walk.jpg" data-src="img/shoot/aviary-walk.webp" data-w="1280" data-h="853"><picture><source type="image/webp" srcset="img/shoot/aviary-walk-sm.webp 760w, img/shoot/aviary-walk.webp 1280w" sizes="(min-width: 960px) 620px, 92vw"><img src="img/shoot/aviary-walk-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Strolling across the garden bridge"></picture></a>
+          </div>
+        </div>
+
+        <div class="chapter">
+          <header class="chapter__head"><span class="chapter__n num">05</span><h3 class="chapter__title"><span class="t-en">The blue palace</span><span class="t-te">నీలి మహల్‌లో</span></h3></header>
+          <div class="shots">
+            <a class="shot shot--hero" href="img/shoot/palace-sit.jpg" data-src="img/shoot/palace-sit.webp" data-w="853" data-h="1280"><picture><source type="image/webp" srcset="img/shoot/palace-sit-sm.webp 506w, img/shoot/palace-sit.webp 853w" sizes="(min-width: 960px) 620px, 92vw"><img src="img/shoot/palace-sit-sm.jpg" width="506" height="760" loading="lazy" decoding="async" alt="Sitting together on the palace floor, in traditional clothes" style="object-position: 50% 70%"></picture></a>
+            <a class="shot shot--hero" href="img/shoot/palace-walk.jpg" data-src="img/shoot/palace-walk.webp" data-w="853" data-h="1280"><picture><source type="image/webp" srcset="img/shoot/palace-walk-sm.webp 506w, img/shoot/palace-walk.webp 853w" sizes="(min-width: 960px) 620px, 92vw"><img src="img/shoot/palace-walk-sm.jpg" width="506" height="760" loading="lazy" decoding="async" alt="Walking hand in hand through the palace hall" style="object-position: 50% 62%"></picture></a>
+          </div>
+        </div>
+
+        <div class="chapter chapter--small">
+          <header class="chapter__head"><span class="chapter__n num">06</span><h3 class="chapter__title"><span class="t-en">The engagement</span><span class="t-te">నిశ్చితార్థం</span></h3></header>
+          <div class="shots shots--squares">
+            <a class="shot" href="img/gallery/g-04.jpg" data-src="img/gallery/g-04.webp" data-w="2000" data-h="1333"><picture><source type="image/webp" srcset="img/gallery/g-04-thumb.webp"><img src="img/gallery/g-04-thumb.jpg" width="600" height="400" loading="lazy" decoding="async" alt="Engagement rings on a betel leaf"></picture></a>
+            <a class="shot" href="img/gallery/g-05.jpg" data-src="img/gallery/g-05.webp" data-w="2000" data-h="1333"><picture><source type="image/webp" srcset="img/gallery/g-05-thumb.webp"><img src="img/gallery/g-05-thumb.jpg" width="600" height="400" loading="lazy" decoding="async" alt="Sailakshmi and Dharmaveer exchanging rings"></picture></a>
+            <a class="shot" href="img/gallery/g-06.jpg" data-src="img/gallery/g-06.webp" data-w="1333" data-h="2000"><picture><source type="image/webp" srcset="img/gallery/g-06-thumb.webp"><img src="img/gallery/g-06-thumb.jpg" width="600" height="900" loading="lazy" decoding="async" alt="A hand with the ring" style="object-position: 50% 60%"></picture></a>
+            <a class="shot" href="img/prewedding/pw-7.jpg" data-src="img/prewedding/pw-7.webp" data-w="1600" data-h="1067"><picture><source type="image/webp" srcset="img/prewedding/pw-7.webp"><img src="img/prewedding/pw-7.jpg" width="1600" height="1067" loading="lazy" decoding="async" alt="With the garlands at the engagement"></picture></a>
+            <a class="shot" href="img/gallery/g-01.jpg" data-src="img/gallery/g-01.webp" data-w="1333" data-h="2000"><picture><source type="image/webp" srcset="img/gallery/g-01-thumb.webp"><img src="img/gallery/g-01-thumb.jpg" width="600" height="900" loading="lazy" decoding="async" alt="Welcome to the engagement — Sai & Dharma" style="object-position: 50% 55%"></picture></a>
+            <a class="shot" href="img/gallery/g-12.jpg" data-src="img/gallery/g-12.webp" data-w="2000" data-h="1333"><picture><source type="image/webp" srcset="img/gallery/g-12-thumb.webp"><img src="img/gallery/g-12-thumb.jpg" width="600" height="400" loading="lazy" decoding="async" alt="The engagement cake"></picture></a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ============ PHOTO GALLERY ============ -->
-  <section class="section section--dark gallery-section" id="gallery">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow"><span>05</span> <span class="t-en">Gallery</span><span class="t-te">ఫోటో గ్యాలరీ</span></span>
-        <h2 class="title gold-text" data-split><span class="t-en">Our story in pictures</span><span class="t-te">ఫోటో గ్యాలరీ</span></h2>
-        <p class="lead" data-reveal><span class="t-en">Our joyful moments</span><span class="t-te">మా ఆనంద క్షణాలు</span></p>
-      </div>
-      <div class="gallery" id="galleryGrid">
-        <a class="g-item" href="img/gallery/g-01.jpg" style="--ar:.6667" data-src="img/gallery/g-01.webp" data-w="1333" data-h="2000"><span class="g-card"><picture><source type="image/webp" srcset="img/gallery/g-01-thumb.webp"><img src="img/gallery/g-01-thumb.jpg" width="600" height="900" loading="lazy" decoding="async" alt="Welcome to the engagement — Sai & Dharma"></picture><i class="g-zoom" aria-hidden="true"></i></span></a>
-        <a class="g-item" href="img/gallery/g-04.jpg" style="--ar:1.5" data-src="img/gallery/g-04.webp" data-w="2000" data-h="1333"><span class="g-card"><picture><source type="image/webp" srcset="img/gallery/g-04-thumb.webp"><img src="img/gallery/g-04-thumb.jpg" width="600" height="400" loading="lazy" decoding="async" alt="Engagement rings on a betel leaf"></picture><i class="g-zoom" aria-hidden="true"></i></span></a>
-        <a class="g-item" href="img/gallery/g-02.jpg" style="--ar:.6667" data-src="img/gallery/g-02.webp" data-w="1333" data-h="2000"><span class="g-card"><picture><source type="image/webp" srcset="img/gallery/g-02-thumb.webp"><img src="img/gallery/g-02-thumb.jpg" width="600" height="900" loading="lazy" decoding="async" alt="Sailakshmi smiling"></picture><i class="g-zoom" aria-hidden="true"></i></span></a>
-        <a class="g-item" href="img/gallery/g-05.jpg" style="--ar:1.5" data-src="img/gallery/g-05.webp" data-w="2000" data-h="1333"><span class="g-card"><picture><source type="image/webp" srcset="img/gallery/g-05-thumb.webp"><img src="img/gallery/g-05-thumb.jpg" width="600" height="400" loading="lazy" decoding="async" alt="Sailakshmi and Dharmaveer exchanging rings"></picture><i class="g-zoom" aria-hidden="true"></i></span></a>
-        <a class="g-item" href="img/gallery/g-03.jpg" style="--ar:.6667" data-src="img/gallery/g-03.webp" data-w="1333" data-h="2000"><span class="g-card"><picture><source type="image/webp" srcset="img/gallery/g-03-thumb.webp"><img src="img/gallery/g-03-thumb.jpg" width="600" height="900" loading="lazy" decoding="async" alt="Sailakshmi at the puja"></picture><i class="g-zoom" aria-hidden="true"></i></span></a>
-        <a class="g-item" href="img/gallery/g-09.jpg" style="--ar:1.5" data-src="img/gallery/g-09.webp" data-w="2000" data-h="1333"><span class="g-card"><picture><source type="image/webp" srcset="img/gallery/g-09-thumb.webp"><img src="img/gallery/g-09-thumb.jpg" width="600" height="400" loading="lazy" decoding="async" alt="The couple with garlands"></picture><i class="g-zoom" aria-hidden="true"></i></span></a>
-        <a class="g-item" href="img/gallery/g-06.jpg" style="--ar:.6667" data-src="img/gallery/g-06.webp" data-w="1333" data-h="2000"><span class="g-card"><picture><source type="image/webp" srcset="img/gallery/g-06-thumb.webp"><img src="img/gallery/g-06-thumb.jpg" width="600" height="900" loading="lazy" decoding="async" alt="A hand with the ring"></picture><i class="g-zoom" aria-hidden="true"></i></span></a>
-        <a class="g-item" href="img/gallery/g-10.jpg" style="--ar:1.5" data-src="img/gallery/g-10.webp" data-w="2000" data-h="1333"><span class="g-card"><picture><source type="image/webp" srcset="img/gallery/g-10-thumb.webp"><img src="img/gallery/g-10-thumb.jpg" width="600" height="400" loading="lazy" decoding="async" alt="A playful moment"></picture><i class="g-zoom" aria-hidden="true"></i></span></a>
-        <a class="g-item" href="img/gallery/g-07.jpg" style="--ar:.6667" data-src="img/gallery/g-07.webp" data-w="1333" data-h="2000"><span class="g-card"><picture><source type="image/webp" srcset="img/gallery/g-07-thumb.webp"><img src="img/gallery/g-07-thumb.jpg" width="600" height="900" loading="lazy" decoding="async" alt="Sailakshmi in namaste"></picture><i class="g-zoom" aria-hidden="true"></i></span></a>
-        <a class="g-item" href="img/gallery/g-11.jpg" style="--ar:1.5" data-src="img/gallery/g-11.webp" data-w="2000" data-h="1333"><span class="g-card"><picture><source type="image/webp" srcset="img/gallery/g-11-thumb.webp"><img src="img/gallery/g-11-thumb.jpg" width="600" height="400" loading="lazy" decoding="async" alt="A joyful moment of the couple"></picture><i class="g-zoom" aria-hidden="true"></i></span></a>
-        <a class="g-item" href="img/gallery/g-08.jpg" style="--ar:.6667" data-src="img/gallery/g-08.webp" data-w="1333" data-h="2000"><span class="g-card"><picture><source type="image/webp" srcset="img/gallery/g-08-thumb.webp"><img src="img/gallery/g-08-thumb.jpg" width="600" height="900" loading="lazy" decoding="async" alt="Hand in hand"></picture><i class="g-zoom" aria-hidden="true"></i></span></a>
-        <a class="g-item" href="img/gallery/g-12.jpg" style="--ar:1.5" data-src="img/gallery/g-12.webp" data-w="2000" data-h="1333"><span class="g-card"><picture><source type="image/webp" srcset="img/gallery/g-12-thumb.webp"><img src="img/gallery/g-12-thumb.jpg" width="600" height="400" loading="lazy" decoding="async" alt="The engagement cake"></picture><i class="g-zoom" aria-hidden="true"></i></span></a>
-      </div>
+  <!-- ============ 05 · BLESSINGS ============ -->
+  <section class="divine zone zone--5" id="divine">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--dup" data-reveal><span class="eyebrow__n">05</span><span class="t-en">Blessings</span><span class="t-te">దైవ దంపతుల ఆశీర్వాదం</span></p>
+      <h2 class="title" data-reveal><span class="t-en">Divine <i>blessings</i></span><span class="t-te">దైవ దంపతుల ఆశీర్వాదం</span></h2>
+      <p class="lead" data-reveal><span class="t-en">May the eternal couples bless this union</span><span class="t-te">ఆదిదంపతుల కృపతో ఈ కళ్యాణం శుభప్రదమగుగాక</span></p>
+    </div>
+    <div class="arches" id="godGrid">
+      <a class="arch" href="img/gods/lakshmi-narayana.jpg" data-src="img/gods/lakshmi-narayana.webp" data-w="1024" data-h="1536" data-en="Sri Lakshmi Narayana" data-te="శ్రీ లక్ష్మీ నారాయణులు">
+        <span class="arch__img"><picture><source type="image/webp" srcset="img/gods/lakshmi-narayana-sm.webp"><img src="img/gods/lakshmi-narayana-sm.jpg" width="640" height="960" loading="lazy" decoding="async" alt="" style="object-position: 50% 0%"></picture></span>
+        <span class="arch__label"><span class="t-en">Sri Lakshmi Narayana</span><span class="t-te">శ్రీ లక్ష్మీ నారాయణులు</span></span>
+      </a>
+      <a class="arch" href="img/gods/shiva-parvati.jpg" data-src="img/gods/shiva-parvati.webp" data-w="1024" data-h="1536" data-en="Sri Shiva Parvati" data-te="శ్రీ శివ పార్వతులు">
+        <span class="arch__img"><picture><source type="image/webp" srcset="img/gods/shiva-parvati-card-sm.webp"><img src="img/gods/shiva-parvati-card-sm.jpg" width="628" height="640" loading="lazy" decoding="async" alt="" style="object-position: 32% 0%"></picture></span>
+        <span class="arch__label"><span class="t-en">Sri Shiva Parvati</span><span class="t-te">శ్రీ శివ పార్వతులు</span></span>
+      </a>
+      <a class="arch" href="img/gods/ganesha.jpg" data-src="img/gods/ganesha.webp" data-w="1024" data-h="1536" data-en="Sri Mahaganapati" data-te="శ్రీ మహాగణపతి">
+        <span class="arch__img"><picture><source type="image/webp" srcset="img/gods/ganesha-sm.webp"><img src="img/gods/ganesha-sm.jpg" width="640" height="960" loading="lazy" decoding="async" alt="" style="object-position: 50% 20%"></picture></span>
+        <span class="arch__label"><span class="t-en">Sri Mahaganapati</span><span class="t-te">శ్రీ మహాగణపతి</span></span>
+      </a>
+      <a class="arch" href="img/gods/radha-krishna.jpg" data-src="img/gods/radha-krishna.webp" data-w="1024" data-h="1536" data-en="Sri Radha Krishna" data-te="శ్రీ రాధా కృష్ణులు">
+        <span class="arch__img"><picture><source type="image/webp" srcset="img/gods/radha-krishna-sm.webp"><img src="img/gods/radha-krishna-sm.jpg" width="640" height="960" loading="lazy" decoding="async" alt="" style="object-position: 50% 10%"></picture></span>
+        <span class="arch__label"><span class="t-en">Sri Radha Krishna</span><span class="t-te">శ్రీ రాధా కృష్ణులు</span></span>
+      </a>
+      <a class="arch" href="img/gods/venkateswara.jpg" data-src="img/gods/venkateswara.webp" data-w="1024" data-h="1536" data-en="Sri Venkateswara Swamy" data-te="శ్రీ వేంకటేశ్వర స్వామి">
+        <span class="arch__img"><picture><source type="image/webp" srcset="img/gods/venkateswara-sm.webp"><img src="img/gods/venkateswara-sm.jpg" width="640" height="960" loading="lazy" decoding="async" alt="" style="object-position: 50% 0%"></picture></span>
+        <span class="arch__label"><span class="t-en">Sri Venkateswara Swamy</span><span class="t-te">శ్రీ వేంకటేశ్వర స్వామి</span></span>
+      </a>
+      <a class="arch" href="img/gods/sita-rama.jpg" data-src="img/gods/sita-rama.webp" data-w="1024" data-h="1536" data-en="Sri Sita Rama" data-te="శ్రీ సీతారాములు">
+        <span class="arch__img"><picture><source type="image/webp" srcset="img/gods/sita-rama-sm.webp"><img src="img/gods/sita-rama-sm.jpg" width="640" height="960" loading="lazy" decoding="async" alt="" style="object-position: 50% 25%"></picture></span>
+        <span class="arch__label"><span class="t-en">Sri Sita Rama</span><span class="t-te">శ్రీ సీతారాములు</span></span>
+      </a>
     </div>
   </section>
 
-  <!-- ============ FAMILY / INVITERS ============ -->
-  <section class="section section--light family" id="family">
-    <div class="container family__inner">
-      <div class="section-head">
-        <span class="eyebrow"><span>06</span> <span class="t-en">With love</span><span class="t-te">ఆత్మీయ ఆహ్వానం</span></span>
-        <h2 class="title" data-split><span class="t-en">With love, we invite you</span><span class="t-te">ఆత్మీయ ఆహ్వానం</span></h2>
-      </div>
-
-      <div class="card card--wine host-card" data-reveal>
-        <p class="host-card__label"><span class="t-en">Hosted by</span><span class="t-te">భవదీయులు · ఆహ్వానించువారు</span></p>
-        <p class="host-card__names gold-text"><span class="t-en">Sri Moka Satyanarayana<br>Smt. Rukmini</span><span class="t-te">శ్రీ మోకా సత్యనారాయణ<br>శ్రీమతి రుక్మిణి</span></p>
-        <p class="host-card__place"><span class="t-en">Amalapuram, Dr. B. R. Ambedkar Konaseema District</span><span class="t-te">అమలాపురం, డా॥ బి.ఆర్. అంబేద్కర్ కోనసీమ జిల్లా</span></p>
-        <div class="host-card__calls">
-          <a class="btn btn--gold num" href="tel:+919347824999" data-magnetic><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>+91 93478 24999</a>
-          <a class="btn btn--gold num" href="tel:+919248883333" data-magnetic><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>+91 92488 83333</a>
-        </div>
-      </div>
+  <!-- ============ 06 · FAMILY ============ -->
+  <section class="family zone zone--6" id="family">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--dup" data-reveal><span class="eyebrow__n">06</span><span class="t-en">With love</span><span class="t-te">ఆత్మీయ ఆహ్వానం</span></p>
+      <h2 class="title" data-reveal><span class="t-en">With love, <i>we invite you</i></span><span class="t-te">ఆత్మీయ ఆహ్వానం</span></h2>
 
       <div class="family__grid">
-        <div class="card card--light name-card" data-reveal>
-          <h3 class="name-card__title"><span class="t-en">Looking forward to welcoming you</span><span class="t-te">ఆగమనాభిలాషులు</span></h3>
-          <p class="t-en">Sri Moka Nageswara Rao &amp; Smt. Lakshminarasamma (Baby)<br>Sri Mediti Srinivasa Rao &amp; Smt. Bharati</p>
-          <p class="t-te">శ్రీ మోకా నాగేశ్వర రావు - శ్రీమతి లక్ష్మీనరసమ్మ (బేబి)<br>శ్రీ మేడిది శ్రీనివాస రావు - శ్రీమతి భారతి</p>
+        <div class="host" data-reveal>
+          <p class="host__label"><span class="t-en">Hosted by</span><span class="t-te">భవదీయులు · ఆహ్వానించువారు</span></p>
+          <p class="host__names"><span class="t-en">Sri Moka Satyanarayana<br>Smt. Rukmini</span><span class="t-te">శ్రీ మోకా సత్యనారాయణ<br>శ్రీమతి రుక్మిణి</span></p>
+          <p class="host__place"><span class="t-en">Amalapuram, Dr. B. R. Ambedkar Konaseema District</span><span class="t-te">అమలాపురం, డా॥ బి.ఆర్. అంబేద్కర్ కోనసీమ జిల్లా</span></p>
+          <div class="host__calls">
+            <a class="btn btn--marigold num" href="tel:+919347824999"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>+91 93478 24999</a>
+            <a class="btn btn--marigold num" href="tel:+919248883333"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>+91 92488 83333</a>
+          </div>
         </div>
-        <div class="card card--light name-card" data-reveal>
-          <h3 class="name-card__title"><span class="t-en">With warm wishes</span><span class="t-te">అభినందనలతో</span></h3>
-          <p class="name-card__list t-en">Sri Moka Venkata Krishna &amp; Smt. Mangathayaru<br>Sri Moka Sai Eswararao &amp; Smt. Shiva Kumari<br>Sri Degala Raja &amp; Smt. Satyadevi<br>Sri Katta Srinivasa Rao &amp; Smt. Saraswati<br>Sri Chikkala Satish &amp; Smt. Kasi<br>Sri Ganishetti Srikrishna &amp; Smt. Satyasailakshmi</p>
-          <p class="name-card__list t-te">శ్రీ మోకా వెంకట కృష్ణ - శ్రీమతి మంగతాయారు<br>శ్రీ మోకా సాయి ఈశ్వరరావు - శ్రీమతి శివ కుమారి<br>శ్రీ దేగల రాజా - శ్రీమతి సత్యదేవి<br>శ్రీ కట్టా శ్రీనివాస రావు - శ్రీమతి సరస్వతి<br>శ్రీ చిక్కాల సతీష్ - శ్రీమతి కాశి<br>శ్రీ గనిశెట్టి శ్రీకృష్ణ - శ్రీమతి సత్యసాయిలక్ష్మి</p>
-          <p class="name-card__foot"><span class="t-en">With love from the Moka family and all our relatives</span><span class="t-te">మోకా పరివారము మరియు బంధుమిత్రుల అభినందనలతో.....</span></p>
-        </div>
-      </div>
 
-      <blockquote class="note" data-reveal>
-        <span class="note__mark" aria-hidden="true">"</span>
-        <p><span class="t-en">Please come and bless our sister's wedding. With love — from her brothers and sisters.</span><span class="t-te">మా చెల్లి పెళ్ళికి తప్పక విచ్చేసి, నూతన వధూవరులను ఆశీర్వదించగలరు. ప్రేమతో, మీ అన్నతమ్ముళ్ళు, అక్క చెల్లెళ్ళు</span></p>
-      </blockquote>
+        <div class="names" data-reveal>
+          <h3 class="names__title"><span class="t-en">Looking forward to welcoming you</span><span class="t-te">ఆగమనాభిలాషులు</span></h3>
+          <p class="t-en"><span class="pair"><span class="nw">Sri Moka Nageswara Rao</span> &amp; <span class="nw">Smt. Lakshminarasamma (Baby)</span></span><span class="pair"><span class="nw">Sri Mediti Srinivasa Rao</span> &amp; <span class="nw">Smt. Bharati</span></span></p>
+          <p class="t-te"><span class="pair"><span class="nw">శ్రీ మోకా నాగేశ్వర రావు</span> - <span class="nw">శ్రీమతి లక్ష్మీనరసమ్మ (బేబి)</span></span><span class="pair"><span class="nw">శ్రీ మేడిది శ్రీనివాస రావు</span> - <span class="nw">శ్రీమతి భారతి</span></span></p>
+        </div>
+
+        <div class="names" data-reveal>
+          <h3 class="names__title"><span class="t-en">With warm wishes</span><span class="t-te">అభినందనలతో</span></h3>
+          <p class="names__list t-en"><span class="pair"><span class="nw">Sri Moka Venkata Krishna</span> &amp; <span class="nw">Smt. Mangathayaru</span></span><span class="pair"><span class="nw">Sri Moka Sai Eswararao</span> &amp; <span class="nw">Smt. Shiva Kumari</span></span><span class="pair"><span class="nw">Sri Degala Raja</span> &amp; <span class="nw">Smt. Satyadevi</span></span><span class="pair"><span class="nw">Sri Katta Srinivasa Rao</span> &amp; <span class="nw">Smt. Saraswati</span></span><span class="pair"><span class="nw">Sri Chikkala Satish</span> &amp; <span class="nw">Smt. Kasi</span></span><span class="pair"><span class="nw">Sri Ganishetti Srikrishna</span> &amp; <span class="nw">Smt. Satyasailakshmi</span></span></p>
+          <p class="names__list t-te"><span class="pair"><span class="nw">శ్రీ మోకా వెంకట కృష్ణ</span> - <span class="nw">శ్రీమతి మంగతాయారు</span></span><span class="pair"><span class="nw">శ్రీ మోకా సాయి ఈశ్వరరావు</span> - <span class="nw">శ్రీమతి శివ కుమారి</span></span><span class="pair"><span class="nw">శ్రీ దేగల రాజా</span> - <span class="nw">శ్రీమతి సత్యదేవి</span></span><span class="pair"><span class="nw">శ్రీ కట్టా శ్రీనివాస రావు</span> - <span class="nw">శ్రీమతి సరస్వతి</span></span><span class="pair"><span class="nw">శ్రీ చిక్కాల సతీష్</span> - <span class="nw">శ్రీమతి కాశి</span></span><span class="pair"><span class="nw">శ్రీ గనిశెట్టి శ్రీకృష్ణ</span> - <span class="nw">శ్రీమతి సత్యసాయిలక్ష్మి</span></span></p>
+          <p class="names__foot"><span class="t-en">With love from the Moka family and all our relatives</span><span class="t-te">మోకా పరివారము మరియు బంధుమిత్రుల అభినందనలతో.....</span></p>
+        </div>
+
+        <blockquote class="note" data-reveal>
+          <p><span class="t-en">Please come and bless our sister's wedding. With love — from her brothers and sisters.</span><span class="t-te">మా చెల్లి పెళ్ళికి తప్పక విచ్చేసి, నూతన వధూవరులను ఆశీర్వదించగలరు. ప్రేమతో, మీ అన్నతమ్ముళ్ళు, అక్క చెల్లెళ్ళు</span></p>
+        </blockquote>
+      </div>
     </div>
   </section>
 
 </main>
 
 <!-- ============ CLOSING ============ -->
-<footer class="section section--dark closing" id="closing">
-  <div class="container closing__inner">
-    <figure class="closing__ganesha" data-reveal="scale">
+<footer class="closing zone zone--7" id="closing">
+  <div class="stars stars--dense" aria-hidden="true"></div>
+  <div class="wrap closing__inner">
+    <figure class="closing__ganesha" data-reveal>
       <picture>
         <source type="image/webp" srcset="img/gods/ganesha-sm.webp">
         <img src="img/gods/ganesha-sm.jpg" width="640" height="960" loading="lazy" decoding="async" alt="Sri Mahaganapati" style="object-position: 50% 18%">
       </picture>
     </figure>
-    <span class="eyebrow eyebrow--text" data-reveal><span class="t-en">Our wish</span><span class="t-te">అభిలాష</span></span>
+    <p class="eyebrow eyebrow--center" data-reveal><span class="t-en">Our wish</span><span class="t-te">అభిలాష</span></p>
     <p class="closing__text" data-reveal><span class="t-en">Carry smiles in your hearts and akshintalu in your palms. Surround the kalyana vedika and bless the newlyweds with your loving hands.</span><span class="t-te">చిరునవ్వుల మూటగట్టి అక్షింతలు చేతబట్టి కళ్యాణవేదిక చుట్టుముట్టి తమ అమృత హస్తాలతో నూతన వధూవరులను ఆశీర్వదించ కోరుచున్నాము.</span></p>
-    <p class="closing__mangalam gold-text" data-split><span class="t-en">Mangalam Mahat</span><span class="t-te">మంగళం మహత్</span></p>
-    <div class="diyas diyas--row" aria-hidden="true" data-reveal>
-      <span class="diya" style="--d:0s"><span class="diya__glow"></span><svg viewBox="0 0 60 60" width="46" height="46"><g class="diya__flame"><ellipse cx="30" cy="22" rx="8" ry="15" fill="#ff9d1c"/><ellipse cx="30" cy="26" rx="4" ry="9" fill="#fff3b0"/></g><path d="M4 36 Q30 66 56 36 Z" fill="#c9a45c"/><ellipse cx="30" cy="36" rx="26" ry="4.5" fill="#f2d48a"/></svg></span>
-      <span class="diya" style="--d:-.8s"><span class="diya__glow"></span><svg viewBox="0 0 60 60" width="46" height="46"><g class="diya__flame"><ellipse cx="30" cy="22" rx="8" ry="15" fill="#ff9d1c"/><ellipse cx="30" cy="26" rx="4" ry="9" fill="#fff3b0"/></g><path d="M4 36 Q30 66 56 36 Z" fill="#c9a45c"/><ellipse cx="30" cy="36" rx="26" ry="4.5" fill="#f2d48a"/></svg></span>
-      <span class="diya" style="--d:-1.6s"><span class="diya__glow"></span><svg viewBox="0 0 60 60" width="46" height="46"><g class="diya__flame"><ellipse cx="30" cy="22" rx="8" ry="15" fill="#ff9d1c"/><ellipse cx="30" cy="26" rx="4" ry="9" fill="#fff3b0"/></g><path d="M4 36 Q30 66 56 36 Z" fill="#c9a45c"/><ellipse cx="30" cy="36" rx="26" ry="4.5" fill="#f2d48a"/></svg></span>
-      <span class="diya" style="--d:-2.4s"><span class="diya__glow"></span><svg viewBox="0 0 60 60" width="46" height="46"><g class="diya__flame"><ellipse cx="30" cy="22" rx="8" ry="15" fill="#ff9d1c"/><ellipse cx="30" cy="26" rx="4" ry="9" fill="#fff3b0"/></g><path d="M4 36 Q30 66 56 36 Z" fill="#c9a45c"/><ellipse cx="30" cy="36" rx="26" ry="4.5" fill="#f2d48a"/></svg></span>
-      <span class="diya" style="--d:-3.2s"><span class="diya__glow"></span><svg viewBox="0 0 60 60" width="46" height="46"><g class="diya__flame"><ellipse cx="30" cy="22" rx="8" ry="15" fill="#ff9d1c"/><ellipse cx="30" cy="26" rx="4" ry="9" fill="#fff3b0"/></g><path d="M4 36 Q30 66 56 36 Z" fill="#c9a45c"/><ellipse cx="30" cy="36" rx="26" ry="4.5" fill="#f2d48a"/></svg></span>
-    </div>
+    <p class="closing__mangalam" data-reveal><span class="t-en">Mangalam Mahat</span><span class="t-te">మంగళం మహత్</span></p>
+
+    <button class="shower" id="showerBtn" type="button" data-reveal>
+      <span class="shower__grains" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="t-en">Shower akshintalu</span><span class="t-te">అక్షింతలు చల్లండి</span>
+    </button>
+
     <div class="closing__footer">
       <span class="t-en">Sailakshmi &amp; Dharmaveer</span><span class="t-te">సాయిలక్ష్మి &amp; ధర్మవీర్</span>
       <i aria-hidden="true">·</i>
@@ -517,10 +490,9 @@
           <span class="t-en">Language</span><span class="t-te">భాష</span>
         </span>
         <button type="button" class="lang-switch__btn" data-lang-set="en" aria-pressed="true">English</button>
-        <button type="button" class="lang-switch__btn" data-lang-set="te" aria-pressed="false">తెలుగు</button>
+        <button type="button" class="lang-switch__btn" data-lang-set="te" aria-pressed="false" lang="te">తెలుగు</button>
       </div>
-
-      <a class="btn btn--glass btn--sm closing__top" href="#top">
+      <a class="btn btn--glass btn--sm" href="#top">
         <span class="t-en">Back to top</span><span class="t-te">పైకి వెళ్ళండి</span>
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
       </a>
@@ -528,23 +500,28 @@
   </div>
 </footer>
 
-<!-- ============ FLOATING BUTTONS ============ -->
-<a class="fab fab--share" id="shareBtn" target="_blank" rel="noopener" aria-label="Share on WhatsApp" data-aria-en="Share on WhatsApp" data-aria-te="వాట్సాప్‌లో పంచుకోండి"
-   href="https://wa.me/?text=">
-  <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M16.04 3C9.4 3 4 8.36 4 14.97c0 2.33.67 4.5 1.84 6.35L4 29l7.9-1.8a12.1 12.1 0 0 0 4.14.73C22.68 27.93 28 22.57 28 15.97 28 9.36 22.68 3 16.04 3zm0 22.73c-1.3 0-2.58-.24-3.78-.7l-.27-.1-4.69 1.07 1.1-4.53-.18-.29a9.9 9.9 0 0 1-1.6-5.21c0-5.4 4.42-9.79 9.84-9.79 5.42 0 9.66 4.39 9.66 9.79 0 5.4-4.24 9.76-9.66 9.76zm5.4-7.32c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.46-.88-.78-1.47-1.75-1.64-2.04-.17-.3-.02-.46.13-.6.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.01-1.04 2.47 0 1.45 1.06 2.86 1.21 3.06.15.2 2.09 3.18 5.06 4.46.71.3 1.26.48 1.69.62.71.22 1.36.19 1.87.12.57-.09 1.75-.71 2-1.4.25-.69.25-1.28.17-1.4-.07-.13-.27-.2-.57-.35z"/></svg>
-</a>
-<button class="fab fab--music" id="musicBtn" type="button" aria-pressed="false" aria-label="Background music" data-aria-en="Background music" data-aria-te="నేపథ్య సంగీతం" hidden>
-  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
-</button>
+<!-- ============ DOCK: the three things guests need ============ -->
+<nav class="dock" id="dock" data-aria-en="Quick actions" data-aria-te="త్వరిత చర్యలు" aria-label="Quick actions">
+  <a class="dock__btn" href="https://www.google.com/maps/search/?api=1&amp;query=Metla+Satyanarayana+Kapu+Kalyana+Mandapam+Gandu+Veedhi+Amalapuram" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+    <span class="t-en">Directions</span><span class="t-te">దారి</span>
+  </a>
+  <a class="dock__btn" href="assets/sumuhurtham.ics" download="sailakshmi-dharmaveer-sumuhurtham.ics">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+    <span class="t-en">Calendar</span><span class="t-te">క్యాలెండర్</span>
+  </a>
+  <a class="dock__btn dock__btn--wa" id="shareBtn" href="https://wa.me/?text=" target="_blank" rel="noopener">
+    <svg viewBox="0 0 32 32" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M16.04 3C9.4 3 4 8.36 4 14.97c0 2.33.67 4.5 1.84 6.35L4 29l7.9-1.8a12.1 12.1 0 0 0 4.14.73C22.68 27.93 28 22.57 28 15.97 28 9.36 22.68 3 16.04 3zm0 22.73c-1.3 0-2.58-.24-3.78-.7l-.27-.1-4.69 1.07 1.1-4.53-.18-.29a9.9 9.9 0 0 1-1.6-5.21c0-5.4 4.42-9.79 9.84-9.79 5.42 0 9.66 4.39 9.66 9.79 0 5.4-4.24 9.76-9.66 9.76zm5.4-7.32c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.46-.88-.78-1.47-1.75-1.64-2.04-.17-.3-.02-.46.13-.6.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.01-1.04 2.47 0 1.45 1.06 2.86 1.21 3.06.15.2 2.09 3.18 5.06 4.46.71.3 1.26.48 1.69.62.71.22 1.36.19 1.87.12.57-.09 1.75-.71 2-1.4.25-.69.25-1.28.17-1.4-.07-.13-.27-.2-.57-.35z"/></svg>
+    <span class="t-en">Share</span><span class="t-te">పంపండి</span>
+  </a>
+</nav>
 
 <!-- ============ LIGHTBOX ============ -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
-  <div class="lightbox__stage">
-    <figure class="lightbox__figure">
-      <img class="lightbox__img" id="lbImg" alt="">
-      <figcaption class="lightbox__caption" id="lbCaption"></figcaption>
-    </figure>
-  </div>
+  <figure class="lightbox__figure">
+    <img class="lightbox__img" id="lbImg" alt="">
+    <figcaption class="lightbox__caption" id="lbCaption"></figcaption>
+  </figure>
   <p class="lightbox__count num" id="lbCount"></p>
   <button class="lightbox__btn lightbox__close" type="button" id="lbClose" aria-label="Close" data-aria-en="Close" data-aria-te="మూసివేయండి"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   <button class="lightbox__btn lightbox__prev" type="button" id="lbPrev" aria-label="Previous" data-aria-en="Previous" data-aria-te="ముందు చిత్రం"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
