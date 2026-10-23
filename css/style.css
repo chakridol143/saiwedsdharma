@@ -496,50 +496,70 @@ html[data-lang="te"] .timer__label { font-size: 13px; letter-spacing: 0; text-tr
    ========================================================================== */
 
 .couple { z-index: 1; }
-.couple__stage { margin-top: 30px; }
-.couple__photo {
-  position: relative; overflow: hidden;
-  aspect-ratio: 853 / 1280;
-  border-radius: 50% 50% 26px 26px / 33.4% 33.4% 26px 26px;   /* palace arch */
-  box-shadow: 0 30px 60px -30px rgba(20, 26, 63, .6);
-  background: #1d5f8a;
-}
-.couple__photo img { width: 100%; height: 100%; object-fit: cover; }
-.couple__shade { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .5s var(--ease); }
-.couple__shade--l { background: linear-gradient(90deg, rgba(10, 16, 48, .72) 0%, rgba(10, 16, 48, .55) 42%, rgba(10, 16, 48, 0) 56%); }
-.couple__shade--r { background: linear-gradient(270deg, rgba(10, 16, 48, .72) 0%, rgba(10, 16, 48, .55) 44%, rgba(10, 16, 48, 0) 58%); }
-.couple__stage[data-pick="bride"] .couple__shade--l { opacity: 1; }
-.couple__stage[data-pick="groom"] .couple__shade--r { opacity: 1; }
+.couple__stage { margin-top: 26px; }
 
-.spot {
-  position: absolute; top: 58%; width: 56px; height: 56px; margin: -28px 0 0 -28px;
-  display: grid; place-items: center;
-  padding: 0; border: 0; background: none; color: var(--ink);
+/* two palace portraits side by side; the one you pick takes the wider column */
+.duo {
+  --duo-h: clamp(300px, 98vw, 460px);
+  position: relative;
+  display: grid; grid-template-columns: 1.5fr 0px 1fr; column-gap: 12px;
+  transition: grid-template-columns .6s var(--ease);
+}
+.couple__stage[data-pick="groom"] .duo { grid-template-columns: 1fr 0px 1.5fr; }
+.duo__card {
+  position: relative; min-width: 0; padding: 0; border: 0; background: none; color: var(--ink);
+  display: flex; flex-direction: column; align-items: flex-start; text-align: left;
   -webkit-tap-highlight-color: transparent;
 }
-.spot--groom { left: 38%; }
-.spot--bride { left: 63%; }
-.spot__dot { position: relative; width: 22px; height: 22px; border-radius: 50%; background: var(--marigold); box-shadow: 0 0 0 4px rgba(255, 246, 234, .9); }
-.spot__dot::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--ivory); animation: ping 1.8s var(--ease) infinite; }
-@keyframes ping { from { transform: scale(1); opacity: .9; } to { transform: scale(2.3); opacity: 0; } }
-.spot__label {
-  position: absolute; top: 50px; padding: 5px 11px; border-radius: 99px; background: var(--ivory); white-space: nowrap;
-  font-size: 13px; font-weight: 700; box-shadow: 0 8px 20px -10px rgba(0, 0, 0, .6);
-  transform: translateY(4px) scale(.92); opacity: .75; transition: transform .35s var(--pop), opacity .3s;
+.duo__card--bride { grid-column: 1; grid-row: 1; }
+.duo__card--groom { grid-column: 3; grid-row: 1; align-items: flex-end; text-align: right; }
+.duo__card:focus-visible { outline: none; }
+.duo__card:focus-visible .duo__arch { outline: 3px solid var(--peacock); outline-offset: 4px; }
+.duo__arch {
+  position: relative; display: block; width: 100%; height: var(--duo-h);
+  overflow: hidden; background: #1d5f8a;
+  border-radius: 50% 50% 22px 22px / 30% 30% 22px 22px;   /* palace arch */
+  box-shadow: 0 0 0 2px rgba(245, 181, 68, .85), 0 28px 50px -26px rgba(20, 26, 63, .75);
+  transition: transform .5s var(--ease);
 }
-.spot--groom .spot__label { right: 14px; }
-.spot--bride .spot__label { left: 14px; }
-.spot[aria-pressed="true"] .spot__label { transform: none; opacity: 1; background: var(--marigold); }
-.spot[aria-pressed="true"] .spot__dot::after { animation: none; opacity: 0; }
+.duo__card:active .duo__arch { transform: scale(.97); }
+.duo__arch img { width: 100%; height: 100%; object-fit: cover; }
+.duo__arch::after { /* the one you are not reading about rests in shade */
+  content: ""; position: absolute; inset: 0; background: rgba(20, 26, 63, .45);
+  opacity: 0; transition: opacity .5s var(--ease); pointer-events: none;
+}
+.duo__card[aria-pressed="false"] .duo__arch::after { opacity: 1; }
+.duo__tap { /* a soft ping on the other portrait: "tap me" */
+  position: absolute; z-index: 1; left: 50%; top: 64%; width: 18px; height: 18px; margin: -9px 0 0 -9px;
+  border-radius: 50%; background: var(--marigold); box-shadow: 0 0 0 4px rgba(255, 246, 234, .85);
+  opacity: 0; transform: scale(.4); transition: opacity .3s, transform .4s var(--pop);
+}
+.duo__tap::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--ivory); animation: ping 1.8s var(--ease) infinite; }
+@keyframes ping { from { transform: scale(1); opacity: .9; } to { transform: scale(2.4); opacity: 0; } }
+.duo__card[aria-pressed="false"] .duo__tap { opacity: 1; transform: none; }
+.duo__card[aria-pressed="true"] .duo__tap::after { animation: none; }
+.duo__role {
+  margin-top: 14px; font-size: 11px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--peacock);
+  white-space: nowrap;
+}
+.duo__name {
+  margin-top: 2px; font-family: var(--font-display); font-size: 31px; line-height: 1; white-space: nowrap;
+  transition: opacity .4s;
+}
+.duo__card[aria-pressed="false"] .duo__name, .duo__card[aria-pressed="false"] .duo__role { opacity: .55; }
+html[data-lang="te"] .duo__role { letter-spacing: .02em; font-size: 13px; text-transform: none; }
+html[data-lang="te"] .duo__name { font-family: 'Ramaraja', var(--font-te); font-size: 24px; line-height: 1.3; }
+.duo__amp {
+  grid-column: 2; grid-row: 1; position: relative; z-index: 2; left: -27px; align-self: start;
+  margin-top: calc(var(--duo-h) - 40px);
+  display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%;
+  background: var(--marigold); color: var(--ink);
+  font-family: var(--font-display); font-style: italic; font-size: 32px; line-height: 1;
+  box-shadow: 0 0 0 5px rgba(255, 246, 234, .9), 0 14px 26px -12px rgba(20, 26, 63, .6);
+}
 
 .couple__panel { margin-top: 22px; }
 .no-js .person[hidden] { display: block; }
-.no-js .switch { display: none; }
-.switch { position: relative; display: grid; grid-template-columns: 1fr 1fr; padding: 4px; border-radius: 99px; background: rgba(20, 26, 63, .1); }
-.switch button { position: relative; z-index: 1; min-height: 44px; border: 0; background: none; font-weight: 700; font-size: 15px; color: var(--ink-soft); transition: color .3s; }
-.switch button[aria-pressed="true"] { color: var(--ivory); }
-.switch__thumb { position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); border-radius: 99px; background: var(--ink); transition: transform .45s var(--ease); }
-.couple__stage[data-pick="groom"] .switch__thumb { transform: translateX(100%); }
 
 .person {
   margin-top: 14px; padding: 26px 22px 24px; border-radius: var(--radius);
@@ -579,6 +599,12 @@ html[data-lang="te"] .person__name { font-family: 'Ramaraja', var(--font-te); fo
 .night { overflow: hidden; padding-top: 40px; }
 .moon { position: absolute; right: -10px; top: 40px; width: 120px; height: 120px; fill: #fbe7b8; opacity: .9; filter: drop-shadow(0 0 22px rgba(251, 231, 184, .45)); }
 .night .lead { color: var(--ivory-soft); }
+.night__photo {
+  position: relative; margin-top: 30px; overflow: hidden;
+  aspect-ratio: 3 / 2; border-radius: var(--radius); background: #141a45;
+  box-shadow: 0 0 0 1.5px rgba(245, 181, 68, .55), 0 0 0 8px rgba(245, 181, 68, .08), 0 34px 60px -30px rgba(0, 0, 0, .9);
+}
+.night__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 52% 50%; transform-origin: 50% 60%; }
 
 .timeline-wrap { position: relative; margin-top: 40px; padding-left: 26px; }
 .timeline__line { position: absolute; left: 6px; top: 10px; bottom: 34px; width: 2px; background: var(--line-dark); border-radius: 2px; overflow: hidden; }
@@ -622,7 +648,7 @@ html[data-lang="te"] .venue__name { font-family: var(--font-te); font-weight: 60
    04 · GALLERY — a film reel: scroll down, the photos roll sideways
    ========================================================================== */
 
-.reel { position: relative; background: var(--sky-6); color: var(--ivory); --fh: min(46svh, 460px); }
+.reel { position: relative; background: var(--sky-6); color: var(--ivory); --fh: min(50svh, 470px); }
 .reel__pin { position: relative; display: flex; flex-direction: column; padding: 70px 0 40px; overflow: hidden; }
 .reel.is-pinned .reel__pin { height: 100vh; height: 100svh; min-height: 560px; padding: calc(var(--safe-top) + 74px) 0 calc(var(--safe-bottom) + 78px); }
 .reel__head { padding: 0 var(--gutter); }
@@ -640,6 +666,7 @@ html[data-lang="te"] .reel__title { font-family: var(--font-te); font-weight: 60
   position: relative; flex: 1; min-height: 0; margin-top: 18px;
   display: flex; align-items: center;
   overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none;
+  scroll-padding-inline: var(--gutter);
 }
 .reel__viewport::-webkit-scrollbar { display: none; }
 .reel.is-pinned .reel__viewport { overflow: visible; scroll-snap-type: none; }
@@ -663,9 +690,9 @@ html[data-lang="te"] .reel__title { font-family: var(--font-te); font-weight: 60
   transform: rotate(var(--r, 0deg));
   -webkit-tap-highlight-color: transparent;
 }
-.frame:nth-of-type(3n+1) { --r: -1.6deg; margin-bottom: 7svh; }
-.frame:nth-of-type(3n+2) { --r: 1.2deg; margin-top: 7svh; }
-.frame:nth-of-type(3n) { --r: -.5deg; margin-bottom: 2svh; }
+.frame:nth-of-type(3n+1) { --r: -1.6deg; margin-bottom: 3svh; }
+.frame:nth-of-type(3n+2) { --r: 1.2deg; margin-top: 3svh; }
+.frame:nth-of-type(3n) { --r: -.5deg; margin-bottom: 1svh; }
 .frame__img {
   display: block; overflow: hidden; border-radius: 18px; background: #1b2356;
   box-shadow: 0 26px 50px -24px rgba(0, 0, 0, .8), 0 0 0 1px rgba(255, 246, 234, .08);
@@ -678,14 +705,14 @@ html[data-lang="te"] .reel__title { font-family: var(--font-te); font-weight: 60
 .frame:active .frame__img { transform: scale(.98); }
 
 .chapcard {
-  flex: none; width: min(62vw, 340px); scroll-snap-align: start;
+  flex: none; width: min(46vw, 200px); scroll-snap-align: start;
   display: flex; flex-direction: column; justify-content: center;
 }
 .chapcard__n {
-  font-family: var(--font-display); font-size: min(40vw, 190px); line-height: .78; letter-spacing: -.04em;
+  font-family: var(--font-display); font-size: min(32vw, 150px); line-height: .78; letter-spacing: -.04em;
   color: transparent; -webkit-text-stroke: 1.4px var(--marigold);
 }
-.chapcard__t { margin-top: 10px; font-family: var(--font-display); font-weight: 400; font-size: 44px; line-height: 1; }
+.chapcard__t { margin-top: 10px; font-family: var(--font-display); font-weight: 400; font-size: 38px; line-height: 1; text-wrap: balance; }
 .chapcard__t .t-te { font-family: var(--font-te); font-weight: 600; font-size: 30px; }
 .reel__hint { flex: none; width: min(44vw, 220px); display: flex; flex-direction: column; gap: 12px; font-size: 15px; font-weight: 600; color: var(--ivory-soft); }
 .reel__hint-arrow { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--marigold); color: var(--marigold); animation: nudge 1.6s ease-in-out infinite; }
@@ -824,7 +851,7 @@ html[data-lang="te"] .closing__text { font-family: var(--font-te); font-size: 18
   background: linear-gradient(100deg, var(--marigold) 0 38%, #fff1c4 50%, var(--marigold) 62% 100%) 0 0 / 260% 100%;
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
 }
-.closing__mangalam.is-shimmer { animation: shimmer 3.6s linear infinite; }
+.closing__mangalam.is-shimmer { animation: shimmer 3.6s linear 2; } /* two sweeps, then rest */
 @keyframes shimmer { from { background-position: 130% 0; } to { background-position: -130% 0; } }
 html[data-lang="te"] .closing__mangalam { font-family: 'Ramaraja', var(--font-te); font-style: normal; font-size: min(14vw, 90px); line-height: 1.3; }
 
@@ -843,6 +870,19 @@ html[data-lang="te"] .closing__mangalam { font-family: 'Ramaraja', var(--font-te
 .shower__grains i:nth-child(3) { left: 11px; top: 14px; transform: rotate(70deg); }
 .shower__grains i:nth-child(4) { left: 19px; top: 15px; transform: rotate(-10deg); }
 .shower__grains i:nth-child(5) { left: 6px; top: 16px; transform: rotate(40deg); background: #d9452b; }
+
+/* a polaroid to sign off */
+.seeyou {
+  margin-top: 46px; width: min(76vw, 300px); padding: 10px 10px 0;
+  border-radius: 6px; background: var(--ivory); color: var(--ink);
+  transform: rotate(-3deg);
+  box-shadow: 0 30px 60px -28px rgba(0, 0, 0, .9), 0 0 0 1px rgba(255, 246, 234, .2);
+}
+.seeyou__photo { display: block; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 3px; background: #141a45; }
+.seeyou__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 46% 45%; }
+.seeyou__cap { padding: 13px 4px 15px; font-family: var(--font-display); font-style: italic; font-size: 27px; line-height: 1; text-align: center; }
+.seeyou__cap b { font-family: var(--font-sans); font-style: normal; font-weight: 800; font-size: .6em; letter-spacing: .1em; color: var(--peacock); vertical-align: .12em; }
+html[data-lang="te"] .seeyou__cap { font-family: var(--font-te); font-style: normal; font-weight: 600; font-size: 20px; }
 
 .closing__footer { margin-top: 50px; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 10px; font-size: 14px; font-weight: 600; color: var(--ivory-soft); }
 .closing__footer i { font-style: normal; color: var(--marigold); }
@@ -960,7 +1000,8 @@ html[data-lang="te"] .closing__mangalam { font-family: 'Ramaraja', var(--font-te
   .couple__wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6vw; align-items: center; }
   .couple__intro { grid-column: 2; grid-row: 1; align-self: end; }
   .couple__stage { display: contents; }
-  .couple__photo { grid-column: 1; grid-row: 1 / span 2; margin: 0; max-width: 520px; width: 100%; justify-self: end; }
+  .duo { grid-column: 1; grid-row: 1 / span 2; width: 100%; max-width: 560px; justify-self: end; --duo-h: min(66vh, 580px); column-gap: 16px; }
+  .duo__name { font-size: 40px; }
   .couple__panel { grid-column: 2; grid-row: 2; align-self: start; margin-top: 0; max-width: 520px; }
   .person__name { font-size: 68px; }
 
@@ -971,9 +1012,10 @@ html[data-lang="te"] .closing__mangalam { font-family: 'Ramaraja', var(--font-te
   .night .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 6vw; }
   .night .eyebrow, .night .title, .night .lead, .timeline-wrap { grid-column: 1; }
   .night .eyebrow { justify-self: start; }
-  .venue { grid-column: 2; grid-row: 3 / span 2; align-self: center; margin-top: 0; padding: 36px 32px; }
+  .night__photo { grid-column: 2; grid-row: 1 / span 3; align-self: end; margin-top: 0; }
+  .venue { grid-column: 2; grid-row: 4; align-self: start; margin-top: 40px; padding: 36px 32px; }
   .venue__name { font-size: 40px; }
-  .moon { width: 180px; height: 180px; right: 8vw; top: 90px; }
+  .moon { width: 150px; height: 150px; right: 3vw; top: 34px; }
 
   .reel { --fh: min(56vh, 540px); }
   .reel__head { display: grid; grid-template-columns: auto 1fr; align-items: end; column-gap: 48px; padding: 0 6vw; }

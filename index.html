@@ -135,10 +135,10 @@
     </figure>
     <figure class="story__frame">
       <picture>
-        <source type="image/webp" data-srcset="img/shoot/silhouette-sm.webp 760w, img/shoot/silhouette.webp 1280w" sizes="(min-width: 960px) 460px, 100vw">
-        <img data-src="img/shoot/silhouette.jpg" width="1280" height="853" decoding="async" alt="Their silhouettes, foreheads touching against the setting sun" style="object-position: 54% 50%">
+        <source type="image/webp" data-srcset="img/shoot/palace-walk-sm.webp 506w, img/shoot/palace-walk.webp 853w" sizes="(min-width: 960px) 460px, 100vw">
+        <img data-src="img/shoot/palace-walk.jpg" width="853" height="1280" decoding="async" alt="Dharmaveer and Sailakshmi walking hand in hand through a blue and gold palace hall" style="object-position: 72% 50%">
       </picture>
-      <figcaption class="sticker sticker--r" style="--rot:5deg"><span class="t-en">Golden hour</span><span class="t-te">సంధ్య వేళ</span></figcaption>
+      <figcaption class="sticker sticker--r" style="--rot:5deg"><span class="t-en">Hand in hand</span><span class="t-te">చేయి చేయి కలిపి</span></figcaption>
     </figure>
     <figure class="story__frame">
       <picture>
@@ -242,30 +242,34 @@
       </div>
 
       <div class="couple__stage" id="coupleStage" data-pick="bride">
-        <figure class="couple__photo" id="couplePhoto">
-          <picture>
-            <source type="image/webp" srcset="img/shoot/palace-walk-sm.webp 506w, img/shoot/palace-walk.webp 853w" sizes="(min-width: 960px) 460px, 92vw">
-            <img src="img/shoot/palace-walk.jpg" width="853" height="1280" loading="lazy" decoding="async" alt="Dharmaveer and Sailakshmi walking hand in hand through a blue and gold palace hall">
-          </picture>
-          <span class="couple__shade couple__shade--l" aria-hidden="true"></span>
-          <span class="couple__shade couple__shade--r" aria-hidden="true"></span>
-          <button class="spot spot--groom" type="button" data-pick="groom" aria-pressed="false">
-            <span class="spot__dot" aria-hidden="true"></span>
-            <span class="spot__label"><span class="t-en">Dharmaveer</span><span class="t-te">ధర్మవీర్</span></span>
+        <!-- two portraits from the palace shoot; tap one to read about them -->
+        <div class="duo" id="duo">
+          <button class="duo__card duo__card--bride" type="button" data-pick="bride" aria-pressed="true" aria-controls="personBride">
+            <span class="duo__arch">
+              <picture>
+                <source type="image/webp" srcset="img/shoot/bride-portrait.webp">
+                <img src="img/shoot/bride-portrait.jpg" width="547" height="820" loading="lazy" decoding="async" alt="" style="object-position: 54% 40%">
+              </picture>
+              <span class="duo__tap" aria-hidden="true"></span>
+            </span>
+            <span class="duo__role"><span class="t-en">The bride</span><span class="t-te">వధువు</span></span>
+            <span class="duo__name"><span class="t-en">Sailakshmi</span><span class="t-te">సాయిలక్ష్మి</span></span>
           </button>
-          <button class="spot spot--bride" type="button" data-pick="bride" aria-pressed="true">
-            <span class="spot__dot" aria-hidden="true"></span>
-            <span class="spot__label"><span class="t-en">Sailakshmi</span><span class="t-te">సాయిలక్ష్మి</span></span>
+          <span class="duo__amp" aria-hidden="true">&amp;</span>
+          <button class="duo__card duo__card--groom" type="button" data-pick="groom" aria-pressed="false" aria-controls="personGroom">
+            <span class="duo__arch">
+              <picture>
+                <source type="image/webp" srcset="img/shoot/groom-portrait.webp">
+                <img src="img/shoot/groom-portrait.jpg" width="620" height="930" loading="lazy" decoding="async" alt="" style="object-position: 50% 40%">
+              </picture>
+              <span class="duo__tap" aria-hidden="true"></span>
+            </span>
+            <span class="duo__role"><span class="t-en">The groom</span><span class="t-te">వరుడు</span></span>
+            <span class="duo__name"><span class="t-en">Dharmaveer</span><span class="t-te">ధర్మవీర్</span></span>
           </button>
-        </figure>
+        </div>
 
         <div class="couple__panel">
-          <div class="switch" role="group" aria-label="Choose bride or groom">
-            <button type="button" data-pick="bride" aria-pressed="true"><span class="t-en">Bride</span><span class="t-te">వధువు</span></button>
-            <button type="button" data-pick="groom" aria-pressed="false"><span class="t-en">Groom</span><span class="t-te">వరుడు</span></button>
-            <span class="switch__thumb" aria-hidden="true"></span>
-          </div>
-
           <article class="person" id="personBride" data-person="bride" aria-live="polite">
             <p class="person__role"><span class="t-en">Bride</span><span class="t-te">వధువు</span></p>
             <h3 class="person__name"><span class="t-en">Sailakshmi</span><span class="t-te">సాయిలక్ష్మి</span></h3>
@@ -308,6 +312,13 @@
       <p class="eyebrow eyebrow--dup" data-reveal><span class="eyebrow__n">03</span><span class="t-en">The Day</span><span class="t-te">శుభ కార్యక్రమాలు</span></p>
       <h2 class="title" data-split><span class="t-en">Join us for the <i>celebrations</i></span><span class="t-te">శుభ కార్యక్రమాలు</span></h2>
       <p class="lead" data-reveal><span class="t-en">On a Wednesday chosen by the stars — the auspicious Rohini nakshatra, Mithuna lagna.</span><span class="t-te">స్వస్తిశ్రీ చాంద్రమానేన శ్రీ పరాభవ నామ సంవత్సర ఆశ్వీయుజ మాస బహుళ విదియ (తత్కాల విదియ) బుధవారము</span></p>
+
+      <figure class="night__photo" id="nightPhoto">
+        <picture>
+          <source type="image/webp" srcset="img/shoot/swing-close-sm.webp 760w, img/shoot/swing-close.webp 1280w" sizes="(min-width: 960px) 540px, 92vw">
+          <img src="img/shoot/swing-close-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Dharmaveer and Sailakshmi on a swing hung with marigold garlands, under fairy lights at night">
+        </picture>
+      </figure>
 
       <div class="timeline-wrap" id="timeline">
       <span class="timeline__line" aria-hidden="true"><i></i></span>
@@ -362,7 +373,7 @@
         <h2 class="reel__title"><span class="t-en">Our story <i>in pictures</i></span><span class="t-te">ఫోటో గ్యాలరీ</span></h2>
         <div class="reel__meta">
           <span class="reel__chapter" id="reelChapter" aria-live="polite">The ride</span>
-          <span class="reel__count num"><b id="reelNow">01</b> / <span id="reelTotal">23</span></span>
+          <span class="reel__count num"><b id="reelNow">01</b> / <span id="reelTotal">29</span></span>
         </div>
         <div class="reel__progress" aria-hidden="true"><i id="reelProgress"></i></div>
       </header>
@@ -396,16 +407,28 @@
           <a class="frame frame--l" data-chapter="Parrots &amp; paths" href="img/shoot/parrots-close.jpg" data-src="img/shoot/parrots-close.webp" data-w="1280" data-h="853"><span class="frame__img"><picture><source type="image/webp" srcset="img/shoot/parrots-close-sm.webp 760w, img/shoot/parrots-close.webp 1280w" sizes="(min-width: 960px) 640px, 90vw"><img src="img/shoot/parrots-close-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Foreheads together, a macaw on his arm"></picture></span><span class="frame__cap">Foreheads together</span></a>
           <a class="frame frame--p" data-chapter="Parrots &amp; paths" href="img/shoot/camera.jpg" data-src="img/shoot/camera.webp" data-w="853" data-h="1280"><span class="frame__img"><picture><source type="image/webp" srcset="img/shoot/camera-sm.webp 506w, img/shoot/camera.webp 853w" sizes="(min-width: 960px) 420px, 72vw"><img src="img/shoot/camera-sm.jpg" width="506" height="760" loading="lazy" decoding="async" alt="Sailakshmi taking a photo on the garden path"></picture></span><span class="frame__cap">Say cheese</span></a>
           <a class="frame frame--l" data-chapter="Parrots &amp; paths" href="img/shoot/garden-path.jpg" data-src="img/shoot/garden-path.webp" data-w="1280" data-h="853"><span class="frame__img"><picture><source type="image/webp" srcset="img/shoot/garden-path-sm.webp 760w, img/shoot/garden-path.webp 1280w" sizes="(min-width: 960px) 640px, 90vw"><img src="img/shoot/garden-path-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Arm in arm along the green bridge"></picture></span><span class="frame__cap">Arm in arm</span></a>
-          <a class="frame frame--l" data-chapter="Parrots &amp; paths" href="img/shoot/aviary-walk.jpg" data-src="img/shoot/aviary-walk.webp" data-w="1280" data-h="853"><span class="frame__img"><picture><source type="image/webp" srcset="img/shoot/aviary-walk-sm.webp 760w, img/shoot/aviary-walk.webp 1280w" sizes="(min-width: 960px) 640px, 90vw"><img src="img/shoot/aviary-walk-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Strolling across the garden bridge"></picture></span><span class="frame__cap">A stroll across</span></a>
 
-          <div class="chapcard" data-chapter="The blue palace"><span class="chapcard__n num">05</span><h3 class="chapcard__t"><span class="t-en">The blue palace</span><span class="t-te">నీలి మహల్‌లో</span></h3></div>
+          <div class="chapcard" data-chapter="Café date"><span class="chapcard__n num">05</span><h3 class="chapcard__t"><span class="t-en">Café date</span><span class="t-te">కాఫీ కబుర్లు</span></h3></div>
+          <a class="frame frame--p" data-chapter="Café date" href="img/shoot/cafe.jpg" data-src="img/shoot/cafe.webp" data-w="853" data-h="1280"><span class="frame__img"><picture><source type="image/webp" srcset="img/shoot/cafe-sm.webp 506w, img/shoot/cafe.webp 853w" sizes="(min-width: 960px) 420px, 72vw"><img src="img/shoot/cafe-sm.jpg" width="506" height="759" loading="lazy" decoding="async" alt="Sailakshmi and Dharmaveer laughing together in a café"></picture></span><span class="frame__cap">Coffee and giggles</span></a>
+
+          <div class="chapcard" data-chapter="The white hall"><span class="chapcard__n num">06</span><h3 class="chapcard__t"><span class="t-en">The white hall</span><span class="t-te">తెల్లని మహల్‌లో</span></h3></div>
+          <a class="frame frame--p" data-chapter="The white hall" href="img/shoot/white-window.jpg" data-src="img/shoot/white-window.webp" data-w="853" data-h="1280"><span class="frame__img"><picture><source type="image/webp" srcset="img/shoot/white-window-sm.webp 506w, img/shoot/white-window.webp 853w" sizes="(min-width: 960px) 420px, 72vw"><img src="img/shoot/white-window-sm.jpg" width="506" height="759" loading="lazy" decoding="async" alt="On either side of a tall blue window, smiling at each other"></picture></span><span class="frame__cap">Across the window</span></a>
+          <a class="frame frame--l" data-chapter="The white hall" href="img/shoot/white-hall.jpg" data-src="img/shoot/white-hall.webp" data-w="1280" data-h="853"><span class="frame__img"><picture><source type="image/webp" srcset="img/shoot/white-hall-sm.webp 760w, img/shoot/white-hall.webp 1280w" sizes="(min-width: 960px) 640px, 90vw"><img src="img/shoot/white-hall-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Sailakshmi in a red gown and Dharmaveer in a waistcoat among white pillars"></picture></span><span class="frame__cap">Red among the pillars</span></a>
+
+          <div class="chapcard" data-chapter="The blue palace"><span class="chapcard__n num">07</span><h3 class="chapcard__t"><span class="t-en">The blue palace</span><span class="t-te">నీలి మహల్‌లో</span></h3></div>
           <a class="frame frame--p" data-chapter="The blue palace" href="img/shoot/palace-walk.jpg" data-src="img/shoot/palace-walk.webp" data-w="853" data-h="1280"><span class="frame__img"><picture><source type="image/webp" srcset="img/shoot/palace-walk-sm.webp 506w, img/shoot/palace-walk.webp 853w" sizes="(min-width: 960px) 420px, 72vw"><img src="img/shoot/palace-walk-sm.jpg" width="506" height="760" loading="lazy" decoding="async" alt="Walking hand in hand through the palace hall"></picture></span><span class="frame__cap">Through the palace</span></a>
+          <a class="frame frame--p" data-chapter="The blue palace" href="img/shoot/bride-solo.jpg" data-src="img/shoot/bride-solo.webp" data-w="853" data-h="1280"><span class="frame__img"><picture><source type="image/webp" srcset="img/shoot/bride-solo-sm.webp 506w, img/shoot/bride-solo.webp 853w" sizes="(min-width: 960px) 420px, 72vw"><img src="img/shoot/bride-solo-sm.jpg" width="506" height="759" loading="lazy" decoding="async" alt="Sailakshmi in a cream silk saree in the palace hall" style="object-position: 66% 50%"></picture></span><span class="frame__cap">Sailakshmi</span></a>
+          <a class="frame frame--p" data-chapter="The blue palace" href="img/shoot/groom-solo.jpg" data-src="img/shoot/groom-solo.webp" data-w="853" data-h="1280"><span class="frame__img"><picture><source type="image/webp" srcset="img/shoot/groom-solo-sm.webp 506w, img/shoot/groom-solo.webp 853w" sizes="(min-width: 960px) 420px, 72vw"><img src="img/shoot/groom-solo-sm.jpg" width="506" height="759" loading="lazy" decoding="async" alt="Dharmaveer in a black kurta in the palace hall" style="object-position: 40% 50%"></picture></span><span class="frame__cap">Dharmaveer</span></a>
           <a class="frame frame--p" data-chapter="The blue palace" href="img/shoot/palace-sit.jpg" data-src="img/shoot/palace-sit.webp" data-w="853" data-h="1280"><span class="frame__img"><picture><source type="image/webp" srcset="img/shoot/palace-sit-sm.webp 506w, img/shoot/palace-sit.webp 853w" sizes="(min-width: 960px) 420px, 72vw"><img src="img/shoot/palace-sit-sm.jpg" width="506" height="760" loading="lazy" decoding="async" alt="Sitting together on the palace floor, in traditional clothes"></picture></span><span class="frame__cap">A quiet moment</span></a>
 
-          <div class="chapcard" data-chapter="The engagement"><span class="chapcard__n num">06</span><h3 class="chapcard__t"><span class="t-en">The engagement</span><span class="t-te">నిశ్చితార్థం</span></h3></div>
+          <div class="chapcard" data-chapter="The swing"><span class="chapcard__n num">08</span><h3 class="chapcard__t"><span class="t-en">The swing</span><span class="t-te">ఉయ్యాల</span></h3></div>
+          <a class="frame frame--l" data-chapter="The swing" href="img/shoot/swing-smile.jpg" data-src="img/shoot/swing-smile.webp" data-w="1280" data-h="853"><span class="frame__img"><picture><source type="image/webp" srcset="img/shoot/swing-smile-sm.webp 760w, img/shoot/swing-smile.webp 1280w" sizes="(min-width: 960px) 640px, 90vw"><img src="img/shoot/swing-smile-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Dharmaveer at the swing behind Sailakshmi, both smiling"></picture></span><span class="frame__cap">All smiles</span></a>
+          <a class="frame frame--l" data-chapter="The swing" href="img/shoot/swing-play.jpg" data-src="img/shoot/swing-play.webp" data-w="1280" data-h="853"><span class="frame__img"><picture><source type="image/webp" srcset="img/shoot/swing-play-sm.webp 760w, img/shoot/swing-play.webp 1280w" sizes="(min-width: 960px) 640px, 90vw"><img src="img/shoot/swing-play-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Sailakshmi swinging playfully while Dharmaveer holds the garland rope"></picture></span><span class="frame__cap">Swing high</span></a>
+          <a class="frame frame--l" data-chapter="The swing" href="img/shoot/swing-close.jpg" data-src="img/shoot/swing-close.webp" data-w="1280" data-h="853"><span class="frame__img"><picture><source type="image/webp" srcset="img/shoot/swing-close-sm.webp 760w, img/shoot/swing-close.webp 1280w" sizes="(min-width: 960px) 640px, 90vw"><img src="img/shoot/swing-close-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Sitting close together on the garlanded swing"></picture></span><span class="frame__cap">Close together</span></a>
+
+          <div class="chapcard" data-chapter="The engagement"><span class="chapcard__n num">09</span><h3 class="chapcard__t"><span class="t-en">The engagement</span><span class="t-te">నిశ్చితార్థం</span></h3></div>
           <a class="frame frame--s" data-chapter="The engagement" href="img/gallery/g-04.jpg" data-src="img/gallery/g-04.webp" data-w="2000" data-h="1333"><span class="frame__img"><picture><source type="image/webp" srcset="img/gallery/g-04-thumb.webp"><img src="img/gallery/g-04-thumb.jpg" width="600" height="400" loading="lazy" decoding="async" alt="Engagement rings on a betel leaf"></picture></span><span class="frame__cap">The rings</span></a>
           <a class="frame frame--s" data-chapter="The engagement" href="img/gallery/g-05.jpg" data-src="img/gallery/g-05.webp" data-w="2000" data-h="1333"><span class="frame__img"><picture><source type="image/webp" srcset="img/gallery/g-05-thumb.webp"><img src="img/gallery/g-05-thumb.jpg" width="600" height="400" loading="lazy" decoding="async" alt="Sailakshmi and Dharmaveer exchanging rings"></picture></span><span class="frame__cap">Exchanging rings</span></a>
-          <a class="frame frame--s" data-chapter="The engagement" href="img/gallery/g-06.jpg" data-src="img/gallery/g-06.webp" data-w="1333" data-h="2000"><span class="frame__img"><picture><source type="image/webp" srcset="img/gallery/g-06-thumb.webp"><img src="img/gallery/g-06-thumb.jpg" width="600" height="900" loading="lazy" decoding="async" alt="A hand with the ring" style="object-position: 50% 60%"></picture></span><span class="frame__cap">Ring on</span></a>
           <a class="frame frame--s" data-chapter="The engagement" href="img/prewedding/pw-7.jpg" data-src="img/prewedding/pw-7.webp" data-w="1600" data-h="1067"><span class="frame__img"><picture><source type="image/webp" srcset="img/prewedding/pw-7.webp"><img src="img/prewedding/pw-7.jpg" width="1600" height="1067" loading="lazy" decoding="async" alt="With the garlands at the engagement"></picture></span><span class="frame__cap">Garlands</span></a>
           <a class="frame frame--s" data-chapter="The engagement" href="img/gallery/g-01.jpg" data-src="img/gallery/g-01.webp" data-w="1333" data-h="2000"><span class="frame__img"><picture><source type="image/webp" srcset="img/gallery/g-01-thumb.webp"><img src="img/gallery/g-01-thumb.jpg" width="600" height="900" loading="lazy" decoding="async" alt="Welcome to the engagement — Sai & Dharma" style="object-position: 50% 55%"></picture></span><span class="frame__cap">Sai &amp; Dharma</span></a>
           <a class="frame frame--s" data-chapter="The engagement" href="img/gallery/g-12.jpg" data-src="img/gallery/g-12.webp" data-w="2000" data-h="1333"><span class="frame__img"><picture><source type="image/webp" srcset="img/gallery/g-12-thumb.webp"><img src="img/gallery/g-12-thumb.jpg" width="600" height="400" loading="lazy" decoding="async" alt="The engagement cake"></picture></span><span class="frame__cap">The cake</span></a>
@@ -533,6 +556,16 @@
       <span class="shower__grains" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
       <span class="t-en">Shower akshintalu</span><span class="t-te">అక్షింతలు చల్లండి</span>
     </button>
+
+    <figure class="seeyou" id="seeyou">
+      <span class="seeyou__photo">
+        <picture>
+          <source type="image/webp" srcset="img/shoot/swing-smile-sm.webp">
+          <img src="img/shoot/swing-smile-sm.jpg" width="760" height="506" loading="lazy" decoding="async" alt="Sailakshmi and Dharmaveer smiling on the garlanded swing">
+        </picture>
+      </span>
+      <figcaption class="seeyou__cap"><span class="t-en">See you on <b class="num">28 · 10</b></span><span class="t-te"><b class="num">28 · 10</b> న కలుద్దాం</span></figcaption>
+    </figure>
 
     <div class="closing__footer">
       <span class="t-en">Sailakshmi &amp; Dharmaveer</span><span class="t-te">సాయిలక్ష్మి &amp; ధర్మవీర్</span>

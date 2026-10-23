@@ -157,7 +157,9 @@
         { scale: 1, rotation: rot, autoAlpha: 1, duration: .9, delay, ease: 'back.out(2.2)' });
     };
 
-    // origin: [x%, y%] where the new photo opens from (the tap point)
+    // origin: [x%, y%] where the new photo opens from (the tap point). Taps get
+    // the circle reveal; the automatic advance is a plain crossfade, which is
+    // much cheaper for phones than repainting a full-screen clip every frame.
     const show = (next, origin) => {
       const from = index;
       index = (next + frames.length) % frames.length;
@@ -172,19 +174,23 @@
       const prev = frames[from];
       const img = $('img', target);
       frames.forEach((f) => {
-        if (f !== prev && f !== target) { f.classList.remove('is-active', 'is-under'); gsap.set(f, { clearProps: 'clipPath' }); }
+        if (f !== prev && f !== target) { f.classList.remove('is-active', 'is-under'); gsap.set(f, { clearProps: 'clipPath,opacity' }); }
       });
       prev.classList.remove('is-active');
       prev.classList.add('is-under');
       target.classList.remove('is-under');
       target.classList.add('is-active');
-      const [ox, oy] = origin || [86, 52];
       gsap.killTweensOf([target, img]);
-      gsap.fromTo(target, { clipPath: `circle(0% at ${ox}% ${oy}%)` }, {
-        clipPath: `circle(150% at ${ox}% ${oy}%)`, duration: 1.05, ease: 'power3.inOut',
-        onComplete: () => { prev.classList.remove('is-under'); gsap.set(target, { clearProps: 'clipPath' }); }
-      });
-      gsap.fromTo(img, { scale: 1.3 }, { scale: 1.07, duration: 1.4, ease: 'power3.out', onComplete: () => kenBurns(img) });
+      const done = () => { prev.classList.remove('is-under'); gsap.set(target, { clearProps: 'clipPath,opacity' }); };
+      if (origin) {
+        const [ox, oy] = origin;
+        gsap.fromTo(target, { clipPath: `circle(0% at ${ox}% ${oy}%)` }, {
+          clipPath: `circle(150% at ${ox}% ${oy}%)`, duration: .95, ease: 'power3.inOut', onComplete: done
+        });
+      } else {
+        gsap.fromTo(target, { opacity: 0 }, { opacity: 1, duration: .9, ease: 'power2.inOut', onComplete: done });
+      }
+      gsap.fromTo(img, { scale: origin ? 1.3 : 1.16 }, { scale: 1.07, duration: 1.4, ease: 'power3.out', onComplete: () => kenBurns(img) });
       popSticker(target, .4);
     };
 
@@ -194,13 +200,13 @@
       });
     });
 
-    const originOf = (e) => {
+    const originOf = (e, fallback) => {
       const r = el.getBoundingClientRect();
-      if (!e || !e.clientX) return null;
+      if (!e || !e.clientX) return fallback; // keyboard: open from the side you pressed
       return [((e.clientX - r.left) / r.width) * 100, ((e.clientY - r.top) / r.height) * 100];
     };
-    $('.story__tap--next', el).addEventListener('click', (e) => show(index + 1, originOf(e)));
-    $('.story__tap--prev', el).addEventListener('click', (e) => show(index - 1, originOf(e)));
+    $('.story__tap--next', el).addEventListener('click', (e) => show(index + 1, originOf(e, [86, 52])));
+    $('.story__tap--prev', el).addEventListener('click', (e) => show(index - 1, originOf(e, [14, 52])));
 
     // press and hold to pause, like a story
     let holdTimer = 0;
@@ -385,19 +391,22 @@
     if (!motion) return;
 
     // the invite slides up over the hero, which sinks back and dims
+    // (transform and opacity only: animating border-radius repaints every frame)
     const invite = $('#invite');
     const coverST = { trigger: invite, start: 'top bottom', end: 'top top', scrub: true };
-    gsap.to('.hero', { scale: .9, borderRadius: 28, ease: 'none', scrollTrigger: coverST });
+    gsap.to('.hero', { scale: .92, ease: 'none', scrollTrigger: coverST });
     gsap.to('.hero__dim', { opacity: .72, ease: 'none', scrollTrigger: coverST });
     gsap.to('.hero__content', { y: -70, ease: 'none', scrollTrigger: coverST });
 
-    // section titles: words rise out of their lines
+    // section titles: words rise out of their lines. autoSplit re-splits once
+    // the web fonts arrive, so the lines match the real font.
     $$('[data-split]').forEach((title) => {
-      const s = split(langSpan(title), 'lines,words', { mask: 'lines' });
-      if (!s) return;
-      gsap.from(s.words, {
-        yPercent: 110, duration: 1.1, stagger: .07, ease: 'power4.out',
-        scrollTrigger: { trigger: title, start: 'top 86%' }
+      split(langSpan(title), 'lines,words', {
+        mask: 'lines', autoSplit: true,
+        onSplit: (s) => gsap.from(s.words, {
+          yPercent: 110, duration: 1.1, stagger: .07, ease: 'power4.out',
+          scrollTrigger: { trigger: title, start: 'top 86%' }
+        })
       });
     });
 
@@ -427,13 +436,13 @@
       });
     }
 
-    // 02 · the couple photo opens up like a palace window
-    const photo = $('#couplePhoto');
-    if (photo) {
-      const st = { trigger: photo, start: 'top 92%', end: 'top 30%', scrub: .6 };
-      gsap.fromTo(photo, { clipPath: 'inset(16% 12% 16% 12% round 120px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px)', ease: 'none', scrollTrigger: st });
-      gsap.fromTo($('img', photo), { scale: 1.35 }, { scale: 1, ease: 'none', scrollTrigger: st });
-      gsap.from('.spot', { scale: 0, autoAlpha: 0, duration: .8, ease: 'back.out(2.4)', stagger: .15, scrollTrigger: { trigger: photo, start: 'top 45%' } });
+    // 02 · the two portraits rise into place, then the "&" pops in between
+    const duo = $('#duo');
+    if (duo) {
+      const tl = gsap.timeline({ scrollTrigger: { trigger: duo, start: 'top 82%' } });
+      tl.from('.duo__card', { y: 70, autoAlpha: 0, duration: 1, ease: 'power3.out', stagger: .14 })
+        .from('.duo__arch img', { scale: 1.25, duration: 1.4, ease: 'power3.out', stagger: .14 }, 0)
+        .from('.duo__amp', { scale: 0, rotate: -50, duration: .7, ease: 'back.out(2.2)' }, .55);
       gsap.from('.couple__panel', { y: 40, autoAlpha: 0, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: '.couple__panel', start: 'top 90%' } });
     }
 
@@ -452,6 +461,11 @@
     const night = $('#events');
     if (night) {
       gsap.fromTo('.moon', { y: 160, rotate: -30, autoAlpha: 0 }, { y: 0, rotate: 0, autoAlpha: .9, ease: 'none', scrollTrigger: { trigger: night, start: 'top bottom', end: 'top 20%', scrub: true } });
+      const nightPhoto = $('#nightPhoto');
+      if (nightPhoto) {
+        gsap.from(nightPhoto, { y: 50, autoAlpha: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: nightPhoto, start: 'top 90%' } });
+        gsap.fromTo($('img', nightPhoto), { scale: 1.18 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: nightPhoto, start: 'top bottom', end: 'bottom 30%', scrub: true } });
+      }
       gsap.to('.timeline__line i', { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '#timeline', start: 'top 70%', end: 'bottom 70%', scrub: true } });
       $$('.moment', night).forEach((m) => {
         gsap.from(m, { x: 50, autoAlpha: 0, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: m, start: 'top 85%' } });
@@ -505,19 +519,24 @@
     reel.classList.add('is-pinned');
     const viewport = $('.reel__viewport', reel);
     const distance = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
+    // the strip moves a little faster than the page scrolls (more so on phones),
+    // so a long reel doesn't keep guests scrolling for ever
+    const pace = () => (window.innerWidth < 760 ? .62 : .85);
     const roll = gsap.to(track, {
       x: () => -distance(), ease: 'none',
       scrollTrigger: {
-        trigger: reel, start: 'top top', end: () => '+=' + distance(),
+        trigger: reel, start: 'top top', end: () => '+=' + Math.round(distance() * pace()),
         pin: true, scrub: .8, anticipatePin: 1, invalidateOnRefresh: true,
         onUpdate: (self) => { if (progress) progress.style.transform = 'scaleX(' + self.progress.toFixed(4) + ')'; }
       }
     });
 
-    // depth: each photo drifts inside its frame; chapter numbers move faster
+    // depth on larger screens: each photo drifts inside its frame and the chapter
+    // numbers move faster. Phones skip both; the strip itself is enough motion.
+    const depth = window.matchMedia('(min-width: 760px)').matches;
     frames.forEach((f, i) => {
       const img = $('img', f);
-      gsap.fromTo(img, { xPercent: -6 }, { xPercent: 6, ease: 'none', scrollTrigger: { trigger: f, containerAnimation: roll, start: 'left right', end: 'right left', scrub: true } });
+      if (depth) gsap.fromTo(img, { xPercent: -6 }, { xPercent: 6, ease: 'none', scrollTrigger: { trigger: f, containerAnimation: roll, start: 'left right', end: 'right left', scrub: true } });
       ScrollTrigger.create({
         trigger: f, containerAnimation: roll, start: 'left 62%', end: 'right 38%',
         onToggle: (self) => { if (self.isActive) { setFrame(i); setChapter(f.dataset.chapter); } }
@@ -526,11 +545,11 @@
       f.addEventListener('focus', () => {
         const st = roll.scrollTrigger;
         const x = Math.min(distance(), Math.max(0, f.offsetLeft - viewport.clientWidth / 2 + f.offsetWidth / 2));
-        window.scrollTo(0, st.start + x);
+        window.scrollTo(0, st.start + x * pace());
       });
     });
     $$('.chapcard', track).forEach((c) => {
-      gsap.fromTo($('.chapcard__n', c), { x: 90 }, { x: -90, ease: 'none', scrollTrigger: { trigger: c, containerAnimation: roll, start: 'left right', end: 'right left', scrub: true } });
+      if (depth) gsap.fromTo($('.chapcard__n', c), { x: 90 }, { x: -90, ease: 'none', scrollTrigger: { trigger: c, containerAnimation: roll, start: 'left right', end: 'right left', scrub: true } });
       gsap.from($('.chapcard__t', c), { y: 40, autoAlpha: 0, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: c, containerAnimation: roll, start: 'left 85%' } });
     });
     gsap.from('.reel__head > *', { y: 30, autoAlpha: 0, duration: .9, stagger: .08, ease: 'power3.out', scrollTrigger: { trigger: reel, start: 'top 75%' } });
@@ -550,7 +569,8 @@
     const steps = cards.length - 1;
 
     gsap.set(mandala, { xPercent: -50, yPercent: -50, x: 0, y: 0, transformOrigin: '50% 50%' });
-    cards.forEach((c, i) => { if (i) gsap.set(c, { yPercent: 135, rotation: i % 2 ? 9 : -9 }); });
+    // cards still to come wait out of sight, so they don't peek under the name
+    cards.forEach((c, i) => { if (i) gsap.set(c, { yPercent: 135, rotation: i % 2 ? 9 : -9, opacity: 0 }); });
 
     let active = 0;
     const setActive = (k) => {
@@ -571,6 +591,7 @@
     for (let i = 1; i <= steps; i++) {
       const at = i - 1;
       tl.to(cards[i], { yPercent: 0, rotation: 0, duration: 1 }, at);
+      tl.to(cards[i], { opacity: 1, duration: .3, ease: 'none' }, at);
       for (let j = 0; j < i; j++) {
         const depth = i - j;
         tl.to(cards[j], { scale: 1 - .07 * depth, yPercent: -7 * depth, rotation: (j % 2 ? 3 : -3) * depth, duration: 1 }, at);
@@ -594,8 +615,13 @@
 
     const ganesha = $('#closingGanesha');
     if (ganesha) {
-      gsap.fromTo(ganesha, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: { trigger: ganesha, start: 'top 95%', end: 'top 45%', scrub: .6 } });
-      gsap.fromTo($('img', ganesha), { scale: 1.3 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: ganesha, start: 'top 95%', end: 'top 45%', scrub: .6 } });
+      const st = { trigger: ganesha, start: 'top 88%' };
+      gsap.from(ganesha, { y: 50, scale: .92, autoAlpha: 0, duration: 1.1, ease: 'power3.out', scrollTrigger: st });
+      gsap.from($('img', ganesha), { scale: 1.25, duration: 1.6, ease: 'power3.out', scrollTrigger: st });
+    }
+    const seeyou = $('#seeyou');
+    if (seeyou) {
+      gsap.from(seeyou, { y: -40, rotation: 9, autoAlpha: 0, duration: 1.1, ease: 'back.out(1.5)', scrollTrigger: { trigger: seeyou, start: 'top 90%' } });
     }
     const mangalam = $('#mangalam');
     if (mangalam) {
