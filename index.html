@@ -92,9 +92,9 @@
     <span class="topbar__date num">28 · 10 · 2026</span>
   </a>
   <div class="topbar__tools">
-    <button class="music" id="musicBtn" type="button" aria-pressed="false" aria-label="Play music" hidden>
-      <span class="music__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <span class="music__label">Music</span>
+    <button class="music" id="musicBtn" type="button" aria-pressed="false" aria-label="Turn music on" hidden>
+      <svg class="music__icon music__icon--on" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6M18.2 6.5a7.6 7.6 0 0 1 0 11"/></svg>
+      <svg class="music__icon music__icon--off" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
     </button>
     <div class="lang-pill" role="group" aria-label="Language / భాష">
       <button type="button" data-lang-set="en" aria-pressed="true">EN</button>
@@ -309,7 +309,7 @@
     <div class="stars stars--b" aria-hidden="true"></div>
     <svg class="moon" viewBox="0 0 100 100" aria-hidden="true"><path d="M64 10a40 40 0 1 0 26 66A34 34 0 1 1 64 10z"/></svg>
     <div class="wrap">
-      <p class="eyebrow eyebrow--dup" data-reveal><span class="eyebrow__n">03</span><span class="t-en">The Day</span><span class="t-te">శుభ కార్యక్రమాలు</span></p>
+      <p class="eyebrow eyebrow--dup" data-reveal><span class="eyebrow__n">03</span><span class="t-en">The events</span><span class="t-te">శుభ కార్యక్రమాలు</span></p>
       <h2 class="title" data-split><span class="t-en">Join us for the <i>celebrations</i></span><span class="t-te">శుభ కార్యక్రమాలు</span></h2>
       <p class="lead" data-reveal><span class="t-en">On a Wednesday chosen by the stars — the auspicious Rohini nakshatra, Mithuna lagna.</span><span class="t-te">స్వస్తిశ్రీ చాంద్రమానేన శ్రీ పరాభవ నామ సంవత్సర ఆశ్వీయుజ మాస బహుళ విదియ (తత్కాల విదియ) బుధవారము</span></p>
 
@@ -323,16 +323,8 @@
       <div class="timeline-wrap" id="timeline">
       <span class="timeline__line" aria-hidden="true"><i></i></span>
       <ol class="timeline">
-        <li class="moment">
-          <span class="moment__time num"><span class="t-en">7 PM</span><span class="t-te">రాత్రి 7</span></span>
-          <div class="moment__card">
-            <span class="moment__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 14h18"/><path d="M5 14a7 7 0 0 1 14 0"/><path d="M12 7V5"/><path d="M4 18h16"/></svg></span>
-            <h3 class="moment__title"><span class="t-en">Reception</span><span class="t-te">విందు</span></h3>
-            <p class="moment__date num">28 · 10 · 2026</p>
-            <p class="moment__text"><span class="t-en">From <span class="num">7 PM</span> onwards<br>at the venue</span><span class="t-te">రాత్రి 7 గంటల నుండి<br>కళ్యాణ వేదిక వద్ద</span></p>
-          </div>
-        </li>
         <li class="moment moment--main">
+          <span class="moment__day"><span class="t-en">Wednesday · 28 Oct</span><span class="t-te">బుధవారము · 28 అక్టోబర్</span></span>
           <span class="moment__time num"><span class="t-en">10:34 PM</span><span class="t-te">రాత్రి 10:34</span></span>
           <div class="moment__card">
             <span class="moment__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="9" cy="13" r="5"/><circle cx="15" cy="13" r="5"/><path d="M15 4.5l1.6 2-1.6 2-1.6-2z"/></svg></span>
@@ -345,6 +337,26 @@
             </a>
           </div>
         </li>
+        <li class="moment">
+          <span class="moment__day"><span class="t-en">Friday · 30 Oct</span><span class="t-te">శుక్రవారము · 30 అక్టోబర్</span></span>
+          <span class="moment__time num"><span class="t-en">7 PM</span><span class="t-te">రాత్రి 7</span></span>
+          <div class="moment__card">
+            <span class="moment__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 14h18"/><path d="M5 14a7 7 0 0 1 14 0"/><path d="M12 7V5"/><path d="M4 18h16"/></svg></span>
+            <h3 class="moment__title"><span class="t-en">Reception &amp; dinner</span><span class="t-te">విందు</span></h3>
+            <p class="moment__date num">30 · 10 · 2026</p>
+            <p class="moment__text"><span class="t-en">From <span class="num">7 PM</span> onwards at<br><b>Manu Gardens</b>, Laxmipuram,<br>Tiruvuru, NTR District</span><span class="t-te">రాత్రి 7 గంటల నుండి<br><b>మను గార్డెన్స్</b>, లక్ష్మీపురం,<br>తిరువూరు, ఎన్.టి.ఆర్. జిల్లా</span></p>
+            <div class="moment__btns">
+              <a class="btn btn--light" href="https://www.google.com/maps/search/?api=1&amp;query=Manu+Gardens%2C+Laxmipuram%2C+Tiruvuru%2C+NTR+District" target="_blank" rel="noopener">
+                <span class="t-en">Directions</span><span class="t-te">దారి చూపించు</span>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </a>
+              <a class="btn btn--glass" href="assets/reception.ics" download="sailakshmi-dharmaveer-reception.ics" aria-label="Add the reception to your calendar">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg>
+                <span class="t-en">Calendar</span><span class="t-te">క్యాలెండర్</span>
+              </a>
+            </div>
+          </div>
+        </li>
       </ol>
       </div>
 
@@ -353,7 +365,7 @@
           <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
         </div>
         <div class="venue__body">
-          <h3 class="venue__title"><span class="t-en">The venue</span><span class="t-te">కళ్యాణవేదిక</span></h3>
+          <h3 class="venue__title"><span class="t-en">Wedding venue</span><span class="t-te">కళ్యాణవేదిక</span></h3>
           <p class="venue__name"><span class="t-en">Dr. Metla Satyanarayana Kapu Kalyana Mandapam</span><span class="t-te">డా॥ మెట్ల సత్యనారాయణ కాపు కళ్యాణ మండపము</span></p>
           <p class="venue__addr"><span class="t-en">Gandu Veedhi, Amalapuram</span><span class="t-te">గండు వీధి, అమలాపురం</span></p>
           <a class="btn btn--light" href="https://maps.app.goo.gl/zeCjRQWN1eaNN1hv5" target="_blank" rel="noopener">
@@ -567,6 +579,21 @@
       <figcaption class="seeyou__cap"><span class="t-en">See you on <b class="num">28 · 10</b></span><span class="t-te"><b class="num">28 · 10</b> న కలుద్దాం</span></figcaption>
     </figure>
 
+    <nav class="endbar" aria-label="Quick actions">
+      <a class="endbar__btn" href="https://maps.app.goo.gl/zeCjRQWN1eaNN1hv5" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        <span class="t-en">Directions</span><span class="t-te">దారి</span>
+      </a>
+      <a class="endbar__btn" href="assets/sumuhurtham.ics" download="sailakshmi-dharmaveer-sumuhurtham.ics">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        <span class="t-en">Calendar</span><span class="t-te">క్యాలెండర్</span>
+      </a>
+      <a class="endbar__btn endbar__btn--wa" id="shareBtn" href="https://wa.me/?text=" target="_blank" rel="noopener">
+        <svg viewBox="0 0 32 32" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M16.04 3C9.4 3 4 8.36 4 14.97c0 2.33.67 4.5 1.84 6.35L4 29l7.9-1.8a12.1 12.1 0 0 0 4.14.73C22.68 27.93 28 22.57 28 15.97 28 9.36 22.68 3 16.04 3zm0 22.73c-1.3 0-2.58-.24-3.78-.7l-.27-.1-4.69 1.07 1.1-4.53-.18-.29a9.9 9.9 0 0 1-1.6-5.21c0-5.4 4.42-9.79 9.84-9.79 5.42 0 9.66 4.39 9.66 9.79 0 5.4-4.24 9.76-9.66 9.76zm5.4-7.32c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.46-.88-.78-1.47-1.75-1.64-2.04-.17-.3-.02-.46.13-.6.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.01-1.04 2.47 0 1.45 1.06 2.86 1.21 3.06.15.2 2.09 3.18 5.06 4.46.71.3 1.26.48 1.69.62.71.22 1.36.19 1.87.12.57-.09 1.75-.71 2-1.4.25-.69.25-1.28.17-1.4-.07-.13-.27-.2-.57-.35z"/></svg>
+        <span class="t-en">Share</span><span class="t-te">పంపండి</span>
+      </a>
+    </nav>
+
     <div class="closing__footer">
       <span class="t-en">Sailakshmi &amp; Dharmaveer</span><span class="t-te">సాయిలక్ష్మి &amp; ధర్మవీర్</span>
       <i aria-hidden="true">·</i>
@@ -592,21 +619,6 @@
   </div>
 </footer>
 
-<!-- ============ DOCK: the three things guests need ============ -->
-<nav class="dock" id="dock" aria-label="Quick actions">
-  <a class="dock__btn" href="https://maps.app.goo.gl/zeCjRQWN1eaNN1hv5" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
-    <span class="t-en">Directions</span><span class="t-te">దారి</span>
-  </a>
-  <a class="dock__btn" href="assets/sumuhurtham.ics" download="sailakshmi-dharmaveer-sumuhurtham.ics">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
-    <span class="t-en">Calendar</span><span class="t-te">క్యాలెండర్</span>
-  </a>
-  <a class="dock__btn dock__btn--wa" id="shareBtn" href="https://wa.me/?text=" target="_blank" rel="noopener">
-    <svg viewBox="0 0 32 32" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M16.04 3C9.4 3 4 8.36 4 14.97c0 2.33.67 4.5 1.84 6.35L4 29l7.9-1.8a12.1 12.1 0 0 0 4.14.73C22.68 27.93 28 22.57 28 15.97 28 9.36 22.68 3 16.04 3zm0 22.73c-1.3 0-2.58-.24-3.78-.7l-.27-.1-4.69 1.07 1.1-4.53-.18-.29a9.9 9.9 0 0 1-1.6-5.21c0-5.4 4.42-9.79 9.84-9.79 5.42 0 9.66 4.39 9.66 9.79 0 5.4-4.24 9.76-9.66 9.76zm5.4-7.32c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.46-.88-.78-1.47-1.75-1.64-2.04-.17-.3-.02-.46.13-.6.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.01-1.04 2.47 0 1.45 1.06 2.86 1.21 3.06.15.2 2.09 3.18 5.06 4.46.71.3 1.26.48 1.69.62.71.22 1.36.19 1.87.12.57-.09 1.75-.71 2-1.4.25-.69.25-1.28.17-1.4-.07-.13-.27-.2-.57-.35z"/></svg>
-    <span class="t-en">Share</span><span class="t-te">పంపండి</span>
-  </a>
-</nav>
 
 <audio id="bgm" preload="none" loop></audio>
 

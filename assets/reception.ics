@@ -1,0 +1,27 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Moka Family//Pelli Pilupu//TE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:sailakshmi-dharmaveer-reception-20261030@pelli-pilupu
+DTSTAMP:20261023T180000Z
+DTSTART:20261030T133000Z
+DTEND:20261030T163000Z
+SUMMARY:Sailakshmi & Dharmaveer — Reception & dinner (విందు)
+LOCATION:Manu Gardens\, Laxmipuram\, Tiruvuru\, NTR District
+DESCRIPTION:Reception & dinner on Friday 30 October from 7 PM.\nవిం
+ దు: శుక్రవారము 30 అక్టోబర్ రా
+ త్రి 7 గంటల నుండి\, మను గార్డె
+ న్స్\, లక్ష్మీపురం\, తిరువూర
+ ు.\nhttps://www.google.com/maps/search/?api=1&query=Manu+Gardens%2C+Laxm
+ ipuram%2C+Tiruvuru%2C+NTR+District
+URL:https://www.google.com/maps/search/?api=1&query=Manu+Gardens%2C+Laxmipu
+ ram%2C+Tiruvuru%2C+NTR+District
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Sailakshmi & Dharmaveer — reception & dinner at 7 PM
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

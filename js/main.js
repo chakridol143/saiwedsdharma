@@ -52,51 +52,76 @@
     return SplitText.create(el, Object.assign({ type, charsClass: 'char', wordsClass: 'word', linesClass: 'line' }, opts));
   };
 
-  /* ---------- background music (assets/music.mp3, only if it exists) ---------- */
+  /* ---------- background music (assets/music.mp3, only if it exists) ----------
+     On by default: it starts with the "Open the invitation" tap. Phones only
+     allow sound after a tap, so if it could not start (a returning guest skips
+     that button) it starts on their next tap instead. The speaker button turns
+     it off and on, and the choice is remembered for the visit. */
 
   const music = (function () {
     const btn = $('#musicBtn');
     const audio = $('#bgm');
+    const PREF = 'pelli-music';
     let available = null; // null = still checking
+    let wanted = store.get(PREF) !== 'off';
     let resumeOnShow = false;
+    let waiting = false;
 
     const setUI = (on) => {
       if (!btn) return;
       btn.setAttribute('aria-pressed', String(on));
-      btn.setAttribute('aria-label', on ? 'Pause music' : 'Play music');
+      btn.setAttribute('aria-label', on ? 'Turn music off' : 'Turn music on');
     };
     const fade = (to, done) => {
-      if (gsap) gsap.to(audio, { volume: to, duration: to ? 2.2 : .6, ease: 'none', onComplete: done });
+      if (gsap) { gsap.killTweensOf(audio); gsap.to(audio, { volume: to, duration: to ? 2.2 : .5, ease: 'none', onComplete: done }); }
       else { audio.volume = to; if (done) done(); }
+    };
+    const playing = () => audio && !audio.paused;
+    const gestures = ['click', 'touchend', 'keydown'];
+    const onGesture = (e) => {
+      if (btn && btn.contains(e.target)) return; // the button handles itself
+      stopWaiting();
+      if (wanted && !playing()) play();
+    };
+    const stopWaiting = () => { waiting = false; gestures.forEach((t) => document.removeEventListener(t, onGesture, true)); };
+    const waitForTap = () => {
+      if (waiting) return;
+      waiting = true;
+      gestures.forEach((t) => document.addEventListener(t, onGesture, true));
     };
     const play = () => {
       if (!audio || available === false) return;
       if (!audio.getAttribute('src')) audio.src = MUSIC_SRC;
       audio.volume = 0;
       const p = audio.play();
-      if (p && p.then) p.then(() => { setUI(true); fade(.6); }).catch(() => setUI(false));
+      if (p && p.then) p.then(() => { stopWaiting(); setUI(true); fade(.6); }).catch(() => { setUI(false); if (wanted && available !== false) waitForTap(); });
     };
     const pause = () => {
       if (!audio) return;
       setUI(false);
       fade(0, () => audio.pause());
     };
-    const playing = () => audio && !audio.paused;
 
     if (audio && btn) {
       fetch(MUSIC_SRC, { method: 'HEAD' }).then((res) => {
         const type = res.headers.get('content-type') || '';
         available = res.ok && /audio|mpeg|mp4|octet-stream/.test(type);
         btn.hidden = !available;
-      }).catch(() => { available = false; });
-      audio.addEventListener('error', () => { available = false; btn.hidden = true; setUI(false); });
-      btn.addEventListener('click', () => (playing() ? pause() : play()));
+        if (!available) stopWaiting();
+      }).catch(() => { available = false; stopWaiting(); });
+      audio.addEventListener('error', () => { available = false; btn.hidden = true; setUI(false); stopWaiting(); });
+      btn.addEventListener('click', () => {
+        wanted = !playing();
+        store.set(PREF, wanted ? 'on' : 'off');
+        if (wanted) play(); else { stopWaiting(); pause(); }
+      });
       document.addEventListener('visibilitychange', () => {
         if (document.hidden && playing()) { resumeOnShow = true; audio.pause(); }
         else if (!document.hidden && resumeOnShow) { resumeOnShow = false; audio.play().catch(() => setUI(false)); }
       });
     }
-    return { play };
+    // call from inside a tap where possible, so phones allow the sound
+    return { start() { if (wanted) play(); } };
   })();
 
   /* ---------- hero story: tap through, auto-advance, pause ---------- */
@@ -309,11 +334,11 @@
     if (gsap) crawl = gsap.to(counter, { v: 88, duration: returning ? .5 : 1.8, ease: 'power1.out', onUpdate: paint });
 
     let opened = false;
-    const open = (withMusic) => {
+    const open = () => {
       if (opened) return;
       opened = true;
       store.set(OPENED_KEY, '1');
-      if (withMusic) music.play(); // inside the tap, so phones allow the sound
+      music.start(); // inside the tap when there is one, so phones allow the sound
       if (!motion) { finish(); return; }
       const tl = gsap.timeline({ onComplete: finish });
       tl.to('.loader__center', { y: -30, autoAlpha: 0, duration: .55, ease: 'power2.in' })
@@ -331,7 +356,7 @@
     ready.then(() => {
       if (crawl) crawl.kill();
       const done = () => {
-        if (returning || !btn) { open(false); return; }
+        if (returning || !btn) { open(); return; }
         btn.hidden = false;
         if (gsap) gsap.fromTo(btn, { y: 16, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .7, ease: 'back.out(1.8)' });
         btn.focus({ preventScroll: true });
@@ -339,31 +364,23 @@
       if (gsap) gsap.to(counter, { v: 100, duration: .45, ease: 'power2.out', onUpdate: paint, onComplete: done });
       else { counter.v = 100; paint(); done(); }
     });
-    if (btn) btn.addEventListener('click', () => open(true));
+    if (btn) btn.addEventListener('click', open);
   }
 
-  /* ---------- top bar, dock, and pausing the story once it is covered ---------- */
+  /* ---------- top bar, and pausing the story once it is covered ---------- */
 
   function initChrome() {
     const topbar = $('#topbar');
-    const dock = $('#dock');
     const invite = $('#invite');
-    let atEnd = false;
     let ticking = false;
     const sync = () => {
       ticking = false;
       const top = invite ? invite.getBoundingClientRect().top : 0;
-      const past = top < 72;
-      if (topbar) topbar.classList.toggle('is-solid', past);
-      if (dock) dock.classList.toggle('is-shown', past && !atEnd);
+      if (topbar) topbar.classList.toggle('is-solid', top < 72);
       story.setOffscreen(top <= 0);
     };
     window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(sync); } }, { passive: true });
     window.addEventListener('resize', sync, { passive: true });
-    const end = $('.closing__row');
-    if (end && 'IntersectionObserver' in window) {
-      new IntersectionObserver(([entry]) => { atEnd = entry.isIntersecting; sync(); }).observe(end);
-    }
     sync();
   }
 
@@ -856,6 +873,7 @@
       'Wednesday, 28 October 2026 · 10:34 PM',
       'Dr. Metla Satyanarayana Kapu Kalyana Mandapam, Gandu Veedhi, Amalapuram',
       'Location: ' + MAP_URL,
+      'Reception & dinner: Friday, 30 October 2026 · from 7 PM, Manu Gardens, Laxmipuram, Tiruvuru, NTR District',
       'Please join us and bless the newlyweds.'
     ],
     te: [
@@ -863,6 +881,7 @@
       'బుధవారము, 28 అక్టోబర్ 2026 · రాత్రి 10:34 గంటలకు సుముహూర్తం',
       'డా॥ మెట్ల సత్యనారాయణ కాపు కళ్యాణ మండపము, గండు వీధి, అమలాపురం',
       MAP_URL,
+      'విందు: శుక్రవారము, 30 అక్టోబర్ 2026 · రాత్రి 7 గంటల నుండి, మను గార్డెన్స్, లక్ష్మీపురం, తిరువూరు, ఎన్.టి.ఆర్. జిల్లా',
       'తప్పక విచ్చేసి నూతన వధూవరులను ఆశీర్వదించగలరు.'
     ]
   };

@@ -5,18 +5,21 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:sailakshmi-dharmaveer-20261028@pelli-pilupu
-DTSTAMP:20261023T100000Z
+DTSTAMP:20261023T180000Z
 DTSTART:20261028T170400Z
 DTEND:20261028T180400Z
 SUMMARY:Sailakshmi & Dharmaveer — Wedding (సుముహూర్తం
  )
 LOCATION:Dr. Metla Satyanarayana Kapu Kalyana Mandapam\, Gandu Veedhi\, Ama
  lapuram
-DESCRIPTION:Muhurtham on Wednesday at 10:34 PM. Reception from 7 PM at the 
- venue.\nబుధవారము రాత్రి గం॥ 10-34 ని
- ॥లకు సుముహూర్తం. విందు రాత్
- రి 7 గంటల నుండి కళ్యాణ వేదిక 
- వద్ద.\nhttps://maps.app.goo.gl/zeCjRQWN1eaNN1hv5
+DESCRIPTION:Muhurtham on Wednesday 28 October at 10:34 PM.\nReception & din
+ ner on Friday 30 October from 7 PM at Manu Gardens\, Laxmipuram\, Tiruvuru
+ \, NTR District.\nబుధవారము రాత్రి గం॥ 10
+ -34 ని॥లకు సుముహూర్తం.\nవిందు: 
+ శుక్రవారము 30 అక్టోబర్ రాత్ర
+ ి 7 గంటల నుండి\, మను గార్డెన్స
+ ్\, లక్ష్మీపురం\, తిరువూరు.\nhttps
+ ://maps.app.goo.gl/zeCjRQWN1eaNN1hv5
 URL:https://maps.app.goo.gl/zeCjRQWN1eaNN1hv5
 BEGIN:VALARM
 ACTION:DISPLAY
