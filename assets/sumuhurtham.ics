@@ -1,0 +1,29 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Moka Family//Pelli Pilupu//TE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:sailakshmi-dharmaveer-20261028@pelli-pilupu
+DTSTAMP:20261015T164558Z
+DTSTART:20261028T170400Z
+DTEND:20261028T180400Z
+SUMMARY:Sailakshmi & Dharmaveer — Wedding (సుముహూర్తం
+ )
+LOCATION:Dr. Metla Satyanarayana Kapu Kalyana Mandapam\, Gandu Veedhi\, Ama
+ lapuram
+DESCRIPTION:Muhurtham on Wednesday at 10:34 PM. Reception from 7 PM at the 
+ venue.\nబుధవారము రాత్రి గం॥ 10-34 ని
+ ॥లకు సుముహూర్తం. విందు రాత్
+ రి 7 గంటల నుండి కళ్యాణ వేదిక 
+ వద్ద.\nhttps://www.google.com/maps/search/?api=1&query=Metla+Satya
+ narayana+Kapu+Kalyana+Mandapam+Gandu+Veedhi+Amalapuram
+URL:https://www.google.com/maps/search/?api=1&query=Metla+Satyanarayana+Kap
+ u+Kalyana+Mandapam+Gandu+Veedhi+Amalapuram
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Sailakshmi & Dharmaveer — muhurtham at 10:34 PM
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR
