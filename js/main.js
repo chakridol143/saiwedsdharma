@@ -231,7 +231,7 @@
         syncPause();
         if (motion) {
           const img = $('img', frames[0]);
-          gsap.fromTo(img, { scale: 1.35 }, { scale: 1.07, duration: 2, ease: 'power3.out', onComplete: () => kenBurns(img) });
+          gsap.fromTo(img, { scale: 1.2 }, { scale: 1.07, duration: 2, ease: 'power3.out', onComplete: () => kenBurns(img) });
           popSticker(frames[0], 1.1);
         }
       },

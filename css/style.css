@@ -190,7 +190,7 @@ html.is-loading, html.is-loading body { overflow: hidden; }
 .topbar > * { pointer-events: auto; }
 .topbar__brand {
   display: inline-flex; align-items: baseline; gap: 10px; text-decoration: none; color: var(--ivory);
-  opacity: 0; transform: translateY(-6px); transition: opacity .3s, transform .3s var(--ease);
+  transition: opacity .3s, transform .3s var(--ease);
 }
 .topbar__mono { font-family: 'Instrument Serif', serif; font-size: 26px; line-height: 1; }
 .topbar__mono i { color: var(--marigold); padding: 0 1px; }
@@ -235,8 +235,14 @@ html.is-loading, html.is-loading body { overflow: hidden; }
 .stack { position: relative; }
 .hero {
   position: sticky; top: 0; z-index: 0;
-  height: 100vh; height: 100svh; min-height: 560px;
-  background: var(--sky-6);
+  height: 100vh; height: 100svh; min-height: 540px;
+  /* phones: the photo is a card on top and the names sit below it, so the
+     picture is never stretched and the text never covers their faces */
+  display: flex; flex-direction: column; justify-content: center; gap: 18px;
+  padding: calc(var(--safe-top) + 58px) 14px calc(var(--safe-bottom) + 18px);
+  background:
+    radial-gradient(85% 42% at 50% 30%, rgba(245, 181, 68, .2), rgba(245, 181, 68, 0) 72%),
+    linear-gradient(#0d1440, #080c2a);
   color: var(--ivory);
   overflow: hidden;
   isolation: isolate;
@@ -244,7 +250,13 @@ html.is-loading, html.is-loading body { overflow: hidden; }
 }
 .hero__dim { position: absolute; inset: 0; z-index: 6; background: #050820; opacity: 0; pointer-events: none; }
 
-.story { position: absolute; inset: 0; overflow: hidden; background: #10183f; color: var(--ivory); }
+/* the card keeps 4:5 on tall phones and gets squarer on short ones */
+.story {
+  position: relative; flex: 0 1 auto; min-height: 0;
+  width: 100%; max-width: 520px; align-self: center; aspect-ratio: 4 / 5;
+  overflow: hidden; border-radius: 26px; background: #10183f; color: var(--ivory);
+  box-shadow: 0 0 0 1px rgba(255, 246, 234, .16), 0 36px 70px -30px rgba(0, 0, 0, .9);
+}
 .story__frame { position: absolute; inset: 0; opacity: 0; transition: opacity .9s ease; }
 .story__frame.is-active { opacity: 1; z-index: 2; }
 .story__frame.is-under { opacity: 1; z-index: 1; }
@@ -256,12 +268,12 @@ html.is-loading, html.is-loading body { overflow: hidden; }
 .has-gsap .story__frame, .has-gsap .story__frame img { transition: none; }
 .has-gsap .story__frame.is-active img, .has-gsap .story__frame img { transform: none; }
 .story::after { /* top shade so the bars and header stay readable */
-  content: ""; position: absolute; inset: 0 0 auto; height: 160px; z-index: 3; pointer-events: none;
-  background: linear-gradient(rgba(6, 9, 30, .6), rgba(6, 9, 30, 0));
+  content: ""; position: absolute; inset: 0 0 auto; height: 130px; z-index: 3; pointer-events: none;
+  background: linear-gradient(rgba(6, 9, 30, .62), rgba(6, 9, 30, 0));
 }
 
 .story__bars {
-  position: absolute; z-index: 4; left: 10px; right: 10px; top: calc(var(--safe-top) + 8px);
+  position: absolute; z-index: 4; left: 12px; right: 12px; top: 10px;
   display: flex; gap: 4px;
 }
 .story__bar { flex: 1; height: 3px; border-radius: 3px; background: rgba(255, 255, 255, .35); overflow: hidden; }
@@ -272,9 +284,11 @@ html.is-loading, html.is-loading body { overflow: hidden; }
 @keyframes barFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 .story__head {
-  position: absolute; z-index: 4; left: 14px; right: 120px; top: calc(var(--safe-top) + 22px);
+  position: absolute; z-index: 4; left: 14px; right: 14px; top: 22px;
   display: flex; align-items: center; gap: 10px;
+  pointer-events: none; /* taps go through to the photo; only the pause button takes them */
 }
+.story__head .story__pause { pointer-events: auto; }
 .story__avatar {
   flex: none; width: 40px; height: 40px; padding: 2px; border-radius: 50%;
   background: conic-gradient(from 200deg, var(--marigold), #ff7a6b, #c86fd6, var(--marigold));
@@ -291,16 +305,16 @@ html.is-loading, html.is-loading body { overflow: hidden; }
 .story__pause[aria-pressed="true"] .i-play { display: block; }
 .story__pause[aria-pressed="true"] .i-pause { display: none; }
 
+/* captions sit low on the photo, away from faces */
 .sticker {
-  position: absolute; z-index: 2; left: 18px; top: calc(var(--safe-top) + 92px);
+  position: absolute; z-index: 2; left: 16px; bottom: 16px;
   padding: 9px 16px 10px; border-radius: 14px;
   background: var(--ivory); color: var(--ink);
-  font-family: var(--font-display); font-style: italic; font-size: 26px; line-height: 1;
+  font-family: var(--font-display); font-style: italic; font-size: 25px; line-height: 1;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, .6);
   transform: rotate(var(--rot, -6deg)) scale(.6); opacity: 0;
   transition: transform .55s var(--pop) .25s, opacity .3s .25s;
 }
-.sticker--r { left: auto; right: 18px; }
 html[data-lang="te"] .sticker { font-family: var(--font-te); font-style: normal; font-weight: 600; font-size: 19px; padding-top: 11px; }
 .story__frame.is-active .sticker { transform: rotate(var(--rot, -6deg)) scale(1); opacity: 1; }
 .has-gsap .sticker { transition: none; transform: rotate(var(--rot, -6deg)); opacity: 1; }
@@ -314,9 +328,9 @@ html[data-lang="te"] .sticker { font-family: var(--font-te); font-style: normal;
 .story__tap:focus-visible { outline-offset: -6px; }
 
 .hero__content {
-  position: absolute; z-index: 5; left: 0; right: 0; bottom: 0;
-  padding: 120px var(--gutter) calc(var(--safe-bottom) + 20px);
-  background: linear-gradient(to top, rgba(8, 12, 42, .95) 0%, rgba(8, 12, 42, .78) 45%, rgba(8, 12, 42, 0) 100%);
+  position: relative; z-index: 5; flex: none;
+  width: 100%; max-width: 520px; align-self: center;
+  padding: 0 4px;
   pointer-events: none;
 }
 .hero__content a, .hero__content button { pointer-events: auto; }
@@ -354,9 +368,9 @@ html[data-lang="te"] .hero__amp { font-family: var(--font-display); line-height:
 .hero__ctas { margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .hero__ctas .btn { padding: 0 12px; }
 
-/* rotating "save the date" badge */
+/* rotating "save the date" badge, tucked over the card's lower corner */
 .badge {
-  position: absolute; right: 14px; top: 34px; width: 100px; height: 100px;
+  position: absolute; right: -4px; top: -66px; width: 96px; height: 96px;
   overflow: visible;
 }
 .badge__spin { transform-origin: 60px 60px; animation: spin 18s linear infinite; }
@@ -368,15 +382,20 @@ html[data-lang="te"] .hero__amp { font-family: var(--font-display); line-height:
 .badge__gem { fill: var(--ink); }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* shorter phones: keep the couple's faces in view */
-@media (max-height: 720px) and (max-width: 959px) {
-  .hero__content { padding-top: 90px; padding-bottom: calc(var(--safe-bottom) + 14px); }
+/* shorter phones (most phones once the browser bars show) */
+@media (max-height: 760px) and (max-width: 959px) {
+  .hero { padding-top: calc(var(--safe-top) + 54px); gap: 14px; }
   .hero__names { font-size: min(14.6vw, 64px); }
   .hero__when { margin-top: 8px; font-size: 14px; }
   .hero__ctas { margin-top: 12px; }
   .hero__ctas .btn { min-height: 46px; font-size: 14px; }
-  .badge { width: 80px; height: 80px; top: 30px; }
-  .sticker { top: calc(var(--safe-top) + 80px); font-size: 22px; }
+  .badge { width: 80px; height: 80px; top: -54px; }
+  .sticker { font-size: 21px; padding: 8px 13px 9px; bottom: 12px; }
+}
+@media (max-height: 600px) and (max-width: 959px) {
+  .hero { padding-top: calc(var(--safe-top) + 50px); gap: 10px; }
+  .hero__names { font-size: min(12.4vw, 54px); }
+  .hero__ctas .btn { min-height: 44px; }
 }
 
 /* ==========================================================================
@@ -971,12 +990,14 @@ html[data-lang="te"] .seeyou__cap { font-family: var(--font-te); font-style: nor
     color: var(--ink);
   }
   .story {
-    position: relative; inset: auto; grid-column: 2; grid-row: 1;
-    height: min(80svh, 800px); aspect-ratio: 9 / 16; border-radius: 30px;
+    grid-column: 2; grid-row: 1; align-self: center;
+    width: auto; max-width: none; height: min(74svh, 680px); aspect-ratio: 4 / 5; border-radius: 30px;
     box-shadow: 0 50px 90px -40px rgba(20, 26, 63, .65), 0 0 0 10px rgba(255, 255, 255, .6);
   }
-  .story__head { right: 14px; }
-  .hero__content { position: relative; grid-column: 1; grid-row: 1; padding: 0; background: none; }
+  .sticker { top: 84px; bottom: auto; font-size: 27px; }
+  .sticker--r { left: auto; right: 18px; }
+  .hero__content { grid-column: 1; grid-row: 1; max-width: none; padding: 0; }
+  .topbar:not(.is-solid) .topbar__brand { opacity: 0; transform: translateY(-6px); }
   .hero__kicker { color: var(--peacock); font-size: 14px; }
   .hero__names { font-size: clamp(84px, 8.6vw, 150px); }
   html[data-lang="te"] .hero__names { font-size: clamp(64px, 6.6vw, 116px); }
