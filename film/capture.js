@@ -46,8 +46,9 @@ const FILM_CSS = `
   .couple { padding-bottom: 60px !important; }
 
 
-  /* events, simplified for the film: day, time, title and a short place line per event.
-     The muhurtham sentence, the repeated date lines and the full addresses stay on the site. */
+  /* events, simplified for the film: day, time, title and a short place line per event; the
+     ceremony card also carries its date, time and the wedding venue name. The muhurtham sentence,
+     the street address and the reception's full address stay on the site. */
   .night { padding-bottom: 40px !important; }
   .moment { padding-bottom: 44px !important; }
   .moment__date, .moment__text, #venue { display: none !important; }
@@ -55,8 +56,13 @@ const FILM_CSS = `
   .moment__time { font-size: 50px !important; }
   .moment--main .moment__time { font-size: 60px !important; }
   .moment__title { font-size: 38px !important; }
+  .moment--main .moment__card { margin-top: 26px !important; }   /* the lifted card stays clear of the time above it */
   .film-place { margin-top: 12px; display: flex; align-items: center; gap: 8px; font-size: 21px; font-weight: 700; line-height: 1.2; color: #fff6ea; }
   .film-place svg { flex: none; width: 22px; height: 22px; color: #ffd581; }
+  .film-when { margin-top: 8px; font-size: 18px; font-weight: 700; letter-spacing: .03em; color: #ffd581; }
+  .film-hall { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,246,234,.16);
+               font-family: var(--font-display); font-size: 27px; line-height: 1.12; color: #fff6ea; }
+  .film-hall + .film-place { margin-top: 8px; }
 
   /* gallery laid flat as a collage */
   .film-gallery { position: relative; background: #0d1440; color: #fff6ea; padding: 64px 0 40px; }
@@ -118,18 +124,24 @@ const LIFTS = [
       + '<p class="n">Sai <i>&amp;</i> Dharma</p><p class="d">28 · 10 · 2026</p>';
     const hero = document.querySelector('.hero');
     hero.insertBefore(open, hero.firstChild);
-    // events: one short place line per card, using the site's own spellings
+    // events: the ceremony card carries its date, time and the wedding venue; each card ends with a
+    // short place line. Venue and place words use the site's own spellings
     const siteText = document.body.textContent;
+    const onSite = (s) => { if (!siteText.includes(s)) throw new Error('not on the site: ' + s); return s; };
     const pin = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
       + '<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>';
-    [['.moment--main .moment__card', ['Amalapuram']],
-     ['.moment:not(.moment--main) .moment__card', ['Manu Gardens', 'Tiruvuru']]].forEach(([sel, parts]) => {
-      parts.forEach((s) => { if (!siteText.includes(s)) throw new Error('place not on the site: ' + s); });
+    const addLine = (sel, cls, html) => {
       const p = document.createElement('p');
-      p.className = 'film-place';
-      p.innerHTML = pin + '<span>' + parts.join(', ') + '</span>';
+      p.className = cls;
+      p.innerHTML = html;
       document.querySelector(sel).appendChild(p);
-    });
+    };
+    const cer = '.moment--main .moment__card', rec = '.moment:not(.moment--main) .moment__card';
+    onSite('Dr. Metla Satyanarayana Kapu Kalyana Mandapam');
+    addLine(cer, 'film-when', '28 October 2026 · 10:34 PM');
+    addLine(cer, 'film-hall', 'Dr. Metla Satyanarayana<br>Kapu Kalyana Mandapam');
+    addLine(cer, 'film-place', pin + '<span>' + onSite('Amalapuram') + '</span>');
+    addLine(rec, 'film-place', pin + '<span>' + onSite('Manu Gardens') + ', ' + onSite('Tiruvuru') + '</span>');
     // gallery collage (photos from the site's reel)
     const photos = [
       // a two-column wall, no overlaps: hand in hand, uyyala, garden, engagement

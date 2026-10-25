@@ -28,18 +28,21 @@
   // almost none on the two event cards (sharp as they come in), light on the gallery faces and the
   // blessings heading
   const frontK = (y) => K * (40 - 18 * (1 - sstep(380, 520, y)) - 12 * bump(560, 680, 900, 1000, y) - 10 * bump(1150, 1290, 1650, 1750, y)
-    - 8 * bump(2250, 2320, 2420, 2480, y) - 32 * bump(2380, 2520, 3250, 3420, y) - 28 * bump(3250, 3420, 4150, 4300, y));
+    - 8 * bump(2250, 2320, 2420, 2480, y) - 32 * bump(2380, 2520, 3386, 3556, y) - 28 * bump(3386, 3556, 4286, 4436, y));
   const FLOOR_MID = [0xfb / 255, 0xf6 / 255, 0xec / 255];
   const FLOOR_EDGE = [0xee / 255, 0xe2 / 255, 0xcd / 255];
   const HAZE = [0xf8 / 255, 0xf1 / 255, 0xe5 / 255];
   const FOG = [950, 4300, 0.82];            // depth near, far, max mix
   const SHADOW_TINT = [0x1a / 255, 0x21 / 255, 0x33 / 255, 1];
 
-  // glide speed (page px / s), smoothstep between keys; never dips during the flight
-  const SPEED = [[0, 0], [0.9, 190], [2.0, 250], [3.0, 255], [7.6, 268], [11.8, 270], [13.3, 350], [14.6, 370]];
+  // glide speed (page px / s), smoothstep between keys. It eases down to 115 px/s over the ceremony
+  // card so its date and venue can be read, then picks up again for the reception and the gallery
+  const SPEED = [[0, 0], [0.9, 195], [2.0, 265], [3.0, 298], [6.5, 338], [8.0, 340], [9.25, 115], [10.85, 115], [11.55, 215], [12.3, 226], [13.45, 450], [14.84, 455]];
   const P0 = 175;                           // page y under the frame centre at t = 0
-  const T_END = 14.6;                       // glide hands over to the rise here
+  const T_END = 14.84;                      // glide hands over to the rise here
+  const RISE = T_END + 0.1;                 // the camera starts to rise; the end sequence is timed from here
   const DECEL = 1.4;                        // seconds to ease the glide to a stop
+  const LEAN = 12;                          // degrees the camera leans over the ceremony card
 
   /* ---------------- helpers ---------------- */
   const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
@@ -79,14 +82,16 @@
   function cameraAt(t) {
     const Ly = pageY(t);
     // tilt from straight down: 50 deg through the glide, flattening to overhead for the landing
-    const tilt = ((22 + 28 * sstep(0.3, 4.6, t)) * (1 - sstep(14.7, 15.85, t))) * Math.PI / 180;
+    // a gentle lean over the ceremony card (page y 2754-3058), so its date and venue read larger and flatter
+    const lean = LEAN * bump(2572, 2732, 2912, 3092, Ly);
+    const tilt = ((22 + 28 * sstep(0.3, 4.6, t) - lean) * (1 - sstep(RISE, RISE + 1.15, t))) * Math.PI / 180;
     // distance: starts close and intimate, eases outward through the glide (never back in),
     // then a log-scale rise and a quadratic log-scale dive onto the end card, then a 2% creep
     let D = 300 + 220 * sstep(0, 4.5, t) + 40 * clamp((t - 4.5) / (T_END - 4.5), 0, 1);
-    if (t > 14.7) {
-      const up = Math.log(560) + (Math.log(780) - Math.log(560)) * sstep(14.7, 15.45, t);
-      const down = (Math.log(780) - Math.log(560)) * sstep(15.45, 16.1, t);
-      D = Math.exp(up - down) * (1 - 0.02 * sstep(16.1, 20.0, t));
+    if (t > RISE) {
+      const up = Math.log(560) + (Math.log(780) - Math.log(560)) * sstep(RISE, RISE + 0.75, t);
+      const down = (Math.log(780) - Math.log(560)) * sstep(RISE + 0.75, RISE + 1.4, t);
+      D = Math.exp(up - down) * (1 - 0.02 * sstep(RISE + 1.4, 20.0, t));
     }
     const target = [0, -Ly, 0];
     const pos = add(target, [0, -Math.sin(tilt) * D, Math.cos(tilt) * D]);
@@ -312,7 +317,7 @@
     return toks.map((k, i) => { const it = { k, x: x - k.pad, cy, t0: t0 + i * step }; x += k.adv + space; return it; });
   }
   const INK = '#141a3f', GOLD = '#9a7430', BROWN = '#7d6343';
-  const TL = 16.18;                                                // the card has landed; text follows
+  const TL = 16.24;                     // the card is settling; the last word is fully in at 16.97 s
   const END_WORDS = [
     ...line(['Sailakshmi', '&', 'Dharmaveer'], '92px "Instrument Serif"', INK, 1240, TL, 0.04),
     ...line(['28', 'October', '2026', '·', '10:34', 'PM'], '600 38px "Bricolage Grotesque"', BROWN, 1334, TL + 0.10, 0.035, 0.5),
@@ -374,11 +379,11 @@
     frontNow = frontK(cam.Ly);
     const viewDepth = (p) => -(VPs.V[2] * p[0] + VPs.V[6] * p[1] + VPs.V[10] * p[2] + VPs.V[14]);
 
-    const pageHaze = sstep(15.0, 15.5, t);
-    const pageAlpha = 1 - sstep(15.35, 15.75, t);
+    const pageHaze = sstep(RISE + 0.3, RISE + 0.8, t);
+    const pageAlpha = 1 - sstep(RISE + 0.65, RISE + 1.05, t);
     const pageOn = pageAlpha > 0;
-    const endOn = t > 15.25;
-    const endIn = sstep(15.27, 15.87, t);
+    const endOn = t > RISE + 0.55;
+    const endIn = sstep(RISE + 0.57, RISE + 1.17, t);
 
     // lifts: each piece rises as it approaches the frame centre and stays up as it recedes
     const live = [];
@@ -494,7 +499,7 @@
   // motion blur only on the rise, where the view sweeps fastest and the page is fading into the haze;
   // a short shutter (0.35 of a frame) that opens and closes gradually. The gallery faces, the event
   // text and the end card stay single, crisp renders (a 0.7 shutter visibly smeared them)
-  const shutter = (t) => 0.35 * sstep(14.7, 14.9, t) * (1 - sstep(15.5, 15.7, t));
+  const shutter = (t) => 0.35 * sstep(RISE, RISE + 0.2, t) * (1 - sstep(RISE + 0.8, RISE + 1.0, t));
   function seek(t) {
     gl.viewport(0, 0, W, H);
     const span = shutter(t);
