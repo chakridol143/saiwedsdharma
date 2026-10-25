@@ -1,2 +1,11 @@
 .vercel
 .env*
+
+# invitation film: generated captures, frames and exports stay out of Git
+film/cap/
+film/previews/
+film/frames*/
+film/out*/
+film/stills*/
+film/*.mp4
+film/*.zip
