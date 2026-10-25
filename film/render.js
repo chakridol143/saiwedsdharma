@@ -13,7 +13,7 @@ const path = require('path');
   const page = await browser.newPage({ viewport: { width: 400, height: 400 } });
   page.on('console', (m) => { if (m.type() === 'error') console.error('page:', m.text()); });
   const base = process.env.FILM_URL || 'http://127.0.0.1:8765/film/film.html';
-  await page.goto(`${base}?w=${w}&h=${h}&mb=${mb}&fps=${fps}`);
+  await page.goto(`${base}${base.includes('?') ? '&' : '?'}w=${w}&h=${h}&mb=${mb}&fps=${fps}`);
   await page.waitForFunction(() => window.filmReady || window.filmError, null, { timeout: 120000 });
   const err = await page.evaluate(() => window.filmError);
   if (err) { console.error(err); process.exit(1); }
