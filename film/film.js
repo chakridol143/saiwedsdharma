@@ -23,8 +23,12 @@
   const F = 1240 * K;                       // focal length, output px
   const DOF = { front: 40 * K, back: 4.5 * K, cap: 90 * K };
   const bump = (a, b, c, d, x) => sstep(a, b, x) * (1 - sstep(c, d, x));
-  // text-heavy stretches get a deeper focus so everything stays readable
-  const frontK = (t) => K * (40 - 12 * bump(2.4, 3.0, 4.4, 5.0, t) - 10 * bump(5.4, 6.0, 7.6, 8.2, t) - 8 * bump(9.4, 10.0, 10.8, 11.2, t) - 20 * bump(10.8, 11.4, 14.0, 14.6, t));
+  // foreground blur by page position (frame centre): lighter at the opening so the uyyala photo below
+  // the title stays recognisable, deeper focus on the names, the big date and the couple's names,
+  // almost none on the two event cards (sharp as they come in), light on the gallery faces and the
+  // blessings heading
+  const frontK = (y) => K * (40 - 18 * (1 - sstep(380, 520, y)) - 12 * bump(560, 680, 900, 1000, y) - 10 * bump(1150, 1290, 1650, 1750, y)
+    - 8 * bump(2250, 2320, 2420, 2480, y) - 32 * bump(2380, 2520, 3250, 3420, y) - 28 * bump(3250, 3420, 4150, 4300, y));
   const FLOOR_MID = [0xfb / 255, 0xf6 / 255, 0xec / 255];
   const FLOOR_EDGE = [0xee / 255, 0xe2 / 255, 0xcd / 255];
   const HAZE = [0xf8 / 255, 0xf1 / 255, 0xe5 / 255];
@@ -32,10 +36,10 @@
   const SHADOW_TINT = [0x1a / 255, 0x21 / 255, 0x33 / 255, 1];
 
   // glide speed (page px / s), smoothstep between keys; never dips during the flight
-  const SPEED = [[0, 0], [1.0, 140], [2.0, 215], [3.0, 228], [8.4, 238], [11.4, 345], [17.0, 360]];
-  const P0 = 165;                           // page y under the frame centre at t = 0
-  const T_END = 17.0;                       // glide hands over to the rise here
-  const DECEL = 1.6;                        // seconds to ease the glide to a stop
+  const SPEED = [[0, 0], [0.9, 190], [2.0, 250], [3.0, 255], [7.6, 268], [11.8, 270], [13.3, 350], [14.6, 370]];
+  const P0 = 175;                           // page y under the frame centre at t = 0
+  const T_END = 14.6;                       // glide hands over to the rise here
+  const DECEL = 1.4;                        // seconds to ease the glide to a stop
 
   /* ---------------- helpers ---------------- */
   const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
@@ -75,14 +79,14 @@
   function cameraAt(t) {
     const Ly = pageY(t);
     // tilt from straight down: 50 deg through the glide, flattening to overhead for the landing
-    const tilt = ((22 + 28 * sstep(0.3, 5.0, t)) * (1 - sstep(17.1, 18.3, t))) * Math.PI / 180;
+    const tilt = ((22 + 28 * sstep(0.3, 4.6, t)) * (1 - sstep(14.7, 15.85, t))) * Math.PI / 180;
     // distance: starts close and intimate, eases outward through the glide (never back in),
     // then a log-scale rise and a quadratic log-scale dive onto the end card, then a 2% creep
-    let D = 300 + 220 * sstep(0, 4.5, t) + 40 * clamp((t - 4.5) / 12.5, 0, 1);
-    if (t > 17.1) {
-      const up = Math.log(560) + (Math.log(820) - Math.log(560)) * sstep(17.1, 17.95, t);
-      const down = (Math.log(820) - Math.log(560)) * sstep(17.95, 18.55, t);
-      D = Math.exp(up - down) * (1 - 0.02 * sstep(18.55, 20.0, t));
+    let D = 300 + 220 * sstep(0, 4.5, t) + 40 * clamp((t - 4.5) / (T_END - 4.5), 0, 1);
+    if (t > 14.7) {
+      const up = Math.log(560) + (Math.log(780) - Math.log(560)) * sstep(14.7, 15.45, t);
+      const down = (Math.log(780) - Math.log(560)) * sstep(15.45, 16.1, t);
+      D = Math.exp(up - down) * (1 - 0.02 * sstep(16.1, 20.0, t));
     }
     const target = [0, -Ly, 0];
     const pos = add(target, [0, -Math.sin(tilt) * D, Math.cos(tilt) * D]);
@@ -276,17 +280,16 @@
   const LIFT = {
     heroCard: [24, 6, 0], emblem: [12, 10, 0],
     bride: [58, 10, -1.2], groom: [66, 10, 1.2], amp: [88, 0, 0],
-    ceremony: [18, 5, 0], reception: [18, 5, 0], venue: [20, 5, 0],
-    g1: [34, 16, -2.0], g2: [54, 18, 1.8], g3: [42, 16, -1.5], g4: [58, 15, 1.4], g5: [48, 18, -1.8], g6: [60, 14, 1.5],
+    ceremony: [18, 5, 0], reception: [18, 5, 0],
+    g1: [34, 16, -2.0], g2: [54, 18, 1.8], g3: [42, 16, -1.5], g4: [58, 15, 1.4],
     d1: [36, 10, 0], d2: [40, 10, 0], d3: [36, 10, 0], d4: [40, 10, 0],
   };
 
   /* ---------------- end card (designed in 1080 x 1920 screen px) ---------------- */
   await document.fonts.load('92px "Instrument Serif"');
   await document.fonts.load('italic 76px "Instrument Serif"');
-  await document.fonts.load('700 34px "Bricolage Grotesque"');
-  await document.fonts.load('600 30px "Bricolage Grotesque"');
-  await document.fonts.load('500 36px "Anek Telugu"', 'సాయి & ధర్మ ఆత్మీయ ఆహ్వానం');
+  await document.fonts.load('600 38px "Bricolage Grotesque"');
+  await document.fonts.load('500 42px "Anek Telugu"', 'ఆత్మీయ ఆహ్వానం');
   await document.fonts.ready;
   const SS = 1.5;                                                  // supersample text textures
   function textTex(str, font, color, spacing = 0) {
@@ -308,43 +311,16 @@
     let x = 540 - total / 2;
     return toks.map((k, i) => { const it = { k, x: x - k.pad, cy, t0: t0 + i * step }; x += k.adv + space; return it; });
   }
-  const INK = '#141a3f', GOLD = '#9a7430', BROWN = '#7d6343', SOFT = '#5d5247';
-  const TL = 18.62;                                                // the card has landed; text follows
+  const INK = '#141a3f', GOLD = '#9a7430', BROWN = '#7d6343';
+  const TL = 16.18;                                                // the card has landed; text follows
   const END_WORDS = [
-    ...line(['Sailakshmi', '&', 'Dharmaveer'], '92px "Instrument Serif"', INK, 1228, TL + 0.10, 0.06),
-    ...line(['28', 'OCTOBER', '2026', '·', 'AMALAPURAM'], '700 30px "Bricolage Grotesque"', BROWN, 1330, TL + 0.22, 0.045, 5.5),
-    ...line(['With', 'love,', 'we', 'invite', 'you'], 'italic 78px "Instrument Serif"', GOLD, 1462, TL + 0.34, 0.05),
-    ...line(['ఆత్మీయ', 'ఆహ్వానం'], '500 36px "Anek Telugu"', BROWN, 1560, TL + 0.56, 0.06),
-    ...line(['Please', 'come', 'and', 'bless', 'us'], '600 30px "Bricolage Grotesque"', SOFT, 1646, TL + 0.64, 0.045),
+    ...line(['Sailakshmi', '&', 'Dharmaveer'], '92px "Instrument Serif"', INK, 1240, TL, 0.04),
+    ...line(['28', 'October', '2026', '·', '10:34', 'PM'], '600 38px "Bricolage Grotesque"', BROWN, 1334, TL + 0.10, 0.035, 0.5),
+    ...line(['Amalapuram'], '600 34px "Bricolage Grotesque"', BROWN, 1396, TL + 0.20, 0, 3),
+    ...line(['With', 'love,', 'we', 'invite', 'you'], 'italic 78px "Instrument Serif"', GOLD, 1522, TL + 0.26, 0.04),
+    ...line(['ఆత్మీయ', 'ఆహ్వానం'], '500 42px "Anek Telugu"', BROWN, 1618, TL + 0.38, 0.05),
   ];
-  // badge pill: gold rings, Sai & Dharma, సాయి & ధర్మ
-  const pill = (() => {
-    const c = document.createElement('canvas'); const x = c.getContext('2d');
-    const text = 'Sai & Dharma', te = 'సాయి & ధర్మ';
-    x.font = '600 30px "Bricolage Grotesque"'; const w1 = x.measureText(text).width;
-    x.font = '500 30px "Anek Telugu"'; const w2 = x.measureText(te).width;
-    const pw = 64 + 52 + w1 + 34 + w2 + 40, ph = 76, pad = 40;
-    c.width = Math.ceil((pw + pad * 2) * SS); c.height = Math.ceil((ph + pad * 2) * SS);
-    x.scale(SS, SS);
-    x.shadowColor = 'rgba(80, 58, 30, .18)'; x.shadowBlur = 26; x.shadowOffsetY = 8;
-    x.fillStyle = '#fffaf2';
-    x.beginPath(); x.roundRect(pad, pad, pw, ph, ph / 2); x.fill();
-    x.shadowColor = 'transparent';
-    x.strokeStyle = 'rgba(176, 138, 62, .35)'; x.lineWidth = 1.5; x.stroke();
-    // rings
-    x.lineWidth = 2.6; x.strokeStyle = '#c99a3c';
-    x.beginPath(); x.arc(pad + 46, pad + 40, 13, 0, Math.PI * 2); x.stroke();
-    x.strokeStyle = '#e0b456';
-    x.beginPath(); x.arc(pad + 62, pad + 40, 13, 0, Math.PI * 2); x.stroke();
-    x.fillStyle = '#e0b456'; x.beginPath(); x.moveTo(pad + 62, pad + 18); x.lineTo(pad + 66, pad + 23); x.lineTo(pad + 62, pad + 28); x.lineTo(pad + 58, pad + 23); x.fill();
-    x.fillStyle = INK; x.font = '600 30px "Bricolage Grotesque"'; x.textBaseline = 'middle';
-    x.fillText(text, pad + 96, pad + ph / 2 + 1);
-    x.fillStyle = 'rgba(154, 116, 48, .9)'; x.fillText('·', pad + 96 + w1 + 10, pad + ph / 2);
-    x.fillStyle = BROWN; x.font = '500 30px "Anek Telugu"';
-    x.fillText(te, pad + 96 + w1 + 34, pad + ph / 2 + 3);
-    return { ...texture(c), sw: c.width / SS, sh: c.height / SS };
-  })();
-  const END = { photo: { x: 110, y: 262, w: 860, h: 860, r: 40 }, pillY: 150 };
+  const END = { photo: { x: 110, y: 270, w: 860, h: 860, r: 40 } };
 
   /* ---------------- drawing ---------------- */
   let VPs, focusDepth = 500, frontNow = DOF.front;
@@ -395,14 +371,14 @@
   function drawScene(t) {
     const cam = cameraAt(t);
     VPs = matrices(cam);
-    frontNow = frontK(t);
+    frontNow = frontK(cam.Ly);
     const viewDepth = (p) => -(VPs.V[2] * p[0] + VPs.V[6] * p[1] + VPs.V[10] * p[2] + VPs.V[14]);
 
-    const pageHaze = sstep(17.5, 18.0, t);
-    const pageAlpha = 1 - sstep(17.85, 18.25, t);
+    const pageHaze = sstep(15.0, 15.5, t);
+    const pageAlpha = 1 - sstep(15.35, 15.75, t);
     const pageOn = pageAlpha > 0;
-    const endOn = t > 17.8;
-    const endIn = sstep(17.82, 18.42, t);
+    const endOn = t > 15.25;
+    const endIn = sstep(15.27, 15.87, t);
 
     // lifts: each piece rises as it approaches the frame centre and stays up as it recedes
     const live = [];
@@ -483,32 +459,12 @@
       // the invitation card emerges from the haze and settles
       const lift = 3 + 11 * endIn;
       drawQuad(endPhoto, endCorners(ph.x, ph.y, ph.w, ph.h, lift), { opacity: endIn, haze: 0.55 * (1 - endIn), blur: 14 * (1 - endIn), quadPx: [ph.w, ph.h], corners: [ph.r, ph.r, ph.r, ph.r], noFog: true });
-      // the badge, crisp on the card's top-right corner
-      const bd = pieces.badge, bs = 150 / Math.max(bd.w, bd.h) * 1.32;
-      drawQuad(bd, endCorners(ph.x + ph.w - 112, ph.y - 52, bd.w * bs, bd.h * bs, lift + 6), { opacity: sstep(18.1, 18.5, t), noFog: true });
-      // badge pill
-      const pk = easeOut((t - (TL + 0.02)) / 0.4);
-      if (pk > 0) drawQuad(pill, endCorners(540 - pill.sw / 2, END.pillY - pill.sh / 2 + 10 * (1 - pk), pill.sw, pill.sh, 1), { opacity: pk, blur: 10 * (1 - pk), noFog: true });
       // words rise 16 px out of a 12 px blur
       for (const wd of END_WORDS) {
-        const kk = easeOut((t - wd.t0) / 0.34);
+        const kk = easeOut((t - wd.t0) / 0.30);
         if (kk <= 0) continue;
         const k2 = wd.k;
         drawQuad(k2, endCorners(wd.x, wd.cy - k2.sh / 2 + 16 * (1 - kk), k2.sw, k2.sh, 1), { opacity: kk, blur: 12 * (1 - kk), noFog: true });
-      }
-      // two huge soft blurs drift in at the bottom corners
-      const dk = sstep(18.5, 20.0, t);
-      if (dk > 0) {
-        const camRight = [VPs.V[0], VPs.V[4], VPs.V[8]], camUp = [VPs.V[1], VPs.V[5], VPs.V[9]], fwd = VPs.fwd;
-        [[-1, 1], [1, 1.25]].forEach(([side, sc]) => {
-          const depth = 150;
-          const sx = side * (0.98 - 0.06 * dk), sy = -0.96 + 0.04 * dk;      // view-space offsets as a fraction of the frame
-          const halfW = depth * (W / 2) / F, halfH = depth * (H / 2) / F;
-          const c = add(add(add(cam.pos, mul(fwd, depth)), mul(camRight, sx * halfW)), mul(camUp, sy * halfH));
-          const s = 0.75 * halfW * sc;
-          const corners = [[-1, 1], [1, 1], [-1, -1], [1, -1]].map(([a, bb]) => add(add(c, mul(camRight, a * s)), mul(camUp, bb * s)));
-          drawQuad(pieces.badge, corners, { opacity: 0.22 * dk, noFog: true });
-        });
       }
     }
   }
@@ -535,14 +491,15 @@
     gl.uniform1f(blitProg.u.uGain, gain);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   }
-  // motion blur only where things move fast (the gallery lifts, the rise and the landing);
-  // the shutter opens and closes gradually so the switch never shows, and text glides stay crisp
-  const shutter = (t) => 0.7 * sstep(13.6, 14.0, t) * (1 - sstep(18.6, 19.0, t));
+  // motion blur only on the rise, where the view sweeps fastest and the page is fading into the haze;
+  // a short shutter (0.35 of a frame) that opens and closes gradually. The gallery faces, the event
+  // text and the end card stay single, crisp renders (a 0.7 shutter visibly smeared them)
+  const shutter = (t) => 0.35 * sstep(14.7, 14.9, t) * (1 - sstep(15.5, 15.7, t));
   function seek(t) {
     gl.viewport(0, 0, W, H);
     const span = shutter(t);
     if (SUB === 1 || span < 0.01) { gl.bindFramebuffer(gl.FRAMEBUFFER, null); drawScene(t); return; }
-    // subframes spread across the open shutter (up to 0.7 of a frame), averaged
+    // subframes spread across the open shutter, averaged
     gl.bindFramebuffer(gl.FRAMEBUFFER, acc.fb); gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
     for (let i = 0; i < SUB; i++) {
       const ts = clamp(t + ((i + 0.5) / SUB - 0.5) * span / FPS, 0, 20);

@@ -46,15 +46,23 @@ const FILM_CSS = `
   .couple { padding-bottom: 60px !important; }
 
 
-  /* events */
+  /* events, simplified for the film: day, time, title and a short place line per event.
+     The muhurtham sentence, the repeated date lines and the full addresses stay on the site. */
   .night { padding-bottom: 40px !important; }
-  .moment { padding-bottom: 22px !important; }
+  .moment { padding-bottom: 44px !important; }
+  .moment__date, .moment__text, #venue { display: none !important; }
+  .moment__day { font-size: 15px !important; }
+  .moment__time { font-size: 50px !important; }
+  .moment--main .moment__time { font-size: 60px !important; }
+  .moment__title { font-size: 38px !important; }
+  .film-place { margin-top: 12px; display: flex; align-items: center; gap: 8px; font-size: 21px; font-weight: 700; line-height: 1.2; color: #fff6ea; }
+  .film-place svg { flex: none; width: 22px; height: 22px; color: #ffd581; }
 
   /* gallery laid flat as a collage */
   .film-gallery { position: relative; background: #0d1440; color: #fff6ea; padding: 64px 0 40px; }
   .film-gallery .head { padding: 0 20px; }
   .film-gallery .eyebrow { color: #ffd581; }
-  .film-gallery .wall { position: relative; height: 643px; margin-top: 26px; }
+  .film-gallery .wall { position: relative; height: 438px; margin-top: 26px; }
   .film-gallery .ph { position: absolute; display: block; overflow: hidden; border-radius: 16px; background: #1b2356;
                       box-shadow: 0 0 0 1px rgba(255,246,234,.1); }
   .film-gallery .ph img { width: 100%; height: 100%; object-fit: cover; }
@@ -79,13 +87,10 @@ const LIFTS = [
   { sel: '.duo__amp', id: 'amp', kind: 'chip' },
   { sel: '.moment--main .moment__card', id: 'ceremony', kind: 'card' },
   { sel: '.moment:not(.moment--main) .moment__card', id: 'reception', kind: 'card' },
-  { sel: '#venue', id: 'venue', kind: 'card' },
   { sel: '.film-gallery .ph:nth-of-type(1)', id: 'g1', kind: 'gallery' },
   { sel: '.film-gallery .ph:nth-of-type(2)', id: 'g2', kind: 'gallery' },
   { sel: '.film-gallery .ph:nth-of-type(3)', id: 'g3', kind: 'gallery' },
   { sel: '.film-gallery .ph:nth-of-type(4)', id: 'g4', kind: 'gallery' },
-  { sel: '.film-gallery .ph:nth-of-type(5)', id: 'g5', kind: 'gallery' },
-  { sel: '.film-gallery .ph:nth-of-type(6)', id: 'g6', kind: 'gallery' },
   { sel: '.deity:nth-of-type(1)', id: 'd1', kind: 'deity' },
   { sel: '.deity:nth-of-type(2)', id: 'd2', kind: 'deity' },
   { sel: '.deity:nth-of-type(3)', id: 'd3', kind: 'deity' },
@@ -113,15 +118,25 @@ const LIFTS = [
       + '<p class="n">Sai <i>&amp;</i> Dharma</p><p class="d">28 · 10 · 2026</p>';
     const hero = document.querySelector('.hero');
     hero.insertBefore(open, hero.firstChild);
+    // events: one short place line per card, using the site's own spellings
+    const siteText = document.body.textContent;
+    const pin = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+      + '<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>';
+    [['.moment--main .moment__card', ['Amalapuram']],
+     ['.moment:not(.moment--main) .moment__card', ['Manu Gardens', 'Tiruvuru']]].forEach(([sel, parts]) => {
+      parts.forEach((s) => { if (!siteText.includes(s)) throw new Error('place not on the site: ' + s); });
+      const p = document.createElement('p');
+      p.className = 'film-place';
+      p.innerHTML = pin + '<span>' + parts.join(', ') + '</span>';
+      document.querySelector(sel).appendChild(p);
+    });
     // gallery collage (photos from the site's reel)
     const photos = [
-      // a two-column wall, no overlaps: right column starts higher, left a little lower
-      ['img/shoot/palace-walk.jpg', 200, 0, 170, 255],     // hand in hand
+      // a two-column wall, no overlaps: hand in hand, uyyala, garden, engagement
+      ['img/shoot/palace-walk.jpg', 200, 0, 170, 255],     // hand in hand (the blue palace)
       ['img/shoot/swing-close.jpg', 20, 60, 170, 113],     // uyyala
       ['img/shoot/garden-hug.jpg', 20, 183, 170, 255],     // garden
-      ['img/shoot/white-hall.jpg', 200, 265, 170, 113],    // white hall
-      ['img/shoot/palace-sit.jpg', 200, 388, 170, 255],    // blue palace
-      ['img/gallery/g-05.jpg', 20, 448, 170, 113],         // engagement rings
+      ['img/gallery/g-05.jpg', 200, 265, 170, 113],        // engagement rings
     ];
     const g = document.createElement('section');
     g.className = 'film-gallery';
@@ -164,7 +179,6 @@ const LIFTS = [
       inviteWhen: abs(document.querySelector('.invite__when')),
       duo: abs(document.querySelector('#duo')),
       timeline: abs(document.querySelector('#timeline')),
-      venue: abs(document.querySelector('#venue')),
       wall: abs(document.querySelector('.film-gallery .wall')),
       deck: abs(document.querySelector('#godDeck')),
     };

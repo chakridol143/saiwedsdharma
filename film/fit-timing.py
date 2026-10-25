@@ -5,10 +5,10 @@
 import json, math, os
 
 # keep in step with SPEED, P0 and T_END in film.js
-SPEED = [(0, 0), (1.0, 140), (2.0, 215), (3.0, 228), (8.4, 238), (11.4, 345), (17.0, 360)]
-P0 = 165
-T_END = 17.0
-CHECKS = [0.8, 3.5, 6.2, 9.5, 12.5, 15.8]
+SPEED = [(0, 0), (0.9, 190), (2.0, 250), (3.0, 255), (7.6, 268), (11.8, 270), (13.3, 350), (14.6, 370)]
+P0 = 175
+T_END = 14.6
+CHECKS = [0.6, 2.8, 5.6, 8.4, 9.7, 10.9, 12.0, 12.9, 13.7, 14.6]
 
 
 def sstep(a, b, x):
@@ -34,17 +34,20 @@ def page_y(t, dt=0.001):
 
 
 here = os.path.dirname(os.path.abspath(__file__))
-marks = {}
+# block centres: page sections (marks) and the liftable pieces
+centres = {}
 try:
-    marks = json.load(open(os.path.join(here, 'cap', 'layout.json')))['marks']
+    layout = json.load(open(os.path.join(here, 'cap', 'layout.json')))
+    centres.update({k: m['y'] + m['h'] / 2 for k, m in layout['marks'].items()})
+    centres.update({p['id']: p['y'] + p['h'] / 2 for p in layout['pieces'] if p['id'] != 'badge'})
 except OSError:
     pass
 
 
 def nearest(y):
     best = None
-    for k, m in marks.items():
-        d = abs(m['y'] + m['h'] / 2 - y)
+    for k, c in centres.items():
+        d = abs(c - y)
         if best is None or d < best[0]:
             best = (d, k)
     return '' if best is None else f'(nearest: {best[1]}, {best[0]:.0f} px away)'
